@@ -45,6 +45,7 @@ void movement::Movement()
 	if (p1movingLeft) {
 		if (!p1bound.intersects(p2bound) || player1.Sprite.getPosition().x < player2.Sprite.getPosition().x) {
 			player->Sprite.move(-VelocityX * dt, 0.f);
+			player->IsMoving = true;
 		}
 	}
 	if (p2movingRight) {
