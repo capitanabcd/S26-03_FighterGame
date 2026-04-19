@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Build outputs
+x64/
+Debug/
+Release/
+*.exe
+*.ilk
+*.obj
+*.pdb
+*.log

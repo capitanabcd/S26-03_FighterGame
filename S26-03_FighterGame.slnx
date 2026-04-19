@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="S26-03_FighterGame/S26-03_FighterGame.vcxproj" Id="c5a6032b-eab1-42d2-907e-33b446b617aa" />
+</Solution>
