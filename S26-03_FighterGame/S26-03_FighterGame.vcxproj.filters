@@ -137,4 +137,11 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dlls\sfml-audio-d-2.dll" />
+    <None Include="dlls\sfml-graphics-d-2.dll" />
+    <None Include="dlls\sfml-network-d-2.dll" />
+    <None Include="dlls\sfml-system-d-2.dll" />
+    <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
 </Project>

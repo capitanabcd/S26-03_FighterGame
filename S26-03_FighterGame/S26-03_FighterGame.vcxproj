@@ -63,6 +63,13 @@
     <Image Include="assets\goku\goku7.png" />
     <Image Include="assets\goku\goku8.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dlls\sfml-audio-d-2.dll" />
+    <None Include="dlls\sfml-graphics-d-2.dll" />
+    <None Include="dlls\sfml-network-d-2.dll" />
+    <None Include="dlls\sfml-system-d-2.dll" />
+    <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -142,6 +149,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\include;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /d "$(ProjectDir)dlls\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -176,6 +186,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\include;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /d "$(ProjectDir)dlls\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
