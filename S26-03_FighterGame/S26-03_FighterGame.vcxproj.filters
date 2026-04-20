@@ -68,10 +68,10 @@
     <ClCompile Include="Source\Window\DrawLoop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Window\HandleEvents.cpp">
+    <ClCompile Include="Source\Window\Window_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Window\Window_definitions.cpp">
+    <ClCompile Include="Source\Helper Functions\HandleEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

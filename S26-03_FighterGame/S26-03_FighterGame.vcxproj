@@ -30,6 +30,7 @@
     <ClCompile Include="Source\animations\MovementAnimation.cpp" />
     <ClCompile Include="Source\Helper Functions\debugging.cpp" />
     <ClCompile Include="Source\Helper Functions\deltatime.cpp" />
+    <ClCompile Include="Source\Helper Functions\HandleEvents.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
     <ClCompile Include="Source\Load Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\Load_freeza_Textures.cpp" />
@@ -38,7 +39,6 @@
     <ClCompile Include="Source\Main\main.cpp" />
     <ClCompile Include="Source\Window\DisplayWindow.cpp" />
     <ClCompile Include="Source\Window\DrawLoop.cpp" />
-    <ClCompile Include="Source\Window\HandleEvents.cpp" />
     <ClCompile Include="Source\Window\Window_definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +148,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\include;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>yes</Profile>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)dlls\*.dll" "$(OutDir)"</Command>
@@ -185,6 +186,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\include;$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>yes</Profile>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)dlls\*.dll" "$(OutDir)"</Command>
