@@ -24,13 +24,17 @@
     <ClInclude Include="Headers\sfml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Actions\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
     <ClCompile Include="Source\animations\MovementAnimation.cpp" />
+    <ClCompile Include="Source\Animations\staggerAnimation.cpp" />
+    <ClCompile Include="Source\Helper Functions\collision.cpp" />
     <ClCompile Include="Source\Helper Functions\debugging.cpp" />
     <ClCompile Include="Source\Helper Functions\deltatime.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
+    <ClCompile Include="Source\Helper Functions\SetBounds.cpp" />
     <ClCompile Include="Source\Load Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\Load_freeza_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\Load_goku_Textures.cpp" />

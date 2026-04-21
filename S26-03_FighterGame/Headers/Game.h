@@ -13,8 +13,10 @@ class movement
 	Players* player = nullptr;
 	float VelocityX = 500.f;
 	bool IsMoving = false;
+	
 	void Movement();
 };
+
 
 class jumping
 {
@@ -30,14 +32,28 @@ class jumping
 	void Updatejump();
 };
 
+class attack {
+public:
+	Players* player = nullptr;
+	bool isattacking = false;
+	bool hitTaken = false;
+	
+	void punch();
+	void kick();
+
+};
+
 class animations
 {
 	public:
 		Players* player = nullptr;
 		int IdleFrames = 0;
 		int MovementFrames = 4;
+		int StaggerFrames = 8;
+		float staggerTime = 0.0f;
 		void IdleAnimation();
 		void MovementAnimation();
+		void stagger();
 };
 
 class Loadtextures :public cell, public goku, public freeza
@@ -51,7 +67,18 @@ class Loadtextures :public cell, public goku, public freeza
 		SetCharacterTexture();
 	}
 };
-class Players : public movement,public jumping , public animations
+class collide {
+
+public:
+	Players* player = nullptr;
+	sf::FloatRect Player1Bounds;
+	sf::FloatRect Player2Bounds;
+	bool MoveCollision();
+	void setbounds();
+
+};
+
+class Players : public movement,public jumping , public animations, public attack, public collide
 {
 	public:
 	int PlayerNumber;
@@ -65,6 +92,7 @@ class Players : public movement,public jumping , public animations
 		movement::player = this;
 		jumping::player = this;
 		animations::player = this;
+		attack::player = this;
 		static int nextPlayerNumber = 1;
 		PlayerNumber = nextPlayerNumber;
 		nextPlayerNumber++;
