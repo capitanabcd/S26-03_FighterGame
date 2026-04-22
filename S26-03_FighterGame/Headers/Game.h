@@ -25,11 +25,11 @@ class jumping
 	public:
 	Players* player = nullptr;
 	bool isjumping = false;
-	int startY = 0;
+	float startY = 0;
 	float VelocityY = 0;
 	float gravity = 2000.f;
 	float jumpStrength = -1000.f;
-	float jumpHeight = 1000.f;
+	float jumpHeight = 500.f;
 	void jump();
 	void Updatejump();
 };
@@ -84,8 +84,8 @@ class Players : public movement,public jumping , public animations, public attac
 {
 	public:
 	int PlayerNumber;
-	int x;
-	int y;
+	float x;
+	float y;
 	sf::Clock clock;
 	sf::Texture PlayerTexture[8];
 	sf::Sprite Sprite;

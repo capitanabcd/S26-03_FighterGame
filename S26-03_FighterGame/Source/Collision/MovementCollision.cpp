@@ -5,5 +5,6 @@ bool collide::MoveCollision() {
 	if (Player1Bounds.intersects(Player2Bounds)) {
 		return true;
 	}
+
 	return false;
 }
