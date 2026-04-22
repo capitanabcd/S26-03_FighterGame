@@ -105,7 +105,9 @@ class Players : public movement,public jumping , public animations, public attac
 		x = 100;
 		Sprite.setTexture(PlayerTexture[0]);
 		Sprite.setScale(3.f, 3.f);
-		y = ground - Sprite.getGlobalBounds().height;
+		sf::FloatRect boundaries = Sprite.getGlobalBounds();
+		Sprite.setOrigin(boundaries.width / 2,boundaries.height / 2);
+		y = ground - (Sprite.getGlobalBounds().height /2);
 		if (PlayerNumber == 1)
 		{
 			Sprite.setPosition(x, y);
@@ -114,6 +116,8 @@ class Players : public movement,public jumping , public animations, public attac
 		{
 			Sprite.setPosition(x + 400, y);
 		}
+
+		
 	}
 };
 
