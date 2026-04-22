@@ -28,6 +28,7 @@
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
+    <ClCompile Include="Source\Animations\Invert.cpp" />
     <ClCompile Include="Source\animations\MovementAnimation.cpp" />
     <ClCompile Include="Source\Animations\staggerAnimation.cpp" />
     <ClCompile Include="Source\Collision\MovementCollision.cpp" />
