@@ -13,11 +13,11 @@ void jumping::Updatejump()
 {
 	if (isjumping)
 	{
-
+		//hello 
 		VelocityY += gravity * dt;
 		player->Sprite.move(0, VelocityY * dt);
 		if (player->Sprite.getPosition().y <= startY - jumpHeight) {
 			VelocityY = 0;
 		}
 	}
-}
+} 
