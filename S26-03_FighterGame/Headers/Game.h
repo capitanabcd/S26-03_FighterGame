@@ -11,6 +11,8 @@ class movement
 {
 	public:
 	Players* player = nullptr;
+	bool MovingRight = false;
+	bool MovingLeft = false;
 	float VelocityX = 500.f;
 	bool IsMoving = false;
 	
@@ -39,7 +41,6 @@ public:
 	bool hitTaken = false;
 	
 	void punch();
-	void kick();
 
 };
 
