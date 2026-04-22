@@ -11,4 +11,4 @@ void animations :: MovementAnimation()
 			if (player->MovementFrames > 7) player->MovementFrames = 4;
 		}
 	}
-}  
+} 
