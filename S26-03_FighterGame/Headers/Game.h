@@ -55,6 +55,7 @@ class animations
 		void IdleAnimation();
 		void MovementAnimation();
 		void stagger();
+		void invert();
 };
 
 class Loadtextures :public cell, public goku, public freeza

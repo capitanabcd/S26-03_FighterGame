@@ -9,6 +9,7 @@ void animations :: MovementAnimation()
 			player->clock.restart();
 			player->MovementFrames++;
 			if (player->MovementFrames > 7) player->MovementFrames = 4;
+			invert();
 		}
 	}
 } 
