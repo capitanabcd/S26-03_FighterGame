@@ -5,7 +5,6 @@ void animations :: MovementAnimation()
 	{
 		if (player->IsMoving)
 		{
-
 			player->Sprite.setTexture(player->PlayerTexture[player->MovementFrames],true);
 			player->clock.restart();
 			player->MovementFrames++;

@@ -38,8 +38,8 @@ void movement::Movement()
 
 		if (p1movingRight) {
 
-			if (!p1bound.intersects(p2bound) || player1.Sprite.getPosition().x > player2.Sprite.getPosition().x) {
-				player->Sprite.setScale(3.f, 3.f);
+			if (!player->MoveCollision()) {
+
 				player->Sprite.move(VelocityX * dt, 0.f);
 				player->IsMoving = true;
 			}
@@ -47,21 +47,18 @@ void movement::Movement()
 		}
 		if (p1movingLeft) {
 			if (!p1bound.intersects(p2bound) || player1.Sprite.getPosition().x < player2.Sprite.getPosition().x) {
-				player->Sprite.setScale(-3.f, 3.f);
 				player->Sprite.move(-VelocityX * dt, 0.f);
 				player->IsMoving = true;
 			}
 		}
 		if (p2movingRight) {
 			if (!p2bound.intersects(p1bound) || player2.Sprite.getPosition().x > player1.Sprite.getPosition().x) {
-				player->Sprite.setScale(3.f, 3.f);
 				player->Sprite.move(VelocityX * dt, 0.f);
 				player->IsMoving = true;
 			}
 		}
 		if (p2movingLeft) {
 			if (!p2bound.intersects(p1bound) || player2.Sprite.getPosition().x < player1.Sprite.getPosition().x) {
-				player->Sprite.setScale(-3.f, 3.f);
 				player->Sprite.move(-VelocityX * dt, 0.f);
 				player->IsMoving = true;
 			}
