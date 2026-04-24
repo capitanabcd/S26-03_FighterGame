@@ -80,10 +80,16 @@
     <ClCompile Include="Source\Animations\staggerAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\collision.cpp">
+    <ClCompile Include="Source\Animations\Invert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\SetBounds.cpp">
+    <ClCompile Include="Source\Collision\MovementCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision\SetBounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animations\HeavyAttackAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

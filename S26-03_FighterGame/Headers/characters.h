@@ -5,7 +5,9 @@ class cell
 {
 	public:
 	sf::Texture CellTexture[8];
-	virtual void LoadTexture(sf::Texture* temp);
+	sf::Texture CellHeavyAttack[7];
+	virtual void LoadTexture(sf::Texture* temp, sf::Texture* heavy);
+
 };
 class goku
 {
@@ -18,5 +20,6 @@ class freeza
 {
 	public:
 	sf::Texture FreezaTexture[8];
-	virtual void LoadTexture(sf::Texture* temp);
+	sf::Texture FreezaHeavyAttack[10];
+	virtual void LoadTexture(sf::Texture* temp, sf::Texture* heavy);
 };

@@ -1,6 +1,6 @@
 #include "sfml.h"
 
-void cell::LoadTexture(sf::Texture* temp)
+void cell::LoadTexture(sf::Texture* temp, sf::Texture* heavy)
 {
 	CellTexture[0].loadFromFile("assets/cell/cell1.png");
 	CellTexture[1].loadFromFile("assets/cell/cell2.png");

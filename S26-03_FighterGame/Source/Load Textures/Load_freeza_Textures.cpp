@@ -1,6 +1,7 @@
 #include "sfml.h"
-void freeza::LoadTexture(sf::Texture* temp)
+void freeza::LoadTexture(sf::Texture* temp, sf::Texture* heavy)
 {
+	
 	FreezaTexture[0].loadFromFile("assets/freeza/freeza Idle1.png");
 	FreezaTexture[1].loadFromFile("assets/freeza/freeza Idle2.png");
 	FreezaTexture[2].loadFromFile("assets/freeza/freeza Idle3.png");

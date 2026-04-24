@@ -1,6 +1,7 @@
 #include "sfml.h"
 void goku :: LoadTexture(sf::Texture* temp, sf::Texture* heavy)
 {
+	
 	GokuTexture[0].loadFromFile("assets/goku/goku Idle1.png");
 	GokuTexture[1].loadFromFile("assets/goku/goku Idle2.png");
 	GokuTexture[2].loadFromFile("assets/goku/goku Idle3.png");
@@ -26,7 +27,7 @@ void goku :: LoadTexture(sf::Texture* temp, sf::Texture* heavy)
 	{
 		temp[i] = GokuTexture[i];
 	}
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i <13; i++) {
 		heavy[i] = GokuHeavyAttack[i];
 	}
 }

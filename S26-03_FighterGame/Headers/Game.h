@@ -51,9 +51,11 @@ class animations
 		int IdleFrames = 0;
 		int MovementFrames = 4;
 		int StaggerFrames = 8;
+		int HeavyAttackFrames = 0;
 		float staggerTime = 0.0f;
 		void IdleAnimation();
 		void MovementAnimation();
+		void HeavyAttackAnimation();
 		void stagger();
 		void invert();
 };
@@ -62,7 +64,9 @@ class Loadtextures :public cell, public goku, public freeza
 {
 	public:
 	sf::Texture Textures[8];
-	void LoadTexture(sf::Texture* temp) override;
+	sf::Texture HeavyAttackTexture[13];
+	int heavyAttackframes = 0;
+	void LoadTexture(sf::Texture* temp, sf::Texture* heavy) override;
 	void SetCharacterTexture();
 	Loadtextures()
 	{
@@ -88,8 +92,7 @@ class Players : public movement,public jumping , public animations, public attac
 	int y;
 	sf::Clock clock;
 	sf::Texture PlayerTexture[8];
-	sf::Texture HeavyAttackTexture[15];
-	int attackframecount = 0;
+	sf::Texture PlayerHeavyTextures[13];
 	sf::Sprite Sprite;
 	Players()
 	{
@@ -102,12 +105,16 @@ class Players : public movement,public jumping , public animations, public attac
 		nextPlayerNumber++;
 		clock.restart();
 		Loadtextures ChosenTexture;
+		
 		for (int i = 0; i < 8; i++)
 		{
 			PlayerTexture[i] = ChosenTexture.Textures[i];
-			
 
 		}
+		for (int i = 0; i < 13; i++) {
+			PlayerHeavyTextures[i] = ChosenTexture.HeavyAttackTexture[i];
+		}
+
 		x = 100;
 		Sprite.setTexture(PlayerTexture[0]);
 		Sprite.setScale(3.f, 3.f);
