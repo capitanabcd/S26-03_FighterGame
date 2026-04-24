@@ -88,6 +88,8 @@ class Players : public movement,public jumping , public animations, public attac
 	int y;
 	sf::Clock clock;
 	sf::Texture PlayerTexture[8];
+	sf::Texture HeavyAttackTexture[15];
+	int attackframecount = 0;
 	sf::Sprite Sprite;
 	Players()
 	{
@@ -103,6 +105,8 @@ class Players : public movement,public jumping , public animations, public attac
 		for (int i = 0; i < 8; i++)
 		{
 			PlayerTexture[i] = ChosenTexture.Textures[i];
+			
+
 		}
 		x = 100;
 		Sprite.setTexture(PlayerTexture[0]);

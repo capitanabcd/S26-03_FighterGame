@@ -11,7 +11,8 @@ class goku
 {
 	public:
 	sf::Texture GokuTexture[8];
-	virtual void LoadTexture(sf::Texture* temp);
+	sf::Texture GokuHeavyAttack[13];
+	virtual void LoadTexture(sf::Texture* temp, sf::Texture* heavy);
 };
 class freeza
 {

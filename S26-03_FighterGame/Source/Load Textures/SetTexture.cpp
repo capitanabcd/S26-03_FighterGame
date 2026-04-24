@@ -11,7 +11,7 @@ void Loadtextures::SetCharacterTexture()
 	}
 	else if(choice == 2)
 	{
-		goku::LoadTexture(Textures);
+		goku::LoadTexture(Textures, GokuHeavyAttack);
 	}
 	else if (choice == 3)
 	{
