@@ -19,54 +19,40 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
     <ClInclude Include="Headers\sfml.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Actions\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
-    <ClCompile Include="Source\Animations\Invert.cpp" />
+    <ClCompile Include="Source\Helper Functions\Invert.cpp" />
     <ClCompile Include="Source\animations\MovementAnimation.cpp" />
-    <ClCompile Include="Source\Animations\staggerAnimation.cpp" />
+    <ClCompile Include="Source\Background\Background.cpp" />
     <ClCompile Include="Source\Collision\MovementCollision.cpp" />
     <ClCompile Include="Source\Collision\SetBounds.cpp" />
     <ClCompile Include="Source\Helper Functions\debugging.cpp" />
     <ClCompile Include="Source\Helper Functions\deltatime.cpp" />
     <ClCompile Include="Source\Helper Functions\HandleEvents.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
-    <ClCompile Include="Source\Load Textures\Load_cell_Textures.cpp" />
-    <ClCompile Include="Source\Load Textures\Load_freeza_Textures.cpp" />
-    <ClCompile Include="Source\Load Textures\Load_goku_Textures.cpp" />
-    <ClCompile Include="Source\Load Textures\SetTexture.cpp" />
+    <ClCompile Include="Source\Background\Load_Background_Textures.cpp" />
+    <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp" />
+    <ClCompile Include="Source\Load Character Textures\Load_freeza_Textures.cpp" />
+    <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp" />
+    <ClCompile Include="Source\Load Character Textures\SetTexture.cpp" />
     <ClCompile Include="Source\Main\main.cpp" />
     <ClCompile Include="Source\Window\DisplayWindow.cpp" />
     <ClCompile Include="Source\Window\DrawLoop.cpp" />
     <ClCompile Include="Source\Window\Window_definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\freeza attack_15.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_16.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_17.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_18.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_19.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_20.png" />
-    <Image Include="..\..\..\..\Downloads\freeza attack_21.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_148.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_25.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_26.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_27.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_28.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_29.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_30.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_31.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_32.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_33.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_34.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_35.png" />
-    <Image Include="..\..\..\..\Downloads\goku attack_36.png" />
+    <Image Include="assets\background\background image 1.jpeg" />
+    <Image Include="assets\background\background image 2.jpeg" />
+    <Image Include="assets\background\background image 3.jpeg" />
+    <Image Include="assets\background\background image 4.jpeg" />
+    <Image Include="assets\background\background image 5.jpeg" />
     <Image Include="assets\cell\cell1.png" />
     <Image Include="assets\cell\cell2.png" />
     <Image Include="assets\cell\cell3.png" />

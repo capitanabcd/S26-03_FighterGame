@@ -1,9 +1,13 @@
 #include "sfml.h"
+#include "background.h"
 Players player1;
 Players player2;
+Background gameBackground;
+
 int main()
 {
 	window GameWindow;
+	gameBackground.loadBackground(GameWindow.MainWindow);
 	while (GameWindow.WindowisOpen())
 	{	
 		DeltaTime();
@@ -11,6 +15,7 @@ int main()
 		{
 			GameWindow.HandleEvents();
 		}
+		gameBackground.updateBackground();
 		player1.Updatejump();
 		player1.Movement();
 		player2.Updatejump();

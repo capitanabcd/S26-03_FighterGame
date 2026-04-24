@@ -1,5 +1,6 @@
-#include "characters.h"
 #pragma once
+#include "characters.h"
+#include "Background.h"
 
 const int ground = 720;
 extern float dt;
@@ -19,7 +20,6 @@ class movement
 	void Movement();
 };
 
-
 class jumping
 {
 	public:
@@ -29,19 +29,9 @@ class jumping
 	float VelocityY = 0;
 	float gravity = 2000.f;
 	float jumpStrength = -1000.f;
-	float jumpHeight = 500.f;
+	float jumpHeight = 1000.f;
 	void jump();
 	void Updatejump();
-};
-
-class attack {
-public:
-	Players* player = nullptr;
-	bool isattacking = false;
-	bool hitTaken = false;
-	
-	void punch();
-
 };
 
 class animations
@@ -50,11 +40,9 @@ class animations
 		Players* player = nullptr;
 		int IdleFrames = 0;
 		int MovementFrames = 4;
-		int StaggerFrames = 8;
 		float staggerTime = 0.0f;
 		void IdleAnimation();
 		void MovementAnimation();
-		void stagger();
 		void invert();
 };
 
@@ -80,7 +68,7 @@ public:
 
 };
 
-class Players : public movement,public jumping , public animations, public attack, public collide
+class Players : public movement,public jumping , public animations, public collide
 {
 	public:
 	int PlayerNumber;
@@ -94,7 +82,7 @@ class Players : public movement,public jumping , public animations, public attac
 		movement::player = this;
 		jumping::player = this;
 		animations::player = this;
-		attack::player = this;
+		collide::player = this;
 		static int nextPlayerNumber = 1;
 		PlayerNumber = nextPlayerNumber;
 		nextPlayerNumber++;

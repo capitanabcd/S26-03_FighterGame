@@ -24,6 +24,9 @@
     <ClInclude Include="Headers\sfml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
@@ -77,13 +80,31 @@
     <ClCompile Include="Source\Actions\attack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Animations\staggerAnimation.cpp">
+    <ClCompile Include="Source\Helper Functions\Invert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\collision.cpp">
+    <ClCompile Include="Source\Collision\MovementCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\SetBounds.cpp">
+    <ClCompile Include="Source\Collision\SetBounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Background\Background.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Background\Load_Background_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\Load_freeza_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\SetTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,66 +119,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\cell\cell4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_25.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_26.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_27.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_28.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_29.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_30.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_31.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_32.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_33.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_34.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_35.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_36.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_148.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_15.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_16.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_17.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_18.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_19.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_20.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_21.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\goku\goku HeavyAttack1.png">
@@ -266,6 +227,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\freeza\freeza Movement4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 1.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 2.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 3.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 4.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 5.jpeg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
