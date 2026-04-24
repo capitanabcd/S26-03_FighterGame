@@ -1,4 +1,5 @@
 #include "characters.h"
+#include "Background.h"
 #pragma once
 
 const int ground = 720;

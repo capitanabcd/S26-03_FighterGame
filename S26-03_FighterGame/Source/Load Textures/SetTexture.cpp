@@ -1,20 +1,17 @@
 #include "sfml.h"
-void Loadtextures::LoadTexture(sf::Texture* temp){}
+#include "SelectionManager.h"
+Loadtextures textures;
+// 1. Ensure this matches your Header exactly!
+void Loadtextures::LoadTexture(sf::Texture* temp)
+{
+    // Even if it's empty, it needs to exist so the Linker is happy
+}
+
+extern SelectionManager menu;
+
 void Loadtextures::SetCharacterTexture()
 {
-	int choice;
-	std::cout << "Choose your character: " << std::endl;
-	std::cin >> choice;
-	if(choice == 1)
-	{
-		cell::LoadTexture(Textures);
-	}
-	else if(choice == 2)
-	{
-		goku::LoadTexture(Textures);
-	}
-	else if (choice == 3)
-	{
-		freeza::LoadTexture(Textures);
-	}
+   
+    cell::LoadTexture(Textures);
+    std::cout << "DEBUG: I am forcing the game to load Cell!" << std::endl;
 }

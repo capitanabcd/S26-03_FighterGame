@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\SelectionBox.h" />
+    <ClInclude Include="Headers\SelectionManager.h" />
     <ClInclude Include="Headers\sfml.h" />
   </ItemGroup>
   <ItemGroup>
@@ -37,11 +40,13 @@
     <ClCompile Include="Source\Helper Functions\deltatime.cpp" />
     <ClCompile Include="Source\Helper Functions\HandleEvents.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
+    <ClCompile Include="Source\Load Textures\Background.cpp" />
     <ClCompile Include="Source\Load Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\Load_freeza_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\Load_goku_Textures.cpp" />
     <ClCompile Include="Source\Load Textures\SetTexture.cpp" />
     <ClCompile Include="Source\Main\main.cpp" />
+    <ClCompile Include="Source\Selectionscreen\SelectionManager.cpp" />
     <ClCompile Include="Source\Window\DisplayWindow.cpp" />
     <ClCompile Include="Source\Window\DrawLoop.cpp" />
     <ClCompile Include="Source\Window\Window_definitions.cpp" />
@@ -67,6 +72,11 @@
     <Image Include="..\..\..\..\Downloads\goku attack_34.png" />
     <Image Include="..\..\..\..\Downloads\goku attack_35.png" />
     <Image Include="..\..\..\..\Downloads\goku attack_36.png" />
+    <Image Include="assets\background\background image 1.jpeg" />
+    <Image Include="assets\background\background image 2.jpeg" />
+    <Image Include="assets\background\background image 3.jpeg" />
+    <Image Include="assets\background\background image 4.jpeg" />
+    <Image Include="assets\background\background image 5.jpeg" />
     <Image Include="assets\cell\cell1.png" />
     <Image Include="assets\cell\cell2.png" />
     <Image Include="assets\cell\cell3.png" />
@@ -107,6 +117,9 @@
     <Image Include="assets\goku\goku Movement2.png" />
     <Image Include="assets\goku\goku Movement3.png" />
     <Image Include="assets\goku\goku Movement4.png" />
+    <Image Include="assets\menus\seleectionimage.jpeg" />
+    <Image Include="C:\Users\Hafiz Sharjeel\Documents\background image 1.jpeg" />
+    <Image Include="C:\Users\Hafiz Sharjeel\Documents\background image 2.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dlls\sfml-audio-d-2.dll" />
@@ -139,7 +152,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
