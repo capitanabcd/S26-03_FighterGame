@@ -1,11 +1,13 @@
 #include "sfml.h"
 Background::Background() {
     currentFrame = 0;
-    frameDuration = 0.3f;
+    frameDuration = 0.1f;
 }
 void Background::updateBackground() {
-    if (animationClock.getElapsedTime().asSeconds() > frameDuration) {
-        currentFrame = (currentFrame + 1) % 5;
+    if (backgroundTextures.empty()) return;
+
+    if (animationClock.getElapsedTime().asSeconds() >= frameDuration) {
+        currentFrame = (currentFrame + 1) % backgroundTextures.size();
         backgroundSprite.setTexture(backgroundTextures[currentFrame]);
         animationClock.restart();
     }

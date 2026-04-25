@@ -1,10 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include <iostream>
+#include <filesystem>
+#include <algorithm>
 
 class Background {
 private:
-    sf::Texture backgroundTextures[5];
+    std::vector <sf::Texture> backgroundTextures;
     sf::Sprite backgroundSprite;
     sf::Clock animationClock;
     int currentFrame;

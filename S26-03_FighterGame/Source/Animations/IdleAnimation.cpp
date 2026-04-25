@@ -10,6 +10,7 @@ void animations :: IdleAnimation()
 			player->clock.restart();
 			player->IdleFrames++;
 			if (player->IdleFrames > 3) player->IdleFrames = 0;
+			RevertOrigin();
 		}
 	}
 }
