@@ -1,22 +1,21 @@
 #pragma once
+
+// SFML headers
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Network.hpp>
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <filesystem>
+#include <algorithm>
+
+#include "Background.h"
 #include "Game.h"
-class window
-{
-public:
+#include "Window.h"
 
-	sf::RenderWindow MainWindow;
-	sf::Event event;
-
-	window() : MainWindow(sf::VideoMode(1280, 720), "game"), event()
-	{
-		MainWindow.setVerticalSyncEnabled(true);
-	}
-
-	void CloseWindow();
-	void HandleEvents();
-	void DisplayWindow();
-	bool WindowisOpen() const;
-	void DrawLoop();
-};
 void debug();
-
+void DeltaTime();
+void resize();

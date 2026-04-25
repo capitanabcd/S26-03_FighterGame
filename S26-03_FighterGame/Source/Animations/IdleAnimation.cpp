@@ -2,7 +2,7 @@
 void animations :: IdleAnimation()
 {
 	
-	if(player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	if(player->clock.getElapsedTime().asSeconds() >= 0.2f)
 	{
 		if (!player->IsMoving && !player->isjumping)
 		{

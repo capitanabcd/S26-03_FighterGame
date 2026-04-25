@@ -22,7 +22,10 @@
     <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\Player.h" />
+    <ClInclude Include="Headers\PlayerComponents.h" />
     <ClInclude Include="Headers\sfml.h" />
+    <ClInclude Include="Headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Actions\jumping.cpp" />

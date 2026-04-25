@@ -27,6 +27,15 @@
     <ClInclude Include="Headers\Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\PlayerComponents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
