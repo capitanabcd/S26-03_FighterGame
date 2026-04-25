@@ -24,6 +24,9 @@
     <ClInclude Include="Headers\sfml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
@@ -47,18 +50,6 @@
     <ClCompile Include="Source\Helper Functions\resize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Load Textures\Load_cell_Textures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Load Textures\Load_freeza_Textures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Load Textures\Load_goku_Textures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Load Textures\SetTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Main\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,13 +65,7 @@
     <ClCompile Include="Source\Helper Functions\HandleEvents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Actions\attack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Animations\staggerAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Animations\Invert.cpp">
+    <ClCompile Include="Source\Helper Functions\Invert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collision\MovementCollision.cpp">
@@ -89,7 +74,26 @@
     <ClCompile Include="Source\Collision\SetBounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Background\Background.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Background\Load_Background_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Helper Functions\collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Animations\HeavyAttackAnimations.cpp">
+    <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Load Character Textures\SetTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Helper Functions\RevertOrigin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,66 +108,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\cell\cell4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_25.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_26.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_27.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_28.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_29.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_30.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_31.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_32.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_33.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_34.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_35.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_36.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\goku attack_148.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_15.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_16.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_17.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_18.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_19.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_20.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\freeza attack_21.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\goku\goku HeavyAttack1.png">
@@ -272,6 +216,213 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\freeza\freeza Movement4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 1.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 2.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 3.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 4.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background image 5.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00017.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00018.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00019.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00020.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00021.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00022.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00023.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00024.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00025.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00026.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00027.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00028.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00029.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00030.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00031.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00032.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00033.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00034.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00035.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00036.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00037.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00038.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00039.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00040.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00041.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00042.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00043.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00044.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00045.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00046.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00047.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00048.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00049.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00050.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00051.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00052.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00053.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00054.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00055.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00056.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00057.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00058.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00059.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00060.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00061.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00062.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00063.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00064.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00001.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00002.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00003.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00004.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00005.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00006.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00007.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00008.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00009.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00010.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00011.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00012.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00013.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00014.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00015.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background-00016.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

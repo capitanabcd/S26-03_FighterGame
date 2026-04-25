@@ -1,5 +1,6 @@
-#include "characters.h"
 #pragma once
+#include "characters.h"
+#include "Background.h"
 
 const int ground = 720;
 extern float dt;
@@ -19,29 +20,18 @@ class movement
 	void Movement();
 };
 
-
 class jumping
 {
 	public:
 	Players* player = nullptr;
 	bool isjumping = false;
-	int startY = 0;
+	float startY = 0;
 	float VelocityY = 0;
 	float gravity = 2000.f;
 	float jumpStrength = -1000.f;
 	float jumpHeight = 1000.f;
 	void jump();
 	void Updatejump();
-};
-
-class attack {
-public:
-	Players* player = nullptr;
-	bool isattacking = false;
-	bool hitTaken = false;
-	
-	void punch();
-
 };
 
 class animations
@@ -58,6 +48,7 @@ class animations
 		void HeavyAttackAnimation();
 		void stagger();
 		void invert();
+		void RevertOrigin();
 };
 
 class Loadtextures :public cell, public goku, public freeza
@@ -77,6 +68,8 @@ class collide {
 
 public:
 	Players* player = nullptr;
+	bool RightCollison = false;
+	bool LeftCollision = false;
 	sf::FloatRect Player1Bounds;
 	sf::FloatRect Player2Bounds;
 	bool MoveCollision();
@@ -84,12 +77,12 @@ public:
 
 };
 
-class Players : public movement,public jumping , public animations, public attack, public collide
+class Players : public movement,public jumping , public animations, public collide, public attack
 {
 	public:
 	int PlayerNumber;
-	int x;
-	int y;
+	float x;
+	float y;
 	sf::Clock clock;
 	sf::Texture PlayerTexture[8];
 	sf::Texture PlayerHeavyTextures[13];
@@ -99,7 +92,7 @@ class Players : public movement,public jumping , public animations, public attac
 		movement::player = this;
 		jumping::player = this;
 		animations::player = this;
-		attack::player = this;
+		collide::player = this;
 		static int nextPlayerNumber = 1;
 		PlayerNumber = nextPlayerNumber;
 		nextPlayerNumber++;
@@ -117,15 +110,17 @@ class Players : public movement,public jumping , public animations, public attac
 
 		x = 100;
 		Sprite.setTexture(PlayerTexture[0]);
-		Sprite.setScale(3.f, 3.f);
+		Sprite.setScale(4.f, 4.f);
+		sf::FloatRect bounds = Sprite.getLocalBounds();
+		Sprite.setOrigin(bounds.width / 2.f, bounds.height);
 		y = ground - Sprite.getGlobalBounds().height;
 		if (PlayerNumber == 1)
 		{
-			Sprite.setPosition(x, y);
+			Sprite.setPosition(x, ground);
 		}
 		if (PlayerNumber == 2)
 		{
-			Sprite.setPosition(x + 400, y);
+			Sprite.setPosition(x + 400, ground);
 		}
 	}
 };
