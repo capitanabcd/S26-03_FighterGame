@@ -19,8 +19,11 @@ public:
     bool IsMoving = false;
     bool RightCollison = false;
     bool LeftCollision = false;
+    int screenwidth = 1280;
+    int screenheight = 720;
 
     void Movement();
+    void ScreenBounds(int screenwidth);
 };
 
 class jumping

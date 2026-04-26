@@ -30,6 +30,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
+    <ClCompile Include="Source\Actions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
     <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
     <ClCompile Include="Source\Background\Load_Background_Textures.cpp" />

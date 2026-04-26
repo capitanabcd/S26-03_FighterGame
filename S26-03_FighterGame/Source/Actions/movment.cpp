@@ -41,4 +41,5 @@ void movement::Movement()
             player->LeftCollision = false;
         }
     }
+    ScreenBounds(screenwidth);
 }
