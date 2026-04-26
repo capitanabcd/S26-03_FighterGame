@@ -40,13 +40,16 @@ class animations
 		Players* player = nullptr;
 		int IdleFrames = 0;
 		int MovementFrames = 4;
-		int StaggerFrames = 8;
+		int StaggerFrames = 0;
 		int HeavyAttackFrames = 0;
 		float staggerTime = 0.0f;
+		float staggerCooldown = 0.f;
+		sf::Clock staggerclock;
 		void IdleAnimation();
 		void MovementAnimation();
 		void HeavyAttackAnimation();
 		void stagger();
+		void StaggerAnimation();
 		void invert();
 		void RevertOrigin();
 };
@@ -56,14 +59,26 @@ class Loadtextures :public cell, public goku, public freeza
 	public:
 	sf::Texture Textures[8];
 	sf::Texture HeavyAttackTexture[13];
+	sf::Texture StaggerTexture[3];
 	int heavyAttackframes = 0;
-	void LoadTexture(sf::Texture* temp, sf::Texture* heavy) override;
+	void LoadTexture(sf::Texture* temp, sf::Texture* heavy, sf::Texture* stagger) override;
 	void SetCharacterTexture();
 	Loadtextures()
 	{
 		SetCharacterTexture();
 	}
 };
+
+class attack {
+public:
+	Players* player = nullptr;
+	bool isattacking = false;
+	bool hitTaken = false;
+
+	void punch();
+
+};
+
 class collide {
 
 public:
@@ -86,6 +101,7 @@ class Players : public movement,public jumping , public animations, public colli
 	sf::Clock clock;
 	sf::Texture PlayerTexture[8];
 	sf::Texture PlayerHeavyTextures[13];
+	sf::Texture PlayerStaggerTexture[3];
 	sf::Sprite Sprite;
 	Players()
 	{
@@ -106,6 +122,9 @@ class Players : public movement,public jumping , public animations, public colli
 		}
 		for (int i = 0; i < 13; i++) {
 			PlayerHeavyTextures[i] = ChosenTexture.HeavyAttackTexture[i];
+		}
+		for (int i = 0; i < 3; i++) {
+			PlayerStaggerTexture[i] = ChosenTexture.StaggerTexture[i];
 		}
 
 		x = 100;

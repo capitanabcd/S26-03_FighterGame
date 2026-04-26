@@ -54,44 +54,48 @@
 #include "sfml.h"
 void movement::Movement()
 {
-    player->MovingRight = false;
-    player->MovingLeft = false;
+    player->staggerTime -= dt;
+    if (player->staggerTime <= 0) {
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1)
-        player->MovingRight = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1)
-        player->MovingLeft = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2)
-        player->MovingRight = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2)
-        player->MovingLeft = true;
+        player->MovingRight = false;
+        player->MovingLeft = false;
 
-    if (player->MovingRight || player->MovingLeft)
-    {
-        player->IsMoving = true;
-    }
-    else player->IsMoving = false;
-    float direction = 0.f;
-    if (player->MovingRight) direction = 1.f;
-    if (player->MovingLeft) direction = -1.f;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1)
+            player->MovingRight = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1)
+            player->MovingLeft = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2)
+            player->MovingRight = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2)
+            player->MovingLeft = true;
 
-    if (direction != 0.f) {
-        float oldX = player->Sprite.getPosition().x;
+        if (player->MovingRight || player->MovingLeft)
+        {
+            player->IsMoving = true;
+        }
+        else player->IsMoving = false;
+        float direction = 0.f;
+        if (player->MovingRight) direction = 1.f;
+        if (player->MovingLeft) direction = -1.f;
 
-        player->Sprite.move(direction * VelocityX * dt, 0.f);
+        if (direction != 0.f) {
+            float oldX = player->Sprite.getPosition().x;
 
-        if (player->MoveCollision()) {
-            player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
-            if (direction > 0) {
-                player->RightCollison = true;
+            player->Sprite.move(direction * VelocityX * dt, 0.f);
+
+            if (player->MoveCollision()) {
+                player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
+                if (direction > 0) {
+                    player->RightCollison = true;
+                }
+                else {
+                    player->LeftCollision = true;
+                }
             }
             else {
-                player->LeftCollision = true;
+                player->RightCollison = false;
+                player->LeftCollision = false;
             }
-        }
-        else {
-            player->RightCollison = false;
-            player->LeftCollision = false;
         }
     }
 }

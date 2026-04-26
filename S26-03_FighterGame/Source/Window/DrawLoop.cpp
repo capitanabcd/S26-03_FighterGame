@@ -5,6 +5,8 @@ void window::DrawLoop()
 {
 	
 	player1.HeavyAttackAnimation();
+	player2.stagger();
+	player2.StaggerAnimation();
 	player1.IdleAnimation();
 	player2.IdleAnimation();
 	player1.MovementAnimation();

@@ -1,12 +1,15 @@
 #include "sfml.h"
 
 void jumping::jump()
-{
-	if (!isjumping)
-	{
-		isjumping = true;
-		startY = player->Sprite.getPosition().y;
-		VelocityY = jumpStrength;
+{	
+	player->staggerTime -= dt;
+	if (player->staggerTime <= 0) {
+		if (!isjumping)
+		{
+			isjumping = true;
+			startY = player->Sprite.getPosition().y;
+			VelocityY = jumpStrength;
+		}
 	}
 }
 void jumping::Updatejump()
