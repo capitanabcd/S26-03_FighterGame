@@ -12,10 +12,13 @@ private:
     sf::Clock animationClock;
     int currentFrame;
     float frameDuration;
+    int direction;
+    bool animationComplete;
 
 public:
     Background();
     void loadBackground(sf::RenderWindow& window);
     void updateBackground();
     void renderBackground(sf::RenderWindow& window);
+    void resetAnimation();
 };

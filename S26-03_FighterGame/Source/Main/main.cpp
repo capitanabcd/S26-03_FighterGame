@@ -7,6 +7,7 @@ Background gameBackground;
 int main()
 {
 	window GameWindow;
+	showLoadingScreen(GameWindow.MainWindow);
 	gameBackground.loadBackground(GameWindow.MainWindow);
 	while (GameWindow.WindowisOpen())
 	{	

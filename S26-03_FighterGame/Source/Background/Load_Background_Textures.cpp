@@ -1,7 +1,6 @@
 #include "sfml.h"
 
 void Background::loadBackground(sf::RenderWindow& window) {
-
     std::string folderPath = "assets/background/";
     std::vector<std::string> filePaths;
 
@@ -9,7 +8,7 @@ void Background::loadBackground(sf::RenderWindow& window) {
         std::string path = entry.path().string();
         std::string extension = entry.path().extension().string();
 
-        if (extension == ".jpg") {
+        if (extension == ".jpg" || extension == ".png") {
             filePaths.push_back(path);
         }
     }
