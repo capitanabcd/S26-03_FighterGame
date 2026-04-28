@@ -34,7 +34,7 @@ public:
     float startY = 0;
     float VelocityY = 0;
     float gravity = 2000.f;
-    float jumpStrength = -1000.f;
+    float jumpStrength = -1165.f;
     float jumpHeight = 1000.f;
 
     void jump();

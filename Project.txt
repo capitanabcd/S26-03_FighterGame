@@ -63,6 +63,27 @@ void movement::Movement()
             player->LeftCollision = false;
         }
     }
+    ScreenBounds(screenwidth);
+}
+#include "sfml.h"
+
+void movement::ScreenBounds(int screenwidth)
+{
+    sf::FloatRect bounds = player->Sprite.getGlobalBounds();
+    sf::Vector2f position = player->Sprite.getPosition();
+
+    if (bounds.left < 0)       //Left
+    {
+        position.x -= bounds.left;
+    }
+
+    if (bounds.left + bounds.width > screenwidth)     //Right
+    {
+        position.x -= (bounds.left + bounds.width - screenwidth);
+    }
+
+    player->Sprite.setPosition(position);
+
 }
 #include "sfml.h"
 void animations :: IdleAnimation()
@@ -79,6 +100,26 @@ void animations :: IdleAnimation()
 			RevertOrigin();
 		}
 	}
+}
+#include "sfml.h"
+
+void showLoadingScreen(sf::RenderWindow& window) {
+    sf::Texture loadingTexture;
+    sf::Sprite loadingSprite;
+
+    if (loadingTexture.loadFromFile("assets/loading.png")) {
+        loadingSprite.setTexture(loadingTexture);
+
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = loadingTexture.getSize();
+        float scaleX = (float)windowSize.x / textureSize.x;
+        float scaleY = (float)windowSize.y / textureSize.y;
+        loadingSprite.setScale(scaleX, scaleY);
+    }
+
+    window.clear();
+    window.draw(loadingSprite);
+    window.display();
 }
 #include "sfml.h"
 void animations :: MovementAnimation()
@@ -357,6 +398,7 @@ Background gameBackground;
 int main()
 {
 	window GameWindow;
+	showLoadingScreen(GameWindow.MainWindow);
 	gameBackground.loadBackground(GameWindow.MainWindow);
 	while (GameWindow.WindowisOpen())
 	{	

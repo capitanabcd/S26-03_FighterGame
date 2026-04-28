@@ -1,5 +1,4 @@
-#include "sfml.h"
-#include "background.h"
+#include"sfml.h"
 Players player1;
 Players player2;
 Background gameBackground;

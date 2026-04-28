@@ -1,4 +1,4 @@
-#include "sfml.h"
+#include "Player.h"
 
 void jumping::jump()
 {
