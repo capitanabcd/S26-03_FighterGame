@@ -28,6 +28,7 @@
     <ClInclude Include="Headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Actions\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\Actions\Screen Bounds.cpp" />
@@ -388,6 +389,9 @@
     <Image Include="assets\goku\goku Movement2.png" />
     <Image Include="assets\goku\goku Movement3.png" />
     <Image Include="assets\goku\goku Movement4.png" />
+    <Image Include="assets\goku\goku stagger_1.png" />
+    <Image Include="assets\goku\goku stagger_2.png" />
+    <Image Include="assets\goku\goku stagger_3.png" />
     <Image Include="assets\loading.png" />
   </ItemGroup>
   <ItemGroup>
