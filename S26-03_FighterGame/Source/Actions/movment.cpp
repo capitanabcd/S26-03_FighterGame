@@ -13,10 +13,8 @@ void movement::Movement()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2)
         player->MovingLeft = true;
 
-    if (player->MovingRight || player->MovingLeft)
-    {
-        player->IsMoving = true;
-    }else player->IsMoving = false;
+    if (player->MovingRight || player->MovingLeft) { player->IsMoving = true; }
+    else player->IsMoving = false;
 
     float direction = 0.f;
     if (player->MovingRight) direction = 1.f;
@@ -25,9 +23,21 @@ void movement::Movement()
     if (direction != 0.f) {
         float oldX = player->Sprite.getPosition().x;
 
-        player->Sprite.move(direction * VelocityX * dt, 0.f);
+        Players& other = (player->PlayerNumber == 1) ? player2 : player1;
 
-        if (player->MoveCollision()) {
+
+        float newX = oldX + direction * VelocityX * dt;
+        player->Sprite.setPosition(newX, player->Sprite.getPosition().y);
+
+        bool movingToward = false;
+        if (direction > 0 && newX < other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+        else if (direction < 0 && newX > other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+
+        if (movingToward && player->MoveCollision()) {
             player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
             if (direction > 0) {
                 player->RightCollison = true;
