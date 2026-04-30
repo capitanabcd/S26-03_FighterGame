@@ -10,9 +10,14 @@ void animations::StaggerAnimation() {
 			player->staggerclock.restart();
 			player->StaggerFrames++;
 			if (player->StaggerFrames >= player->StaggerTextures.size()) {
-				player->Sprite.setTexture(player->IdleTextures[0]);
-				player->StaggerFrames = 0;
-				player->hitTaken = false;
+				if (staggerTime <= 0) {
+					player->Sprite.setTexture(player->IdleTextures[0]);
+					player->StaggerFrames = 0;
+					player->hitTaken = false;
+				}
+				else {
+					player->StaggerFrames = 2;
+				}
 
 			}
 
