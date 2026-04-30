@@ -36,6 +36,9 @@
     <ClInclude Include="Headers\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Attack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
@@ -107,7 +110,19 @@
     <ClCompile Include="Source\Animations\LoadingScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Actions\Screen Bounds.cpp">
+    <ClCompile Include="Source\Animations\StaggerAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Attack\attack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Attack\CheckAttack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1112,6 +1127,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\loading.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_3.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

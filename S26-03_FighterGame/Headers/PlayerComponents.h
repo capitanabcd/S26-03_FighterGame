@@ -48,12 +48,14 @@ public:
     int IdleFrames = 0;
     int MovementFrames = 0;
     int StaggerFrames = 0;
+    int HeavyAttackFrames = 0;
     float staggerTime = 0.0f;
     sf::Clock staggerclock;
 
     void IdleAnimation();
     void MovementAnimation();
 	void StaggerAnimation();
+    void HeavyAttackAnimation();
     void invert();
     void RevertOrigin();
 };

@@ -29,6 +29,7 @@
     <ClInclude Include="Headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />

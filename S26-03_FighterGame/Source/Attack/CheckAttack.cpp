@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "sfml.h"
 
 void Attack::CheckHit() {
 
