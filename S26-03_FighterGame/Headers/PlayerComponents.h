@@ -46,11 +46,14 @@ class animations
 public:
     Players* player = nullptr;
     int IdleFrames = 0;
-    int MovementFrames = 4;
+    int MovementFrames = 0;
+    int StaggerFrames = 0;
     float staggerTime = 0.0f;
+    sf::Clock staggerclock;
 
     void IdleAnimation();
     void MovementAnimation();
+	void StaggerAnimation();
     void invert();
     void RevertOrigin();
 };

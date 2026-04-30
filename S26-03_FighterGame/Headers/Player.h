@@ -1,15 +1,15 @@
 #pragma once
 #include "PlayerComponents.h"
 #include "Characters.h"
+#include "Attack.h"
 
-class Players : public movement, public jumping, public animations, public collide
+class Players : public movement, public jumping, public animations, public collide , public Attack , public Loadtextures
 {
 public:
     int PlayerNumber;
     float x;
     float y;
     sf::Clock clock;
-    sf::Texture PlayerTexture[8];
     sf::Sprite Sprite;
 
     void setupOrigin()
@@ -24,6 +24,7 @@ public:
         jumping::player = this;
         animations::player = this;
         collide::player = this;
+        Attack::player = this;
 
         static int nextPlayerNumber = 1;
         PlayerNumber = nextPlayerNumber;
@@ -31,15 +32,8 @@ public:
 
         clock.restart();
 
-        Loadtextures ChosenTexture;
-        for (int i = 0; i < 8; i++)
-        {
-            PlayerTexture[i] = ChosenTexture.Textures[i];
-        }
-
         x = 100;
-
-        Sprite.setTexture(PlayerTexture[0]);
+        Sprite.setTexture(IdleTextures[0]);
         Sprite.setScale(4.f, 4.f);
         setupOrigin();
 

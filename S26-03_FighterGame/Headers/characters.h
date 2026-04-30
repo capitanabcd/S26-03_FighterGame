@@ -5,29 +5,45 @@
 class cell
 {
 public:
-    sf::Texture CellTexture[8];
-    virtual void LoadTexture(sf::Texture* temp);
+    virtual void LoadTexture
+        (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&);
 };
 
 class goku
 {
 public:
-    sf::Texture GokuTexture[8];
-    virtual void LoadTexture(sf::Texture* temp);
+    virtual void LoadTexture
+       (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&);
 };
 
 class freeza
 {
 public:
-    sf::Texture FreezaTexture[8];
-    virtual void LoadTexture(sf::Texture* temp);
+    virtual void LoadTexture
+       (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&);
 };
 
 class Loadtextures : public cell, public goku, public freeza
 {
 public:
-    sf::Texture Textures[8];
-    void LoadTexture(sf::Texture* temp) override;
+    std::vector<sf::Texture> IdleTextures;
+    std::vector<sf::Texture> MovementTextures;
+    std::vector<sf::Texture> StaggerTextures;
+    std::vector<sf::Texture> HeavyAttackTextures;
+    void LoadTexture
+       (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&)override;
     void SetCharacterTexture();
 
     Loadtextures()

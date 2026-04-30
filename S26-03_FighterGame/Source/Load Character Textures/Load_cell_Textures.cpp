@@ -1,17 +1,43 @@
 #include "sfml.h"
 
-void cell::LoadTexture(sf::Texture* temp)
+void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::Texture>& Idle , std::vector<sf::Texture>& Movement , std::vector<sf::Texture>& Stagger)
 {
-	CellTexture[0].loadFromFile("assets/cell/cell1.png");
-	CellTexture[1].loadFromFile("assets/cell/cell2.png");
-	CellTexture[2].loadFromFile("assets/cell/cell3.png");
-	CellTexture[3].loadFromFile("assets/cell/cell4.png");
-	CellTexture[4].loadFromFile("assets/cell/cell1.png");
-	CellTexture[5].loadFromFile("assets/cell/cell2.png");
-	CellTexture[6].loadFromFile("assets/cell/cell3.png");
-	CellTexture[7].loadFromFile("assets/cell/cell4.png");
-	for(int i = 0; i < 8; i++)
-	{
-		temp[i] = CellTexture[i];
-	}
+    std::string folderPath = "assets/goku/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("Stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
 }
