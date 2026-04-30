@@ -395,6 +395,7 @@
     <Image Include="assets\goku\goku stagger_1.png" />
     <Image Include="assets\goku\goku stagger_2.png" />
     <Image Include="assets\goku\goku stagger_3.png" />
+    <Image Include="assets\Health Bar\Health Bar.png" />
     <Image Include="assets\loading.png" />
   </ItemGroup>
   <ItemGroup>
