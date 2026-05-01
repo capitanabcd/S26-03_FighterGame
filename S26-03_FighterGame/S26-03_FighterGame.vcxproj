@@ -25,10 +25,12 @@
     <ClInclude Include="Headers\Game.h" />
     <ClInclude Include="Headers\Player.h" />
     <ClInclude Include="Headers\PlayerComponents.h" />
+    <ClInclude Include="Headers\SelectionManager.h" />
     <ClInclude Include="Headers\sfml.h" />
     <ClInclude Include="Headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Actions\SelectionManager.cpp" />
     <ClCompile Include="Source\Actions\stagger.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
@@ -53,7 +55,6 @@
     <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_freeza_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp" />
-    <ClCompile Include="Source\Load Character Textures\SetTexture.cpp" />
     <ClCompile Include="Source\Main\main.cpp" />
     <ClCompile Include="Source\Window\DisplayWindow.cpp" />
     <ClCompile Include="Source\Window\DrawLoop.cpp" />
@@ -459,7 +460,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
