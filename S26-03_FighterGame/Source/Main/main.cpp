@@ -1,7 +1,7 @@
 #include "sfml.h"
 #include "SelectionManager.h"
 
-// Global/Member Objects
+    
 Players player1;
 Players player2;
 Background gameBackground;
