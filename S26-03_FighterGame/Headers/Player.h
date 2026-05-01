@@ -15,7 +15,7 @@ public:
     sf::Clock clock;
     sf::Sprite Sprite;
 
-    // Sets the origin to the bottom-center of the sprite for better ground alignment
+    
     void setupOrigin()
     {
         sf::FloatRect bounds = Sprite.getLocalBounds();
@@ -24,24 +24,22 @@ public:
         }
     }
 
-    // THE BRIDGE: This replaces the old SetTexture.cpp logic
-    // It maps the strings from the selection screen to the actual asset vectors
+  
     void loadCharacter(std::string name)
     {
-        // 1. Clear vectors to ensure a fresh start and prevent memory stacking
+       
         IdleTextures.clear();
         MovementTextures.clear();
         HeavyAttackTextures.clear();
         StaggerTextures.clear();
 
-        // 2. Logic Bridge: Call specific static character loaders from Characters.h
         if (name == "goku")
         {
             IdleFrames = 6;
             MovementFrames = 8;
             HeavyAttackFrames = 10;
             StaggerFrames = 4;
-            // Explicitly call the goku class version of LoadTexture
+           
             goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures);
         }
         else if (name == "cell")
@@ -61,17 +59,17 @@ public:
             freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures);
         }
 
-        // 3. Finalize Sprite Setup
+      
         if (!IdleTextures.empty())
         {
             Sprite.setTexture(IdleTextures[0]);
             setupOrigin();
 
-            // Set the vertical position based on the character's height and ground level
+          
             y = ground - Sprite.getGlobalBounds().height;
             Sprite.setPosition(Sprite.getPosition().x, ground);
 
-            // Task: Show on console which character has been selected
+          
             std::cout << "[GAME] Player " << PlayerNumber << " initialized as: " << name << std::endl;
         }
         else
@@ -82,7 +80,7 @@ public:
 
     Players()
     {
-        // Bind component pointers
+      
         movement::player = this;
         jumping::player = this;
         animations::player = this;
@@ -96,7 +94,7 @@ public:
 
         clock.restart();
 
-        // FIX: Initialize y to 0 (or ground) here to stop the warning
+      
         y = 0.f;
         x = (PlayerNumber == 1) ? 100.f : 500.f;
 

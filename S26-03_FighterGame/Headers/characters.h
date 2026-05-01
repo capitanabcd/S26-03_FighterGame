@@ -31,5 +31,4 @@ public:
     std::vector<sf::Texture> MovementTextures;
     std::vector<sf::Texture> StaggerTextures;
     std::vector<sf::Texture> HeavyAttackTextures;
-    // We keep the vectors here, but we delete SetCharacterTexture()
 };

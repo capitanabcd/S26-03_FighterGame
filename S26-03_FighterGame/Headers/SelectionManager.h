@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-// --- THE FIX: Define the struct BEFORE the class starts ---
+
 struct Character {
     std::string name;
     sf::Texture texture;
@@ -23,7 +23,7 @@ private:
     std::string p1Choice;
     std::string p2Choice;
 
-    // Now 'Character' is recognized here
+
     std::vector<Character> fighters;
 
     int currentIndex;

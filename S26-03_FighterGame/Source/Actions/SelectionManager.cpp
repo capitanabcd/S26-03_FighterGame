@@ -5,28 +5,28 @@
 
 SelectionManager::SelectionManager() : currentIndex(0), state(SelectionState::Player1) {}
 
-// FIX: Added sf::RenderWindow& window to match the header declaration
+
 bool SelectionManager::init(sf::RenderWindow& window) {
-    // 1. Load Backgrounds
+ 
     if (!bgP1.loadFromFile("assets/selectionscreens/selection image player 1.jpeg") ||
         !bgP2.loadFromFile("assets/selectionscreens/selection image player 2.jpeg")) {
         return false;
     }
     background.setTexture(bgP1);
 
-    // Scaling background to fit window
+ 
     sf::Vector2u windowSize = window.getSize();
     sf::Vector2u textureSize = bgP1.getSize();
     background.setScale((float)windowSize.x / textureSize.x, (float)windowSize.y / textureSize.y);
 
-    // 2. Load Character Data
+   
     std::vector<std::string> names = { "goku", "cell", "freeza" };
     std::vector<std::string> files = { "assets/goku/goku idle1.png", "assets/cell/cell1.png", "assets/freeza/freeza idle1.png" };
 
     fighters.reserve(names.size());
 
     for (size_t i = 0; i < names.size(); ++i) {
-        Character c; // This works now because it's defined in SelectionManager.h
+        Character c; 
         c.name = names[i];
 
         if (c.texture.loadFromFile(files[i])) {
@@ -71,7 +71,7 @@ void SelectionManager::confirmSelection() {
     }
 }
 
-// FIX: Added sf::RenderWindow& window to match the header declaration
+
 void SelectionManager::update(sf::RenderWindow& window) {
     if (state == SelectionState::Player1) {
         background.setTexture(bgP1);
@@ -90,7 +90,7 @@ void SelectionManager::render(sf::RenderWindow& window) {
 
 void SelectionManager::nextCharacter() {
     if (!fighters.empty()) {
-        // Using .size() ensures it counts all 3 characters
+       
         currentIndex = (currentIndex + 1) % fighters.size();
     }
 }
