@@ -35,10 +35,8 @@ void movement::Movement()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2)
         player->MovingLeft = true;
 
-    if (player->MovingRight || player->MovingLeft)
-    {
-        player->IsMoving = true;
-    }else player->IsMoving = false;
+    if (player->MovingRight || player->MovingLeft) { player->IsMoving = true; }
+    else player->IsMoving = false;
 
     float direction = 0.f;
     if (player->MovingRight) direction = 1.f;
@@ -47,9 +45,21 @@ void movement::Movement()
     if (direction != 0.f) {
         float oldX = player->Sprite.getPosition().x;
 
-        player->Sprite.move(direction * VelocityX * dt, 0.f);
+        Players& other = (player->PlayerNumber == 1) ? player2 : player1;
 
-        if (player->MoveCollision()) {
+
+        float newX = oldX + direction * VelocityX * dt;
+        player->Sprite.setPosition(newX, player->Sprite.getPosition().y);
+
+        bool movingToward = false;
+        if (direction > 0 && newX < other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+        else if (direction < 0 && newX > other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+
+        if (movingToward && player->MoveCollision()) {
             player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
             if (direction > 0) {
                 player->RightCollison = true;
@@ -67,23 +77,24 @@ void movement::Movement()
 }
 #include "sfml.h"
 
-void movement::ScreenBounds(int screenwidth)
-{
-    sf::FloatRect bounds = player->Sprite.getGlobalBounds();
-    sf::Vector2f position = player->Sprite.getPosition();
+void animations::HeavyAttackAnimation() {
 
-    if (bounds.left < 0)       //Left
-    {
-        position.x -= bounds.left;
-    }
+	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	{
+		if (player->isattacking)
+		{
+			player->Sprite.setTexture(player->HeavyAttackTextures[player->HeavyAttackFrames], true);
+			player->clock.restart();
+			player->HeavyAttackFrames++;
 
-    if (bounds.left + bounds.width > screenwidth)     //Right
-    {
-        position.x -= (bounds.left + bounds.width - screenwidth);
-    }
-
-    player->Sprite.setPosition(position);
-
+			if (player->HeavyAttackFrames >= player->HeavyAttackTextures.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0], true);
+				player->HeavyAttackFrames = 0;
+				player->isattacking = false;
+			}
+				RevertOrigin();
+		}
+	}
 }
 #include "sfml.h"
 void animations :: IdleAnimation()
@@ -97,7 +108,7 @@ void animations :: IdleAnimation()
 				player->Sprite.setTexture(player->IdleTextures[player->IdleFrames], true);
 				player->clock.restart();
 				player->IdleFrames++;
-				if (player->IdleFrames > 3) player->IdleFrames = 0;
+				if (player->IdleFrames >= player->IdleTextures.size()) player->IdleFrames = 0;
 				RevertOrigin();
 			}
 		}
@@ -135,7 +146,7 @@ void animations :: MovementAnimation()
 				player->Sprite.setTexture(player->MovementTextures[player->MovementFrames], true);
 				player->clock.restart();
 				player->MovementFrames++;
-				if (player->MovementFrames > 7) player->MovementFrames = 4;
+				if (player->MovementFrames >= player->MovementTextures.size()) player->MovementFrames = 0;
 				invert();
 				RevertOrigin();
 			}
@@ -145,20 +156,19 @@ void animations :: MovementAnimation()
 #include "sfml.h"
 
 void animations::StaggerAnimation() {
-
 	if (player->staggerclock.getElapsedTime().asSeconds() >= 0.25f)
 	{
-		if (player->hitTaken)
+		if (player->hitTaken )
 		{
 			player->Sprite.setTexture(player->StaggerTextures[player->StaggerFrames], true);
 			player->staggerclock.restart();
 			player->StaggerFrames++;
-			if (player->StaggerFrames >= 2) {
-				player->Sprite.setTexture(player->IdleTextures[0]);
+			if (player->StaggerFrames >= player->StaggerTextures.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0],true);
 				player->StaggerFrames = 0;
 				player->hitTaken = false;
 			}
-
+			RevertOrigin();
 		}
 	}
 }
@@ -168,11 +178,10 @@ void Attack::punch()
 	bool isHit = false;
 	if (isattacking == false)
 	{
-
 		isattacking = true;
 	}
 }
-#include "Game.h"
+#include "sfml.h"
 
 void Attack::CheckHit() {
 
@@ -187,7 +196,6 @@ void Attack::CheckHit() {
 			victim.staggerTime = 0.8f;
 			victim.staggerclock.restart();
 			victim.StaggerFrames = 0;
-
 		}
 	}
 }
@@ -315,22 +323,22 @@ void DeltaTime()
 void window::HandleEvents()
 {
 	if (event.type == sf::Event::KeyPressed)
-
-		
-		
 	{
 		
 		if (event.key.code == sf::Keyboard::W) {
 			player1.jump();
 		}
-	}
-	if(event.type == sf::Event::KeyPressed)
-	{
+
 		if (event.key.code == sf::Keyboard::Up)
 		{
 			player2.jump();
 		}
+		if (event.key.code == sf::Keyboard::F)
+		{
+			player1.isattacking = true;
+		}
 	}
+	
 	CloseWindow();
 }
 #include"sfml.h"
@@ -376,6 +384,26 @@ void animations :: RevertOrigin()
 }
 #include "sfml.h"
 
+void movement::ScreenBounds(int screenwidth)
+{
+    sf::FloatRect bounds = player->Sprite.getGlobalBounds();
+    sf::Vector2f position = player->Sprite.getPosition();
+
+    if (bounds.left < 0)       //Left
+    {
+        position.x -= bounds.left;
+    }
+
+    if (bounds.left + bounds.width > screenwidth)     //Right
+    {
+        position.x -= (bounds.left + bounds.width - screenwidth);
+    }
+
+    player->Sprite.setPosition(position);
+
+}
+#include "sfml.h"
+
 void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::Texture>& Idle , std::vector<sf::Texture>& Movement , std::vector<sf::Texture>& Stagger)
 {
     std::string folderPath = "assets/goku/";
@@ -390,7 +418,7 @@ void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::T
                 idlePaths.push_back(path);
             else if (filename.find("Movement") != std::string::npos)
                 movementPaths.push_back(path);
-            else if (filename.find("Stagger") != std::string::npos)
+            else if (filename.find("stagger") != std::string::npos)
                 staggerPaths.push_back(path);
             else if (filename.find("HeavyAttack") != std::string::npos)
                 heavyPaths.push_back(path);
@@ -432,7 +460,7 @@ void freeza::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::
                 idlePaths.push_back(path);
             else if (filename.find("Movement") != std::string::npos)
                 movementPaths.push_back(path);
-            else if (filename.find("Stagger") != std::string::npos)
+            else if (filename.find("stagger") != std::string::npos)
                 staggerPaths.push_back(path);
             else if (filename.find("HeavyAttack") != std::string::npos)
                 heavyPaths.push_back(path);
@@ -474,7 +502,7 @@ void goku :: LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::
                 idlePaths.push_back(path);
             else if (filename.find("Movement") != std::string::npos)
                 movementPaths.push_back(path);
-            else if (filename.find("Stagger") != std::string::npos)
+            else if (filename.find("stagger") != std::string::npos)
                 staggerPaths.push_back(path);
             else if (filename.find("HeavyAttack") != std::string::npos)
                 heavyPaths.push_back(path);
@@ -543,6 +571,8 @@ int main()
 		player1.Movement();
 		player2.Updatejump();
 		player2.Movement();
+		player1.CheckHit();
+		player2.CheckHit();
 		GameWindow.DisplayWindow();
 	}
 	return 0;
@@ -566,6 +596,10 @@ void window::DrawLoop()
 	player1.MovementAnimation();
 	player2.MovementAnimation();
 	resize();
+	player1.HeavyAttackAnimation();
+	player2.HeavyAttackAnimation();
+	player1.StaggerAnimation();
+	player2.StaggerAnimation();
 	gameBackground.renderBackground(MainWindow);
 	MainWindow.draw(player1.Sprite);
 	MainWindow.draw(player2.Sprite);

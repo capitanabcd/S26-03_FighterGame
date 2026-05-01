@@ -14,7 +14,7 @@ void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::T
                 idlePaths.push_back(path);
             else if (filename.find("Movement") != std::string::npos)
                 movementPaths.push_back(path);
-            else if (filename.find("Stagger") != std::string::npos)
+            else if (filename.find("stagger") != std::string::npos)
                 staggerPaths.push_back(path);
             else if (filename.find("HeavyAttack") != std::string::npos)
                 heavyPaths.push_back(path);

@@ -30,7 +30,8 @@ public:
         (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&);
+        std::vector<sf::Texture>&
+            );
 };
 
 class goku
@@ -41,7 +42,8 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&);
+        std::vector<sf::Texture>&
+       );
 };
 
 class freeza
@@ -52,7 +54,8 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&);
+        std::vector<sf::Texture>&
+        );
 };
 
 class Loadtextures : public cell, public goku, public freeza
@@ -62,11 +65,13 @@ public:
     std::vector<sf::Texture> MovementTextures;
     std::vector<sf::Texture> StaggerTextures;
     std::vector<sf::Texture> HeavyAttackTextures;
+    std::vector<sf::Texture> BasicAttackTextures;
     void LoadTexture
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&)override;
+        std::vector<sf::Texture>&
+           )override;
     void SetCharacterTexture();
 
     Loadtextures()

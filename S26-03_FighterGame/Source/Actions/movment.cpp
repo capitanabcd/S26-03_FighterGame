@@ -1,6 +1,7 @@
 #include "Player.h"
 void movement::Movement()
 {
+	if (player->hitTaken || player->isattacking) return;
     player->MovingRight = false;
     player->MovingLeft = false;
 
