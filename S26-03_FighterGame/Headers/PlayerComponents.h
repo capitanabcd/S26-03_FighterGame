@@ -57,11 +57,13 @@ public:
     int MovementFrames = 0;
     int StaggerFrames = 0;
     int HeavyAttackFrames = 0;
+    int BeamFrames = 0;
 
     void IdleAnimation();
     void MovementAnimation();
 	void StaggerAnimation();
     void HeavyAttackAnimation();
+    void BeamAnimation();
 
     void invert();
     void RevertOrigin();

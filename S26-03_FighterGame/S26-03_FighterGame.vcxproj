@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Actions\stagger.cpp" />
+    <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
@@ -370,6 +371,19 @@
     <Image Include="assets\cell\cell2.png" />
     <Image Include="assets\cell\cell3.png" />
     <Image Include="assets\cell\cell4.png" />
+    <Image Include="assets\goku\goku beam 01.png" />
+    <Image Include="assets\goku\goku beam 02.png" />
+    <Image Include="assets\goku\goku beam 03.png" />
+    <Image Include="assets\goku\goku beam 04.png" />
+    <Image Include="assets\goku\goku beam 05.png" />
+    <Image Include="assets\goku\goku beam 06.png" />
+    <Image Include="assets\goku\goku beam 07.png" />
+    <Image Include="assets\goku\goku beam 08.png" />
+    <Image Include="assets\goku\goku beam 09.png" />
+    <Image Include="assets\goku\goku beam 10.png" />
+    <Image Include="assets\goku\goku beam 11.png" />
+    <Image Include="assets\goku\goku beam 12.png" />
+    <Image Include="assets\goku\goku beam 13.png" />
     <Image Include="freeza\freeza BasicAttack1.png" />
     <Image Include="freeza\freeza BasicAttack2.png" />
     <Image Include="freeza\freeza BasicAttack3.png" />

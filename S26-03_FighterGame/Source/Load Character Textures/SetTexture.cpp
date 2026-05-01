@@ -1,5 +1,5 @@
 #include "sfml.h"
-void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
+void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
 void Loadtextures::SetCharacterTexture()
 {
 	int choice;
@@ -7,14 +7,14 @@ void Loadtextures::SetCharacterTexture()
 	std::cin >> choice;
 	if(choice == 1)
 	{
-		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures);
+		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures);
 	}
 	else if(choice == 2)
 	{
-		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures);
+		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures);
 	}
 	else if (choice == 3)
 	{
-		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures);
+		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures);
 	}
 }

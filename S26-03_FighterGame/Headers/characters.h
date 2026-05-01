@@ -9,7 +9,8 @@ public:
         (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+            std::vector<sf::Texture>&
             );
 };
 
@@ -20,7 +21,8 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
        );
 };
 
@@ -31,7 +33,8 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
         );
 };
 
@@ -43,11 +46,13 @@ public:
     std::vector<sf::Texture> StaggerTextures;
     std::vector<sf::Texture> HeavyAttackTextures;
     std::vector<sf::Texture> BasicAttackTextures;
+    std::vector<sf::Texture> BeamTextures;
     void LoadTexture
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
            )override;
     void SetCharacterTexture();
 

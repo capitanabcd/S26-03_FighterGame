@@ -1,9 +1,8 @@
 #include "sfml.h"
-
-void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::Texture>& Idle , std::vector<sf::Texture>& Movement , std::vector<sf::Texture>& Stagger)
+void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam)
 {
     std::string folderPath = "assets/goku/";
-    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths;
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths;
 
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         std::string path = entry.path().string();
@@ -18,12 +17,15 @@ void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::T
                 staggerPaths.push_back(path);
             else if (filename.find("HeavyAttack") != std::string::npos)
                 heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
         }
     }
     std::sort(idlePaths.begin(), idlePaths.end());
     std::sort(movementPaths.begin(), movementPaths.end());
     std::sort(staggerPaths.begin(), staggerPaths.end());
     std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
 
     for (const auto& path : idlePaths) {
         Idle.emplace_back().loadFromFile(path);
@@ -39,5 +41,8 @@ void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack , std::vector<sf::T
 
     for (const auto& path : heavyPaths) {
         HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
     }
 }

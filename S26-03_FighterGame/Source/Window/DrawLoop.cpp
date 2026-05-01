@@ -8,6 +8,7 @@ void window::DrawLoop()
 	player1.MovementAnimation();
 	player2.MovementAnimation();
 	resize();
+	player1.BeamAnimation();
 	player1.HeavyAttackAnimation();
 	player2.HeavyAttackAnimation();
 	player1.StaggerAnimation();
