@@ -8,5 +8,6 @@ public:
 
 	void punch();
 	void CheckHit();
+	void TakeDamage(Players& player, float damage);
 
 };

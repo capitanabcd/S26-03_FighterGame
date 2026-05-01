@@ -35,6 +35,7 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
+    <ClCompile Include="Source\Attack\UpdateHealth.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
     <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
