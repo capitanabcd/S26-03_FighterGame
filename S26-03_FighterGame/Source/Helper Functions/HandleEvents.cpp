@@ -18,6 +18,9 @@ void window::HandleEvents()
 		{
 			player1.isattacking = true;
 		}
+		if (event.key.code == sf::Keyboard::J) {
+			player2.isattacking = true;
+		}
 	}
 	
 	CloseWindow();
