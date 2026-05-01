@@ -3,7 +3,7 @@
 #include "Characters.h"
 #include "Attack.h"
 
-class Players : public movement, public jumping, public animations, public collide , public Attack , public Loadtextures
+class Players : public movement, public jumping, public animations, public collide , public Attack , public Loadtextures , public Stagger
 {
 public:
     int PlayerNumber;
@@ -11,7 +11,6 @@ public:
     float y;
     sf::Clock clock;
     sf::Sprite Sprite;
-
     void setupOrigin()
     {
         sf::FloatRect bounds = Sprite.getLocalBounds();
@@ -25,6 +24,7 @@ public:
         animations::player = this;
         collide::player = this;
         Attack::player = this;
+        Stagger::player = this;
 
         static int nextPlayerNumber = 1;
         PlayerNumber = nextPlayerNumber;

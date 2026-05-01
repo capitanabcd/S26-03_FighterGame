@@ -40,7 +40,15 @@ public:
     void jump();
     void Updatejump();
 };
-
+class Stagger
+{
+public : 
+    Players* player = nullptr;
+    float staggerTime = 0.0f;
+    sf::Clock staggerclock;
+	void UpdateStagger();
+    void stagger(Players&);
+};
 class animations
 {
 public:
@@ -49,13 +57,12 @@ public:
     int MovementFrames = 0;
     int StaggerFrames = 0;
     int HeavyAttackFrames = 0;
-    float staggerTime = 0.0f;
-    sf::Clock staggerclock;
 
     void IdleAnimation();
     void MovementAnimation();
 	void StaggerAnimation();
     void HeavyAttackAnimation();
+
     void invert();
     void RevertOrigin();
 };

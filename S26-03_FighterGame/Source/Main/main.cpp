@@ -16,10 +16,7 @@ int main()
 			GameWindow.HandleEvents();
 		}
 		gameBackground.updateBackground();
-		player1.Updatejump();
-		player1.Movement();
-		player2.Updatejump();
-		player2.Movement();
+		PlayerCalls();
 		GameWindow.DisplayWindow();
 	}
 	return 0;
