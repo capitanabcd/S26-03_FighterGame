@@ -1144,6 +1144,297 @@
     <Image Include="assets\goku\goku stagger_3.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 10.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 11.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 13.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 9.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza BasicAttack7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 10.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 11.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\Freeza HeavyAttack 12.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 13.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza HeavyAttack 9.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Idle1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Idle2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Idle3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Idle4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Movement1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Movement2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Movement3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza Movement4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza stagger 1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza stagger 2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza stagger 3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="freeza\freeza stagger 4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 12.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza HeavyAttack 09.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza stagger 04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku HeavyAttack09.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Idle01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Idle02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Idle03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Idle04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Movement01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Movement02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Movement03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku Movement04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku stagger_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="dlls\sfml-audio-d-2.dll" />

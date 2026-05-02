@@ -12,5 +12,7 @@ void debug()
         display += "JUMPING";
     else
         display += "       ";
-    std::cout << "\r" << display << std::flush;
+    std::cout << "\r" << display;
+
+    std::cout << player1.HeavyAttackTextures.size() << std::flush;
 }
