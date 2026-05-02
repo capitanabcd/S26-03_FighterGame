@@ -1,7 +1,7 @@
 #include "sfml.h"
 void freeza::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger)
 {
-    std::string folderPath = "freeza/";
+    std::string folderPath = "assets/freeza/";
     std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths;
 
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
