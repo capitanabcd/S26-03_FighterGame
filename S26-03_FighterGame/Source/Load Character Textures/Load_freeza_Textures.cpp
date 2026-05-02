@@ -2,7 +2,7 @@
 void freeza::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged)
 {
     std::string folderPath = "assets/freeza/";
-    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths;
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths,beamPaths,rangedPaths;
 
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         std::string path = entry.path().string();

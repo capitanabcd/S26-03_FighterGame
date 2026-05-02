@@ -7,7 +7,7 @@ void animations::RangedAttackAnimation() {
 		if (player->fireRanged)
 
 		{
-			player->RangedAttack.setPosition(player->Sprite.getPosition().x + 40, player->Sprite.getPosition().y - 230);
+			player->RangedAttack.setPosition(player->Sprite.getPosition().x + 50, player->Sprite.getPosition().y - 300);
 			invert();
 			player->RangedAttack.setTexture(player->RangedTexture[player->RangedFrames], true);
 			player->clock.restart();

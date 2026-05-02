@@ -9,7 +9,7 @@ public:
 	bool fireRanged = false;
 	sf::Sprite RangedAttack;
 	sf::Clock attackClock;
-
+	int oldFrame = 0;
 	void punch();
 	void beam();
 	void CheckHit();
