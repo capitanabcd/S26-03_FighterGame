@@ -13,6 +13,7 @@ void window::DrawLoop()
 	player2.HeavyAttackAnimation();
 	player1.StaggerAnimation();
 	player2.StaggerAnimation();
+	player1.RangedAttackAnimation();
 	gameBackground.renderBackground(MainWindow);
 	MainWindow.draw(player1.Sprite);
 	MainWindow.draw(player2.Sprite);

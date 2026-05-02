@@ -2,13 +2,13 @@
 
 void animations::RangedAttackAnimation() {
 
-	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	if (player->clock.getElapsedTime().asSeconds() >= 0.02f)
 	{
 		if (player->fireRanged)
 
 		{
-			player->RangedAttack.setPosition(player->Sprite.getOrigin().x + 5, player->Sprite.getOrigin().y);
-			player->RangedAttack.setScale(2.f, 2.f);
+			player->RangedAttack.setPosition(player->Sprite.getPosition().x + 40, player->Sprite.getPosition().y - 230);
+			invert();
 			player->RangedAttack.setTexture(player->RangedTexture[player->RangedFrames], true);
 			player->clock.restart();
 			player->RangedFrames++;
@@ -18,6 +18,7 @@ void animations::RangedAttackAnimation() {
 				player->RangedFrames = 0;
 				player->fireRanged = false;
 			}
+			invert();
 			RevertOrigin();
 		}
 	}

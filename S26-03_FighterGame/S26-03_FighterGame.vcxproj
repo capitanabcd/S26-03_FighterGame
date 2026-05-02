@@ -395,6 +395,15 @@
     <Image Include="assets\goku\kamehameha 08.png" />
     <Image Include="assets\goku\kamehameha 09.png" />
     <Image Include="assets\goku\kamehameha 10.png" />
+    <Image Include="assets\goku\ranged 01.png" />
+    <Image Include="assets\goku\ranged 02.png" />
+    <Image Include="assets\goku\ranged 03.png" />
+    <Image Include="assets\goku\ranged 04.png" />
+    <Image Include="assets\goku\ranged 05.png" />
+    <Image Include="assets\goku\ranged 06.png" />
+    <Image Include="assets\goku\ranged 07.png" />
+    <Image Include="assets\goku\ranged 08.png" />
+    <Image Include="assets\goku\ranged 09.png" />
     <Image Include="freeza\freeza BasicAttack1.png" />
     <Image Include="freeza\freeza BasicAttack2.png" />
     <Image Include="freeza\freeza BasicAttack3.png" />

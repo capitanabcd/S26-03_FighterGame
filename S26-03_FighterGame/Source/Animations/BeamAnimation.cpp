@@ -4,7 +4,7 @@ void animations::BeamAnimation() {
 
 	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
 	{
-		if (player->isbeaming && !player->fireRanged)
+		if (player->isbeaming)
 		{
 			if (player->BeamFrames == 9 && !player->fireRanged) {
 				player->fireRanged = true;

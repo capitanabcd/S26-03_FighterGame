@@ -8,6 +8,7 @@ public:
 	bool isbeaming = false;
 	bool fireRanged = false;
 	sf::Sprite RangedAttack;
+	sf::Clock attackClock;
 
 	void punch();
 	void beam();
