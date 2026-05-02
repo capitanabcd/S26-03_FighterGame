@@ -23,6 +23,7 @@
     <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\GameSounds.h" />
     <ClInclude Include="Headers\Player.h" />
     <ClInclude Include="Headers\PlayerComponents.h" />
     <ClInclude Include="Headers\sfml.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
+    <ClCompile Include="Source\Sound Management\Sounds.cpp" />
     <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
@@ -503,6 +505,10 @@
     <None Include="dlls\sfml-network-d-2.dll" />
     <None Include="dlls\sfml-system-d-2.dll" />
     <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\Sounds\hit.wav" />
+    <Media Include="assets\Sounds\jump.wav" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
