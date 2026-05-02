@@ -8,5 +8,5 @@ void Attack::TakeDamage(Players& player, float damage)
     {
         player.currentHealth = 0;
     }
-    
+
 }

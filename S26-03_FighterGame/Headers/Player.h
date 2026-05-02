@@ -9,8 +9,8 @@ public:
     int PlayerNumber;
     float x;
     float y;
-    float maxHealth;
-    float currentHealth;
+    int maxHealth;
+    int currentHealth;
     sf::Clock clock;
     sf::Sprite Sprite;
     void setupOrigin()

@@ -131,7 +131,7 @@
     <ClCompile Include="Source\Window\PlayerCalls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\UpdateHealth.cpp">
+    <ClCompile Include="Source\Helper Functions\Update Health.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

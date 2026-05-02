@@ -16,8 +16,8 @@ void debug()
     else
         std::cout << "       ";
 
-    std::cout << " | HP1: " << (int)player1.currentHealth
-        << " | HP2: " << (int)player2.currentHealth
+    std::cout << "| Health P1: " << (int)player1.currentHealth
+        << "| Health P2: " << (int)player2.currentHealth
         << "        "   
         << std::flush;
 }
