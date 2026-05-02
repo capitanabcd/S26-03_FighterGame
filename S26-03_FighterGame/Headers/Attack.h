@@ -6,6 +6,8 @@ public:
 	bool isattacking = false;
 	bool hitTaken = false;
 	bool isbeaming = false;
+	bool fireRanged = false;
+	sf::Sprite RangedAttack;
 
 	void punch();
 	void beam();

@@ -16,5 +16,6 @@ void window::DrawLoop()
 	gameBackground.renderBackground(MainWindow);
 	MainWindow.draw(player1.Sprite);
 	MainWindow.draw(player2.Sprite);
+	MainWindow.draw(player1.RangedAttack);
 	debug();
 }
