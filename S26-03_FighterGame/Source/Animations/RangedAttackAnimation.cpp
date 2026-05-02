@@ -2,7 +2,7 @@
 
 void animations::RangedAttackAnimation() {
 
-	if (player->clock.getElapsedTime().asSeconds() >= 0.02f)
+	if (player->clock.getElapsedTime().asSeconds() >= 0.009f)
 	{
 		if (player->fireRanged)
 

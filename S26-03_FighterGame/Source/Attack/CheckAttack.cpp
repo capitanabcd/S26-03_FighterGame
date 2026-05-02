@@ -15,8 +15,10 @@ void Attack::CheckHit() {
         player->stagger(victim);
         if (player->HeavyAttackFrames != oldFrame)
         {
-            TakeDamage(victim, 1.f);
-            victim.hitTaken = true;
+            if (player->staggerTime <= 0) {
+                TakeDamage(victim, 1.f);
+                victim.hitTaken = true;
+            }
         }
         oldFrame = player->HeavyAttackFrames;
     }

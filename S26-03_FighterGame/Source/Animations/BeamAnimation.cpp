@@ -6,7 +6,7 @@ void animations::BeamAnimation() {
 	{
 		if (player->isbeaming)
 		{
-			if (player->BeamFrames == 9 && !player->fireRanged) {
+			if (player->BeamFrames == player->BeamTextures.size() - 1 && !player->fireRanged) {
 				player->fireRanged = true;
 			}
 			player->Sprite.setTexture(player->BeamTextures[player->BeamFrames], true);

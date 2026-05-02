@@ -13,6 +13,7 @@ public:
 	void punch();
 	void beam();
 	void CheckHit();
+	void CheckRangeHit();
 	void TakeDamage(Players& player, float damage);
 
 };
