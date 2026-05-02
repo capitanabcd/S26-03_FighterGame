@@ -13,10 +13,11 @@ void Attack::CheckHit() {
     if (atkbound.intersects(victimBound)) {
 
         player->stagger(victim);
-
-        TakeDamage(victim, 10.f);
-        victim.hitTaken = true;    
-
-       
+        if (player->HeavyAttackFrames != oldFrame)
+        {
+            TakeDamage(victim, 1.f);
+            victim.hitTaken = true;
+        }
+        oldFrame = player->HeavyAttackFrames;
     }
 }
