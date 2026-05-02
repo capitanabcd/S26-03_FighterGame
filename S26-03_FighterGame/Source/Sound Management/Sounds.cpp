@@ -1,12 +1,16 @@
-#include "GameSounds.h"
+#include "SoundManager.h"
 
 bool SoundManager::loadSounds()
 {
     if (!hitBuffer.loadFromFile("assets/hit.wav"))
+    {
         return false;
+    }
 
     if (!jumpBuffer.loadFromFile("assets/jump.wav"))
+    {
         return false;
+    }
 
     hitSound.setBuffer(hitBuffer);
     jumpSound.setBuffer(jumpBuffer);
@@ -23,3 +27,5 @@ void SoundManager::playJump()
 {
     jumpSound.play();
 }
+
+

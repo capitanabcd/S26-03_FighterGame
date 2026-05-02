@@ -8,7 +8,6 @@ public:
     void playHit();
     void playJump();
 
-private:
     sf::SoundBuffer hitBuffer;
     sf::SoundBuffer jumpBuffer;
 

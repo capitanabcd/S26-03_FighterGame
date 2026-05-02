@@ -1,4 +1,5 @@
 #pragma once
+#include"SoundManager.h"
 #include "PlayerComponents.h"
 #include "Characters.h"
 #include "Attack.h"
@@ -6,6 +7,7 @@
 class Players : public movement, public jumping, public animations, public collide , public Attack , public Loadtextures , public Stagger
 {
 public:
+    SoundManager s;
     int PlayerNumber;
     float x;
     float y;
