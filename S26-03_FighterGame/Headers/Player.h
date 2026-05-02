@@ -9,6 +9,8 @@ public:
     int PlayerNumber;
     float x;
     float y;
+    int maxHealth;
+    int currentHealth;
     sf::Clock clock;
     sf::Sprite Sprite;
     void setupOrigin()
@@ -19,6 +21,9 @@ public:
 
     Players()
     {
+        maxHealth = 100;
+        currentHealth = maxHealth;
+
         movement::player = this;
         jumping::player = this;
         animations::player = this;

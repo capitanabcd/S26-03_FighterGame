@@ -2,7 +2,7 @@
 
 void animations::HeavyAttackAnimation() {
 
-	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	if (player->clock.getElapsedTime().asSeconds() >= 0.15f)
 	{
 		if (player->isattacking)
 		{

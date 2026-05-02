@@ -81,3 +81,4 @@ public:
     bool MoveCollision();
     void setbounds();
 };
+

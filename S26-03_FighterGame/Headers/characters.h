@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class cell
+class cell 
 {
 public:
     virtual void LoadTexture
@@ -31,6 +31,7 @@ public:
 class freeza
 {
 public:
+  
     virtual void LoadTexture
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
@@ -66,4 +67,5 @@ public:
     {
         SetCharacterTexture();
     }
+    
 };

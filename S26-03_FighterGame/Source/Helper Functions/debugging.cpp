@@ -1,16 +1,23 @@
-#include "sfml.h"
+#include"sfml.h"
+
 void debug()
 {
-    std::string display;
+    std::cout << "\r";
+
     if (player1.IsMoving)
-        display += "MOVING";
+        std::cout << "MOVING";
     else
-    display += "      ";
-    display += " | ";
+        std::cout << "      ";
+
+    std::cout << " | ";
 
     if (player1.isjumping)
-        display += "JUMPING";
+        std::cout << "JUMPING";
     else
-        display += "       ";
-    std::cout << "\r" << display << std::flush;
+        std::cout << "       ";
+
+    std::cout << "| Health P1: " << player1.currentHealth
+        << "| Health P2: " << player2.currentHealth
+        << "        "   
+        << std::flush;
 }
