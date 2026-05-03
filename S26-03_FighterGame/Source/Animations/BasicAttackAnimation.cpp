@@ -2,7 +2,7 @@
 
 void animations::BasicAttackAnimation() {
 
-	if (player->clock.getElapsedTime().asSeconds() >= 0.15f)
+	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
 	{
 
 		if (player->isbasicattacking)

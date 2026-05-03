@@ -27,5 +27,6 @@ void animations::EndBeamAnimation() {
         player->BeamFrames = 0;
         player->Sprite.setTexture(player->IdleTextures[0], true);
 		player->RevertOrigin();
+        player->BeamNumbers--;
     }
 }

@@ -17,6 +17,7 @@ void Attack::CheckHit() {
             if (victim.fireRanged == false)
             {
                 victim.EndBeamAnimation();
+
             }
         }
         oldFrame = player->HeavyAttackFrames;
