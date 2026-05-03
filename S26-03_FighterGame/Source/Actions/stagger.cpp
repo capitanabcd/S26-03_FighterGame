@@ -3,8 +3,6 @@ void Stagger::stagger(Players& victim)
 {
     if (!victim.hitTaken && victim.staggerTime <= 0) {
         if (!(player->HeavyAttackFrames >= player->HeavyAttackTextures.size()-1)) return;
-        if (!(player->RangedFrames >= player->RangedTexture.size() - 1)) return;
-        if (!(player->BasicAttackFrames >= player->BasicAttackTexture.size() - 1)) return;
         victim.hitTaken = true;
         victim.staggerTime = 3.0f;
         victim.staggerclock.restart();
