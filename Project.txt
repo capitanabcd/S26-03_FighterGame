@@ -1,0 +1,1250 @@
+#include "Player.h"
+
+void jumping::jump()
+{
+	if (!isjumping && !player->isStaggered)
+	{
+		isjumping = true;
+		startY = player->Sprite.getPosition().y;
+		VelocityY = jumpStrength;
+	}
+}
+void jumping::Updatejump()
+{
+	if (isjumping)
+	{
+		VelocityY += gravity * dt;
+		player->Sprite.move(0, VelocityY * dt);
+		if (player->Sprite.getPosition().y <= startY - jumpHeight) {
+			VelocityY = 0;
+		}
+	}
+} 
+#include "Player.h"
+void movement::Movement()
+{
+	if (player->hitTaken || player->isattacking) return;
+    player->MovingRight = false;
+    player->MovingLeft = false;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
+        player->MovingRight = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
+        player->MovingLeft = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
+        player->MovingRight = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
+        player->MovingLeft = true;
+
+    if (player->MovingRight || player->MovingLeft) { player->IsMoving = true; }
+    else player->IsMoving = false;
+
+    float direction = 0.f;
+    if (player->MovingRight) direction = 1.f;
+    if (player->MovingLeft) direction = -1.f;
+
+    if (direction != 0.f) {
+        float oldX = player->Sprite.getPosition().x;
+
+        Players& other = (player->PlayerNumber == 1) ? player2 : player1;
+
+
+        float newX = oldX + direction * VelocityX * dt;
+        player->Sprite.setPosition(newX, player->Sprite.getPosition().y);
+
+        bool movingToward = false;
+        if (direction > 0 && newX < other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+        else if (direction < 0 && newX > other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+
+        if (movingToward && player->MoveCollision()) {
+            player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
+            if (direction > 0) {
+                player->RightCollison = true;
+            }
+            else {
+                player->LeftCollision = true;
+            }
+        }
+        else {
+            player->RightCollison = false;
+            player->LeftCollision = false;
+        }
+    }
+    ScreenBounds(screenwidth);
+}
+#include "sfml.h"
+
+Stagger::Stagger()
+    : isStaggered(false)
+    , currentStaggerTime(0.0f)
+    , damageTakenInWindow(0.0f)
+    , staggerTime(0.0f)
+{
+    damageWindowClock.restart();
+    staggerAnimationClock.restart();
+    staggerclock.restart();
+}
+
+void Stagger::AddDamage(float damage)
+{
+    if (isStaggered) return;
+
+    damageTakenInWindow += damage;
+}
+
+void Stagger::UpdateStagger(float dt)
+{
+    if (!isStaggered)
+    {
+        if (damageWindowClock.getElapsedTime().asSeconds() >= StaggerWindow)
+        {
+            damageTakenInWindow = 0.0f;
+            damageWindowClock.restart();
+        }
+        if (!player->hitTaken && damageTakenInWindow >= DamageToStagger)
+        {
+            if (!player->fireRanged)
+                TriggerStagger();
+        }
+    }
+    else
+    {
+        currentStaggerTime -= dt;
+        staggerTime = currentStaggerTime;
+
+        if (currentStaggerTime <= 0.0f)
+        {
+            ResetStagger();
+        }
+    }
+}
+
+void Stagger::TriggerStagger()
+{
+    isStaggered = true;
+    currentStaggerTime = StaggerDuration;
+    staggerTime = StaggerDuration;
+
+    damageTakenInWindow = 0.0f;
+    damageWindowClock.restart();
+    staggerAnimationClock.restart();
+    staggerclock.restart();
+
+    player->hitTaken = true;
+    player->StaggerFrames = 0;
+
+    player->isbasicattacking = false;
+    player->isattacking = false;
+    player->isbeaming = false;
+    player->fireRanged = false;
+    player->IsMoving = false;
+    player->isjumping = false;
+
+    player->HeavyAttackFrames = 0;
+    player->BeamFrames = 0;
+    player->RangedFrames = 0;
+    player->BasicAttackFrames = 0;
+}
+
+void Stagger::ResetStagger()
+{
+    isStaggered = false;
+    currentStaggerTime = 0.0f;
+    staggerTime = 0.0f;
+
+    player->hitTaken = false;
+    player->StaggerFrames = 0;
+
+    if (!player->IdleTextures.empty())
+    {
+        player->Sprite.setTexture(player->IdleTextures[0], true);
+    }
+    player->RevertOrigin();
+}
+
+void Stagger::UpdateStaggerAnimation()
+{
+    if (!isStaggered && !player->hitTaken) return;
+
+    if (staggerAnimationClock.getElapsedTime().asSeconds() >= 0.2f)
+    {
+        if (player->StaggerFrames < player->StaggerTextures.size())
+        {
+            player->Sprite.setTexture(player->StaggerTextures[player->StaggerFrames], true);
+            staggerAnimationClock.restart();
+            staggerclock.restart();
+            player->StaggerFrames++;
+
+            if (player->StaggerFrames >= player->StaggerTextures.size())
+            {
+                player->StaggerFrames = player->StaggerTextures.size() - 1;
+            }
+            player->RevertOrigin();
+        }
+    }
+}
+#include "sfml.h"
+
+void animations::BasicAttackAnimation() {
+
+	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	{
+
+		if (player->isbasicattacking)
+		{
+
+
+			player->Sprite.setTexture(player->BasicAttackTexture[player->BasicAttackFrames], true);
+			player->clock.restart();
+			player->BasicAttackFrames++;
+
+			if (player->BasicAttackFrames >= player->BasicAttackTexture.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0], true);
+				player->BasicAttackFrames = 0;
+				player->isbasicattacking = false;
+			}
+			RevertOrigin();
+		}
+	}
+}
+#include "sfml.h"
+
+void animations::BeamAnimation() {
+    if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+    {
+        if (player->isbeaming)
+        {
+            if (player->BeamFrames < player->BeamTextures.size() - 1) {
+                player->Sprite.setTexture(player->BeamTextures[player->BeamFrames], true);
+                player->clock.restart();
+                player->BeamFrames++;
+            }
+            else if (player->BeamFrames == player->BeamTextures.size() - 1) {
+                if (!player->fireRanged) {
+                    player->fireRanged = true;
+                }
+                player->Sprite.setTexture(player->BeamTextures[player->BeamFrames], true);
+            }
+
+            RevertOrigin();
+        }
+    }
+}
+void animations::EndBeamAnimation() {
+    if (player->isbeaming) {
+        player->isbeaming = false;
+        player->BeamFrames = 0;
+        player->Sprite.setTexture(player->IdleTextures[0], true);
+		player->RevertOrigin();
+        player->BeamNumbers--;
+    }
+}
+#include "sfml.h"
+
+void animations::HeavyAttackAnimation() {
+
+	if (player->clock.getElapsedTime().asSeconds() >= 0.15f)
+	{
+		
+		if (player->isattacking)
+		{
+			
+			
+			player->Sprite.setTexture(player->HeavyAttackTextures[player->HeavyAttackFrames], true);
+			player->clock.restart();
+			player->HeavyAttackFrames++;
+
+			if (player->HeavyAttackFrames >= player->HeavyAttackTextures.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0], true);
+				player->HeavyAttackFrames = 0;
+				player->isattacking = false;
+			}
+				RevertOrigin();
+		}
+	}
+}
+#include "sfml.h"
+void animations :: IdleAnimation()
+{
+	if (!player->hitTaken && !player->isattacking)
+	{
+		if (player->clock.getElapsedTime().asSeconds() >= 0.2f)
+		{
+			if (!player->IsMoving && !player->isjumping)
+			{
+				player->Sprite.setTexture(player->IdleTextures[player->IdleFrames], true);
+				player->clock.restart();
+				player->IdleFrames++;
+				if (player->IdleFrames >= player->IdleTextures.size()) player->IdleFrames = 0;
+				RevertOrigin();
+			}
+		}
+	}
+}
+#include "sfml.h"
+
+void showLoadingScreen(sf::RenderWindow& window) {
+    sf::Texture loadingTexture;
+    sf::Sprite loadingSprite;
+
+    if (loadingTexture.loadFromFile("assets/loading.png")) {
+        loadingSprite.setTexture(loadingTexture);
+
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = loadingTexture.getSize();
+        float scaleX = (float)windowSize.x / textureSize.x;
+        float scaleY = (float)windowSize.y / textureSize.y;
+        loadingSprite.setScale(scaleX, scaleY);
+    }
+
+    window.clear();
+    window.draw(loadingSprite);
+    window.display();
+}
+#include "sfml.h"
+void animations :: MovementAnimation()
+{
+	if (!player->hitTaken && !player->isattacking)
+	{
+		if (player->clock.getElapsedTime().asSeconds() >= 0.05f)
+		{
+			if (player->IsMoving)
+			{
+				player->Sprite.setTexture(player->MovementTextures[player->MovementFrames], true);
+				player->clock.restart();
+				player->MovementFrames++;
+				if (player->MovementFrames >= player->MovementTextures.size()) player->MovementFrames = 0;
+				invert();
+				RevertOrigin();
+			}
+		}
+	}
+} 
+#include "sfml.h"
+void animations::RangedAttackAnimation() {
+    if (player->clock.getElapsedTime().asSeconds() >= 0.009f)
+    {
+        if (player->fireRanged)
+        {
+            sf::FloatRect playerBounds = player->Sprite.getGlobalBounds();
+            sf::Vector2f playerPos = player->Sprite.getPosition();
+
+            float spawnX = playerPos.x;
+            float spawnY = playerPos.y - (playerBounds.height * 1.1f);
+
+            float offsetDistance = 10.0f;
+
+            if (player->MovingRight) {
+                spawnX += (playerBounds.width / 2.0f) + offsetDistance;
+                player->RangedAttack.setScale(1.f, 0.6f);
+            }
+            else {
+                spawnX -= (playerBounds.width / 2.0f) + offsetDistance;
+                player->RangedAttack.setScale(-1.f, 0.6f);
+            }
+
+            player->RangedAttack.setPosition(spawnX, spawnY);
+            player->RangedAttack.setTexture(player->RangedTexture[player->RangedFrames], true);
+            player->clock.restart();
+            player->RangedFrames++;
+
+            if (player->RangedFrames >= player->RangedTexture.size()) {
+                player->RangedAttack.setTexture(player->EmptyTexture, true);
+                player->RangedFrames = 0;
+                player->fireRanged = false;
+                player->Sprite.setTexture(player->IdleTextures[0], true);
+                EndBeamAnimation();
+            }
+        }
+    }
+}
+#include "sfml.h"
+void animations::StaggerAnimation() 
+{
+	player->UpdateStaggerAnimation();
+}
+#include "sfml.h"
+
+void Attack::TakeDamage(Players& player, float damage)
+{
+    player.currentHealth -= damage;
+
+    if (player.currentHealth < 0)
+    {
+        player.currentHealth = 0;
+    }
+}
+
+void Attack::TakeDamageWithStagger(Players& player, float damage)
+{
+    player.AddDamage(damage);
+
+    player.currentHealth -= damage;
+
+    if (player.currentHealth < 0)
+    {
+        player.currentHealth = 0;
+    }
+}
+#include "sfml.h"
+
+void Attack::CheckHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->isattacking) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->Sprite.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->HeavyAttackFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 1.7f);
+
+            if (victim.fireRanged == false)
+            {
+                victim.EndBeamAnimation();
+
+            }
+        }
+        oldFrame = player->HeavyAttackFrames;
+    }
+}
+#include "sfml.h"
+
+void Attack::CheckBasicHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->isbasicattacking) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->Sprite.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->BasicAttackFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 1.0f);
+
+            if (victim.fireRanged == false)
+            {
+                victim.EndBeamAnimation();
+            }
+        }
+        oldFrame = player->BasicAttackFrames;
+    }
+}
+#include "sfml.h"
+
+void Attack::CheckRangeHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->fireRanged) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->RangedAttack.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->RangedFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 0.5f);
+        }
+        oldFrame = player->RangedFrames;
+    }
+}
+#include "sfml.h"
+Background::Background() {
+    currentFrame = 0;
+    frameDuration = 0.1f;
+    direction = 1;
+    animationComplete = false;
+}
+void Background::resetAnimation() {
+    currentFrame = 0;
+    direction = 1;
+    animationComplete = false;
+    if (!backgroundTextures.empty()) {
+        backgroundSprite.setTexture(backgroundTextures[0]);
+    }
+    animationClock.restart();
+}
+void Background::updateBackground() {
+    if (backgroundTextures.empty()) return;
+    if (animationComplete) resetAnimation();
+
+    if (animationClock.getElapsedTime().asSeconds() >= frameDuration) {
+        int nextFrame = currentFrame + direction;
+
+        if (nextFrame >= (int)backgroundTextures.size()) {
+            direction = -1;
+            nextFrame = backgroundTextures.size() - 2;
+        }
+        else if (nextFrame < 0) {
+            animationComplete = true;
+            return;
+        }
+
+        currentFrame = nextFrame;
+        backgroundSprite.setTexture(backgroundTextures[currentFrame]);
+        animationClock.restart();
+    }
+}
+
+void Background::renderBackground(sf::RenderWindow& window) {
+    window.draw(backgroundSprite);
+}
+#include "sfml.h"
+
+void Background::loadBackground(sf::RenderWindow& window) {
+    std::string folderPath = "assets/background/";
+    std::vector<std::string> filePaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string extension = entry.path().extension().string();
+
+        if (extension == ".jpg" || extension == ".png") {
+            filePaths.push_back(path);
+        }
+    }
+    std::sort(filePaths.begin(), filePaths.end());
+
+    for (const auto& path : filePaths) {
+        sf::Texture tex;
+        if (tex.loadFromFile(path)) {
+            backgroundTextures.push_back(std::move(tex));
+        }
+    }
+
+    if (!backgroundTextures.empty()) {
+        backgroundSprite.setTexture(backgroundTextures[0]);
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = backgroundTextures[0].getSize();
+        float scaleX = (float)windowSize.x / textureSize.x;
+        float scaleY = (float)windowSize.y / textureSize.y;
+        backgroundSprite.setScale(scaleX, scaleY);
+    }
+}
+#include "sfml.h"
+bool collide::MoveCollision() {
+	setbounds();
+
+	if (Player1Bounds.intersects(Player2Bounds)) {
+		return true;
+	}
+	return false;
+}
+#include "sfml.h"
+
+void collide::setbounds() {
+	Player1Bounds = player1.Sprite.getGlobalBounds();
+	Player2Bounds = player2.Sprite.getGlobalBounds();
+	Player1Bounds.width /= 1.5;
+	Player2Bounds.width /= 1.5;
+}
+
+
+#include"sfml.h"
+
+void debug()
+{
+    std::cout << "\r";
+
+    if (player1.IsMoving)
+        std::cout << "MOVING";
+    else
+        std::cout << "      ";
+
+    std::cout << " | ";
+
+    if (player1.isjumping)
+        std::cout << "JUMPING";
+    else
+        std::cout << "       ";
+
+    std::cout << "| Health P1: " << player1.currentHealth
+        << "| Health P2: " << player2.currentHealth
+        << "        "   
+        << std::flush;
+}
+#include "sfml.h"
+
+float dt;
+void DeltaTime()
+{
+    static sf::Clock clock;
+    dt = clock.restart().asSeconds();
+    if (dt > 0.2f)
+    {
+        dt = 0.2f;
+    }
+}
+#include "sfml.h"
+
+
+void window::HandleEvents()
+{
+	if (event.type == sf::Event::KeyPressed)
+	{
+		
+		if (event.key.code == sf::Keyboard::W && player1.isattacking == false && player1.isbeaming == false)
+		{
+			player1.jump();
+		}
+		if (event.key.code == sf::Keyboard::Up && player2.isattacking == false && player2.isbeaming == false)
+		{
+			player2.jump();
+		}
+		if (event.key.code == sf::Keyboard::F && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.hitTaken == false && player1.isbasicattacking == false)
+		{
+			player1.isattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::J && player2.IsMoving == false && player2.isjumping == false && player2.isbeaming == false && player2.hitTaken == false && player2.isbasicattacking == false) {
+			player2.isattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::Q && player1.IsMoving == false && player1.isjumping == false && player1.isbasicattacking == false && player1.isattacking == false && player1.hitTaken == false) {
+			if (player1.BeamNumbers > 0)
+				player1.isbeaming = true;
+		}
+		if (event.key.code == sf::Keyboard::L && player2.IsMoving == false && player2.isjumping == false && player2.isattacking == false && player2.isbasicattacking == false && player2.hitTaken == false) {
+			if (player2.BeamNumbers > 0)
+				player2.isbeaming = true;
+		}
+		if (event.key.code == sf::Keyboard::E && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.isattacking == false && player1.hitTaken == false) {
+
+			player1.isbasicattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::K && player2.IsMoving == false && player2.isjumping == false &&  player2.isbeaming == false && player2.isattacking == false && player2.hitTaken == false) {
+
+			player2.isbasicattacking = true;
+		}
+	}
+	
+	CloseWindow();
+}
+#include"sfml.h"
+void animations::invert()
+{
+	float p1Yscale = player1.Sprite.getScale().y;
+	float p1Xscale;
+	if (player2.Sprite.getPosition().x > player1.Sprite.getPosition().x) {
+		p1Xscale = 4.4f;
+		player1.MovingRight = true;
+	}
+	else {
+		p1Xscale = -4.4f;
+		player1.MovingLeft = true;
+	}
+	player1.Sprite.setScale(p1Xscale, p1Yscale);
+
+	float p2Yscale = player2.Sprite.getScale().y;
+	float p2Xscale;
+	if (player1.Sprite.getPosition().x > player2.Sprite.getPosition().x) {
+		p2Xscale = 4.4f;
+		player2.MovingRight = true;
+	}
+	else {
+		p2Xscale = -4.4f;
+		player2.MovingLeft = true;
+	}
+	player2.Sprite.setScale(p2Xscale, p2Yscale);
+}
+#include "sfml.h"
+void resize()
+{
+    float player1Bottom = player1.Sprite.getPosition().y;
+    float player2Bottom = player2.Sprite.getPosition().y;
+
+    if (player1Bottom >= ground)
+    {
+        player1.Sprite.setPosition(player1.Sprite.getPosition().x, ground);
+        player1.VelocityY = 0;
+        player1.isjumping = false;
+    }
+    if (player2Bottom >= ground)
+    {
+        player2.Sprite.setPosition(player2.Sprite.getPosition().x, ground);
+        player2.VelocityY = 0;
+        player2.isjumping = false;
+    }
+}
+#include "sfml.h"
+void animations :: RevertOrigin()
+{
+	sf::FloatRect bounds = player->Sprite.getLocalBounds();
+	player->Sprite.setOrigin(bounds.width / 2.f, bounds.height);
+}
+#include "sfml.h"
+
+void movement::ScreenBounds(int screenwidth)
+{
+    sf::FloatRect bounds = player->Sprite.getGlobalBounds();
+    sf::Vector2f position = player->Sprite.getPosition();
+
+    if (bounds.left < 0)       //Left
+    {
+        position.x -= bounds.left;
+    }
+
+    if (bounds.left + bounds.width > screenwidth)     //Right
+    {
+        position.x -= (bounds.left + bounds.width - screenwidth);
+    }
+
+    player->Sprite.setPosition(position);
+
+}
+#include "sfml.h"
+void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/goku/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths, rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
+#include "sfml.h"
+void freeza::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/freeza/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths,beamPaths,rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
+#include "sfml.h"
+void goku::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/goku/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths, rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
+#include "sfml.h"
+void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
+void Loadtextures::SetCharacterTexture()
+{
+	int choice;
+	std::cout << "Choose your character: " << std::endl;
+	std::cin >> choice;
+	if(choice == 1)
+	{
+		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	else if(choice == 2)
+	{
+		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	else if (choice == 3)
+	{
+		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+}
+#include"sfml.h"
+Players player1;
+Players player2;
+Background gameBackground;
+SelectionScreen gameSelectionScreen;
+
+int main()
+{
+	window GameWindow;
+	showLoadingScreen(GameWindow.MainWindow);
+	gameBackground.loadBackground(GameWindow.MainWindow);
+	gameSelectionScreen.loadSelectionScreen();
+	gameSelectionScreen.Load_IdleTextures();
+	while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
+	{
+		sf::Event event;
+
+		while (GameWindow.MainWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				GameWindow.MainWindow.close();
+
+			gameSelectionScreen.HandleInput(event);   // only input
+		}
+
+		gameSelectionScreen.UpdateSelectionScreen(); // always runs
+
+		GameWindow.MainWindow.clear();
+		gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
+		GameWindow.MainWindow.display();
+	}
+	while (GameWindow.WindowisOpen())
+	{	
+		DeltaTime();
+		while (GameWindow.MainWindow.pollEvent(GameWindow.event))
+		{
+			GameWindow.HandleEvents();
+		}
+		gameBackground.updateBackground();
+		PlayerCalls();
+		GameWindow.DisplayWindow();
+	}
+	return 0;
+}
+#include "sfml.h"
+void SelectionScreen::Load_IdleTextures()
+{
+    std::string folderPath = "assets/cell/";
+    std::vector<std::string> idlePaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("cell") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C1.emplace_back().loadFromFile(path);
+    }
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    folderPath = "assets/goku/";
+    idlePaths.clear();
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C2.emplace_back().loadFromFile(path);
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    folderPath = "assets/freeza/";
+    idlePaths.clear();
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C3.emplace_back().loadFromFile(path);
+    }
+}
+#include "sfml.h"
+void SelectionScreen ::loadSelectionScreen() 
+{
+    std::string folderPath = "assets/selection screen/";
+    std::vector<std::string> ArrowPaths,EnterPaths,SelectionPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".jpg") {
+            if (filename.find("Arrow") != std::string::npos)
+                ArrowPaths.push_back(path);
+            else if (filename.find("Enter") != std::string::npos)
+                EnterPaths.push_back(path);
+            else if (filename.find("Selection") != std::string::npos)
+				SelectionPaths.push_back(path);
+        }
+    }
+    std::sort(ArrowPaths.begin(), ArrowPaths.end());
+    std::sort(EnterPaths.begin(), EnterPaths.end());
+    std::sort(SelectionPaths.begin(), SelectionPaths.end());
+
+    for (const auto& path : ArrowPaths) {
+        ArrowTextures.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : EnterPaths) {
+        EnterTextures.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : SelectionPaths) {
+        SelectionTextures.emplace_back().loadFromFile(path);
+    }
+}
+#include "sfml.h"
+
+SelectionScreen::SelectionScreen()
+{
+    isSelecting = true;
+    EnterFrames = 0;
+    ArrowFrames = 0;
+    SelectionFrames = 0;
+    index = 0;
+    frames = 0;
+    selectingFor = 1;
+}
+void SelectionScreen::NormalizeCharacter()
+{
+    sf::FloatRect bounds = Character.getLocalBounds();
+
+    if (bounds.height == 0)
+        return;
+
+    float targetHeight = 1.f; // desired preview height
+
+    float scale = targetHeight / bounds.height;
+
+    Character.setOrigin(
+        bounds.width / 2.f,
+        bounds.height
+    );
+
+    Character.setScale(scale, scale);
+
+    Character.setPosition(650.f, 300.f);
+}
+void SelectionScreen::UpdateSelectionScreen()
+{
+    // Arrow animation for 2 sec
+    if (ArrowClock.getElapsedTime().asSeconds() <= 0.5f)
+    {
+        if (!ArrowTextures.empty())
+        {
+            SelectionSprite.setTexture(
+                ArrowTextures[ArrowFrames % ArrowTextures.size()]
+            );
+
+            if (SelectionClock.getElapsedTime().asSeconds() >= 0.1f)
+            {
+                ArrowFrames++;
+                SelectionClock.restart();
+            }
+        }
+    }
+    else
+    {
+        // normal selection animation
+        if (!SelectionTextures.empty())
+        {
+            if (SelectionClock.getElapsedTime().asSeconds() >= 0.2f)
+            {
+                SelectionFrames =
+                    (SelectionFrames + 1) % SelectionTextures.size();
+
+                SelectionSprite.setTexture(
+                    SelectionTextures[SelectionFrames]
+                );
+
+                SelectionClock.restart();
+            }
+        }
+    }
+
+    if (IdleCLock.getElapsedTime().asSeconds() >= 0.2f)
+    {
+        if (index == 0 && !C1.empty())
+            Character.setTexture(C1[frames % C1.size()], true);
+
+        else if (index == 1 && !C2.empty())
+            Character.setTexture(C2[frames % C2.size()], true);
+
+        else if (index == 2 && !C3.empty())
+            Character.setTexture(C3[frames % C3.size()], true);
+
+        NormalizeCharacter();
+        frames++;
+        IdleCLock.restart();
+    }
+
+    Character.setPosition(600, 300);
+    Character.setScale(3.f, 3.f);
+}
+void SelectionScreen::renderSelectionScreen(sf::RenderWindow& window)
+{
+    window.draw(SelectionSprite);
+    window.draw(Character);
+}
+void SelectionScreen::HandleInput(sf::Event& event)
+{
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (event.key.code == sf::Keyboard::Right)
+        {
+            index = (index + 1) % 3;
+
+            ArrowFrames = 0;
+            ArrowClock.restart();
+
+            frames = 0;
+            IdleCLock.restart();
+        }
+
+        else if (event.key.code == sf::Keyboard::Left)
+        {
+            index = (index - 1 + 3) % 3;
+
+            ArrowFrames = 0;
+            ArrowClock.restart();
+
+            frames = 0;
+            IdleCLock.restart();
+        }
+
+        else if (event.key.code == sf::Keyboard::Enter)
+        {
+            EnterFrames = 0;
+            EnterClock.restart();
+
+            if (selectingFor == 1)
+            {
+                player1Choice = index + 1;
+                selectingFor = 2;
+            }
+            else
+            {
+                player2Choice = index + 1;
+                isSelecting = false;
+            }
+        }
+    }
+}
+#include "sfml.h"
+
+void window::DisplayWindow()
+{
+	MainWindow.clear(sf::Color::Black);
+	DrawLoop();
+	MainWindow.display();
+
+}
+#include "sfml.h"
+extern Background gameBackground;
+
+void window::DrawLoop()
+{
+	player1.invert();
+	player2.invert();
+	player1.IdleAnimation();
+	player2.IdleAnimation();
+	player1.MovementAnimation();
+	player2.MovementAnimation();
+	resize();
+	player1.BeamAnimation();
+	player2.BeamAnimation();
+	player1.HeavyAttackAnimation();
+	player2.HeavyAttackAnimation();
+	player1.BasicAttackAnimation();
+	player2.BasicAttackAnimation();
+	player1.RangedAttackAnimation();
+	player2.RangedAttackAnimation();
+	player1.StaggerAnimation();
+	player2.StaggerAnimation();
+	gameBackground.renderBackground(MainWindow);
+	MainWindow.draw(player1.Sprite);
+	MainWindow.draw(player2.Sprite);
+	MainWindow.draw(player1.RangedAttack);
+	MainWindow.draw(player2.RangedAttack);
+	debug();
+}
+#include "sfml.h"
+
+void PlayerCalls()
+{
+    float currentDt = dt;
+
+    player1.Updatejump();
+    player1.Movement();
+    player2.Updatejump();
+    player2.Movement();
+
+    player1.UpdateStagger(currentDt);
+    player2.UpdateStagger(currentDt);
+
+    player1.CheckHit();
+    player2.CheckHit();
+    player1.CheckBasicHit();
+    player2.CheckBasicHit();
+    player1.CheckRangeHit();
+    player2.CheckRangeHit();
+}
+#include "sfml.h"
+
+bool window::WindowisOpen() const
+{
+	if (MainWindow.isOpen())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+void window::CloseWindow()
+{
+	if (event.type == sf::Event::Closed)
+	{
+		MainWindow.close();
+	}
+}

@@ -39,6 +39,9 @@
     <ClInclude Include="Headers\Attack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\SelectionScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
@@ -134,16 +137,25 @@
     <ClCompile Include="Source\Animations\BeamAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\beam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp">
+    <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
+    <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Attack\CheckBasicHit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SelectionScreen\Load_SelectionScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SelectionScreen\SelectionScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SelectionScreen\Load_Idle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1483,12 +1495,6 @@
     <Image Include="assets\goku\goku beam 11.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\goku\goku beam 12.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\goku\goku beam 13.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\goku\Goku ranged_00.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1781,6 +1787,165 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\freeza\freeza beam_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionArrows01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionArrows02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionArrows03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionArrows04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter05.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter06.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter07.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter08.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter09.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter10.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionEnter11.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0000.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0001.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0002.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0003.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0004.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0005.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0006.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0007.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0008.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\SelectionScreen_0009.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 4.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 5.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\Arrow_Layer 6.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 4.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 5.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 6.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 7.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 8.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 9.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 10.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 11.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 13.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\selection_Layer 1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\selection_Layer 2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\selection_Layer 3.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

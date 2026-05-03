@@ -13,6 +13,7 @@
 #include <algorithm>
 
 #include "Background.h"
+#include "SelectionScreen.h"
 #include "Game.h"
 #include "Window.h"
 #include "Attack.h"	
