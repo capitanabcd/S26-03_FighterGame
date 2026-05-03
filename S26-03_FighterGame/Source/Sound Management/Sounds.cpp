@@ -2,12 +2,12 @@
 
 bool SoundManager::loadSounds()
 {
-    if (!hitBuffer.loadFromFile("assets/hit.wav"))
+    if (!hitBuffer.loadFromFile("assets/Sounds/hit.wav"))
     {
         return false;
     }
 
-    if (!jumpBuffer.loadFromFile("assets/jump.wav"))
+    if (!jumpBuffer.loadFromFile("assets/Sounds/jump.wav"))
     {
         return false;
     }

@@ -7,22 +7,22 @@ void window::HandleEvents()
 		
 		if (event.key.code == sf::Keyboard::W) {
 			player1.jump();
-			s.jumpSound.play();
+			player1.s->jumpSound.play();
 		}
 
 		if (event.key.code == sf::Keyboard::Up)
 		{
 			player2.jump();
-			s.jumpSound.play();
+			player2.s->jumpSound.play();
 		}
 		if (event.key.code == sf::Keyboard::F)
 		{
 			player1.isattacking = true;
-			s.hitSound.play();
+			player1.s->hitSound.play();
 		}
 		if (event.key.code == sf::Keyboard::J) {
 			player2.isattacking = true;
-			s.hitSound.play();
+			player2.s->hitSound.play();
 		}
 	}
 

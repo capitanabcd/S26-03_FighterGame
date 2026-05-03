@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-const int ground = 720;
+inline int const ground = 720;
 extern float dt;
 void DeltaTime();
 void resize();
@@ -77,4 +77,3 @@ public:
     bool MoveCollision();
     void setbounds();
 };
-

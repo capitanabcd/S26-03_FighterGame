@@ -36,6 +36,7 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Sound Management\Sounds.cpp" />
     <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
@@ -631,7 +632,8 @@
       <Profile>yes</Profile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)dlls\*.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
