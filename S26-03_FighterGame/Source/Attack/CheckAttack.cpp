@@ -16,8 +16,13 @@ void Attack::CheckHit() {
         if (player->HeavyAttackFrames != oldFrame)
         {
             if (player->staggerTime <= 0) {
+                if (victim.fireRanged == false)
+                {
+                     victim.EndBeamAnimation();
+                }
                 TakeDamage(victim, 1.f);
                 victim.hitTaken = true;
+
             }
         }
         oldFrame = player->HeavyAttackFrames;

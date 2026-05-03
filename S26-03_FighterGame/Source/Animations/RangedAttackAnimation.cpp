@@ -31,7 +31,6 @@ void animations::RangedAttackAnimation() {
                 player->RangedFrames = 0;
                 player->fireRanged = false;
                 player->Sprite.setTexture(player->IdleTextures[0], true);
-                RevertOrigin();
                 EndBeamAnimation();
             }
         }
