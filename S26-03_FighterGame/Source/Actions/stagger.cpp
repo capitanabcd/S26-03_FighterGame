@@ -29,7 +29,8 @@ void Stagger::UpdateStagger(float dt)
         }
         if (!player->hitTaken && damageTakenInWindow >= DamageToStagger)
         {
-            TriggerStagger();
+            if (!player->fireRanged)
+                TriggerStagger();
         }
     }
     else
@@ -58,14 +59,17 @@ void Stagger::TriggerStagger()
     player->hitTaken = true;
     player->StaggerFrames = 0;
 
+    player->isbasicattacking = false;
     player->isattacking = false;
     player->isbeaming = false;
     player->fireRanged = false;
     player->IsMoving = false;
+    player->isjumping = false;
 
     player->HeavyAttackFrames = 0;
     player->BeamFrames = 0;
     player->RangedFrames = 0;
+    player->BasicAttackFrames = 0;
 }
 
 void Stagger::ResetStagger()

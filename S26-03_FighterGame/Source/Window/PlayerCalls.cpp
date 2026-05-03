@@ -15,7 +15,7 @@ void PlayerCalls()
     player1.CheckHit();
     player2.CheckHit();
     player1.CheckBasicHit();
-    Player2.CheckBasicHit();
+    player2.CheckBasicHit();
     player1.CheckRangeHit();
     player2.CheckRangeHit();
 }

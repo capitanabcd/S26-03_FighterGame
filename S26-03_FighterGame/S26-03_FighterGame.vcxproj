@@ -38,7 +38,6 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
-    <ClCompile Include="Source\Attack\beam.cpp" />
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />

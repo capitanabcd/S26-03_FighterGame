@@ -2,7 +2,7 @@
 
 void jumping::jump()
 {
-	if (!isjumping)
+	if (!isjumping && !player->isStaggered)
 	{
 		isjumping = true;
 		startY = player->Sprite.getPosition().y;
