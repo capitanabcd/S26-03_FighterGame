@@ -41,7 +41,6 @@
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\Player Constructor\Player.cpp" />
     <ClCompile Include="Source\Sound Management\Sounds.cpp" />
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
@@ -629,7 +628,9 @@
     <None Include="dlls\sfml-window-d-2.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="assets\Sounds\Background Sound.wav" />
     <Media Include="assets\Sounds\hit.wav" />
+    <Media Include="assets\Sounds\Hornet.wav" />
     <Media Include="assets\Sounds\jump.wav" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
