@@ -9,7 +9,10 @@ public:
         (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+            std::vector<sf::Texture>&,
+            std::vector<sf::Texture>&,
+            std::vector<sf::Texture>&
             );
 };
 
@@ -20,7 +23,10 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
        );
 };
 
@@ -32,7 +38,10 @@ public:
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
         );
 };
 
@@ -44,11 +53,18 @@ public:
     std::vector<sf::Texture> StaggerTextures;
     std::vector<sf::Texture> HeavyAttackTextures;
     std::vector<sf::Texture> BasicAttackTextures;
+    std::vector<sf::Texture> BeamTextures;
+    std::vector<sf::Texture> RangedTexture;
+    std::vector<sf::Texture> BasicAttackTexture;
+    sf::Texture EmptyTexture;
     void LoadTexture
        (std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-        std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+           std::vector<sf::Texture>&
            )override;
     void SetCharacterTexture();
 
