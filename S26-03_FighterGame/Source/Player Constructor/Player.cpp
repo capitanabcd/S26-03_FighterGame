@@ -1,6 +1,6 @@
 #include"Player.h"
 #include "SoundManager.h"
-Players :: Players()
+Players::Players()
 {
     s = new SoundManager();
     if (!s->loadSounds()) {

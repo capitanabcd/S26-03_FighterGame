@@ -36,7 +36,7 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Player Constructor\Player.cpp" />
     <ClCompile Include="Source\Sound Management\Sounds.cpp" />
     <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
@@ -501,6 +501,7 @@
     <Image Include="freeza\freeza stagger 4.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dlls\openal32.dll" />
     <None Include="dlls\sfml-audio-d-2.dll" />
     <None Include="dlls\sfml-graphics-d-2.dll" />
     <None Include="dlls\sfml-network-d-2.dll" />
@@ -632,8 +633,7 @@
       <Profile>yes</Profile>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "$(ProjectDir)dlls\openal32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
