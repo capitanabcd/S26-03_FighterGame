@@ -23,6 +23,7 @@
     <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\Healthbar.h" />
     <ClInclude Include="Headers\Player.h" />
     <ClInclude Include="Headers\PlayerComponents.h" />
     <ClInclude Include="Headers\sfml.h" />
@@ -40,6 +41,7 @@
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
+    <ClCompile Include="Source\Background\Healthbar.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
     <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
@@ -622,6 +624,11 @@
     <None Include="dlls\sfml-network-d-2.dll" />
     <None Include="dlls\sfml-system-d-2.dll" />
     <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\Font\galafera-med-font\GalaferaMedium-V4xze.ttf" />
+    <Font Include="assets\Font\galafera-med-font\GalaferaMediumItalic-JpXJK.ttf" />
+    <Font Include="assets\Font\GalaferaMedium-V4xze.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
