@@ -28,4 +28,18 @@ void SoundManager::playJump()
     jumpSound.play();
 }
 
+bool SoundManager::loadMusic()
+{
+    if (!backgroundMusic.openFromFile("assets/Sounds/Hornet.wav"))
+        return false;
 
+    backgroundMusic.setLoop(true);   
+    backgroundMusic.setVolume(50);  
+
+    return true;
+}
+
+void SoundManager::playBackground()
+{
+    backgroundMusic.play();
+}
