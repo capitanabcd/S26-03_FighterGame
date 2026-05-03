@@ -56,7 +56,6 @@
     <ClCompile Include="Source\Helper Functions\HandleEvents.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
     <ClCompile Include="Source\Helper Functions\RevertOrigin.cpp" />
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_freeza_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp" />

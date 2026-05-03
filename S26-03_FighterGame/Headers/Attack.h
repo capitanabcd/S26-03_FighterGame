@@ -11,11 +11,10 @@ public:
 	sf::Sprite RangedAttack;
 	sf::Clock attackClock;
 	int oldFrame = 0;
-	void punch();
-	void beam();
 	void CheckHit();
 	void CheckRangeHit();
 	void CheckBasicHit();
 	void TakeDamage(Players& player, float damage);
+	void TakeDamageWithStagger(Players& player, float damage);
 
 };
