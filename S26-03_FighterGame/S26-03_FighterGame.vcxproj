@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Actions\stagger.cpp" />
+    <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\Attack\beam.cpp" />
+    <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
@@ -475,6 +477,12 @@
     <Image Include="assets\freeza\frieza ranged_43.png" />
     <Image Include="assets\freeza\frieza ranged_44.png" />
     <Image Include="assets\freeza\frieza ranged_45.png" />
+    <Image Include="assets\goku\goku BasicAttack_00.png" />
+    <Image Include="assets\goku\goku BasicAttack_01.png" />
+    <Image Include="assets\goku\goku BasicAttack_02.png" />
+    <Image Include="assets\goku\goku BasicAttack_03.png" />
+    <Image Include="assets\goku\goku BasicAttack_04.png" />
+    <Image Include="assets\goku\goku BasicAttack_05.png" />
     <Image Include="assets\goku\goku beam 01.png" />
     <Image Include="assets\goku\goku beam 02.png" />
     <Image Include="assets\goku\goku beam 03.png" />

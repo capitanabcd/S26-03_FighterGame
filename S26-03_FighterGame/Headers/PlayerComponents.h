@@ -59,6 +59,7 @@ public:
     int HeavyAttackFrames = 0;
     int BeamFrames = 0;
     int RangedFrames = 0;
+    int BasicAttackFrames = 0;
 
     void IdleAnimation();
     void MovementAnimation();
@@ -67,6 +68,7 @@ public:
     void BeamAnimation();
 	void EndBeamAnimation();
     void RangedAttackAnimation();
+    void BasicAttackAnimation();
 
     void invert();
     void RevertOrigin();

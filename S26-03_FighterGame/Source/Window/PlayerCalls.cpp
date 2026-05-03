@@ -9,6 +9,8 @@ void PlayerCalls()
 	player2.CheckHit();
 	player1.CheckRangeHit();
 	player2.CheckRangeHit();
+	player1.CheckBasicHit();
+	player2.CheckBasicHit();
 	player1.UpdateStagger();
 	player2.UpdateStagger();
 }

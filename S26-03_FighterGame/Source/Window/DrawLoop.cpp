@@ -14,6 +14,8 @@ void window::DrawLoop()
 	player2.BeamAnimation();
 	player1.HeavyAttackAnimation();
 	player2.HeavyAttackAnimation();
+	player1.BasicAttackAnimation();
+	player2.BasicAttackAnimation();
 	player1.RangedAttackAnimation();
 	player2.RangedAttackAnimation();
 	player1.StaggerAnimation();

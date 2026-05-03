@@ -4,6 +4,7 @@ class Attack {
 public:
 	Players* player = nullptr;
 	bool isattacking = false;
+	bool isbasicattacking = false;
 	bool hitTaken = false;
 	bool isbeaming = false;
 	bool fireRanged = false;
@@ -14,6 +15,7 @@ public:
 	void beam();
 	void CheckHit();
 	void CheckRangeHit();
+	void CheckBasicHit();
 	void TakeDamage(Players& player, float damage);
 
 };
