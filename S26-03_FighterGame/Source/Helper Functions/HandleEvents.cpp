@@ -24,6 +24,9 @@ void window::HandleEvents()
 		if (event.key.code == sf::Keyboard::Q) {
 			player1.isbeaming = true;
 		}
+		if (event.key.code == sf::Keyboard::L) {
+			player2.isbeaming = true;
+		}
 	}
 	
 	CloseWindow();
