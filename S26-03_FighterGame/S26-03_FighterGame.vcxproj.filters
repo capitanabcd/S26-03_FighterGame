@@ -39,6 +39,9 @@
     <ClInclude Include="Headers\Attack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\SoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\animations\IdleAnimation.cpp">
@@ -141,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Helper Functions\Update Health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\Sounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
@@ -1450,6 +1456,51 @@
     <Image Include="assets\freeza\freeza Movement4.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\freeza\freeza BasicAttack1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza BasicAttack7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Idle4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\freeza\freeza Movement4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="assets\goku\goku beam 01.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1790,5 +1841,13 @@
     <None Include="dlls\sfml-network-d-2.dll" />
     <None Include="dlls\sfml-system-d-2.dll" />
     <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\Sounds\hit.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\Sounds\jump.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

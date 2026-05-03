@@ -1,11 +1,13 @@
 #pragma once
+#include"SoundManager.h"
 #include "PlayerComponents.h"
 #include "Characters.h"
 #include "Attack.h"
-
+class SoundManager;
 class Players : public movement, public jumping, public animations, public collide , public Attack , public Loadtextures , public Stagger
 {
 public:
+    SoundManager* s;
     int PlayerNumber;
     float x;
     float y;
@@ -18,41 +20,7 @@ public:
         sf::FloatRect bounds = Sprite.getLocalBounds();
         Sprite.setOrigin(bounds.width / 2.f, bounds.height);
     }
-
-    Players()
-    {
-        maxHealth = 100;
-        currentHealth = maxHealth;
-
-        movement::player = this;
-        jumping::player = this;
-        animations::player = this;
-        collide::player = this;
-        Attack::player = this;
-        Stagger::player = this;
-
-        static int nextPlayerNumber = 1;
-        PlayerNumber = nextPlayerNumber;
-        nextPlayerNumber++;
-
-        clock.restart();
-
-        x = 100;
-        Sprite.setTexture(IdleTextures[0]);
-        Sprite.setScale(4.f, 4.f);
-        setupOrigin();
-
-        y = ground - Sprite.getGlobalBounds().height;
-
-        if (PlayerNumber == 1)
-        {
-            Sprite.setPosition(x, ground);
-        }
-        if (PlayerNumber == 2)
-        {
-            Sprite.setPosition(x + 400, ground);
-        }
-    }
+    Players();
 };
 
 extern Players player1;

@@ -7,6 +7,7 @@ void jumping::jump()
 		isjumping = true;
 		startY = player->Sprite.getPosition().y;
 		VelocityY = jumpStrength;
+
 	}
 }
 void jumping::Updatejump()

@@ -6,6 +6,7 @@ class window
 public:
     sf::RenderWindow MainWindow;
     sf::Event event;
+   
 
     window() : MainWindow(sf::VideoMode(1280, 720), "game"), event()
     {
