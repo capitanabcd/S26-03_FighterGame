@@ -58,8 +58,8 @@ public:
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
         std::vector<sf::Texture>&,
-           std::vector<sf::Texture>&,
-           std::vector<sf::Texture>&
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&
            )override;
     void SetCharacterTexture();
 

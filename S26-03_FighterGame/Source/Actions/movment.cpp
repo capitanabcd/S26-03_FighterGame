@@ -5,13 +5,13 @@ void movement::Movement()
     player->MovingRight = false;
     player->MovingLeft = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
         player->MovingRight = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
         player->MovingLeft = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
         player->MovingRight = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
         player->MovingLeft = true;
 
     if (player->MovingRight || player->MovingLeft) { player->IsMoving = true; }

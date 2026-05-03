@@ -65,6 +65,7 @@ public:
 	void StaggerAnimation();
     void HeavyAttackAnimation();
     void BeamAnimation();
+	void EndBeamAnimation();
     void RangedAttackAnimation();
 
     void invert();
