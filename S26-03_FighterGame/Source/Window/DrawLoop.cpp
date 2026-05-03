@@ -11,9 +11,11 @@ void window::DrawLoop()
 	player2.MovementAnimation();
 	resize();
 	player1.BeamAnimation();
+	player2.BeamAnimation();
 	player1.HeavyAttackAnimation();
 	player2.HeavyAttackAnimation();
 	player1.RangedAttackAnimation();
+	player2.RangedAttackAnimation();
 	player1.StaggerAnimation();
 	player2.StaggerAnimation();
 	gameBackground.renderBackground(MainWindow);
