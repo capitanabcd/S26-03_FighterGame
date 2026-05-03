@@ -7,6 +7,8 @@ void PlayerCalls()
 	player2.Movement();
 	player1.CheckHit();
 	player2.CheckHit();
+	player1.CheckRangeHit();
+	player2.CheckRangeHit();
 	player1.UpdateStagger();
 	player2.UpdateStagger();
 }
