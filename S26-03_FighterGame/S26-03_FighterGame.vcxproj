@@ -40,7 +40,11 @@
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
     <ClCompile Include="Source\Player Constructor\Player.cpp" />
-    <ClCompile Include="Source\Sound Management\Sounds.cpp" />
+    <ClCompile Include="Source\Sound Management\BackgroundSound.cpp" />
+    <ClCompile Include="Source\Sound Management\JumpSound.cpp" />
+    <ClCompile Include="Source\Sound Management\LoadMusic.cpp" />
+    <ClCompile Include="Source\Sound Management\LoadSounds.cpp" />
+    <ClCompile Include="Source\Sound Management\HitSound.cpp" />
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
