@@ -42,12 +42,33 @@ public:
 };
 class Stagger
 {
-public : 
+public:
     Players* player = nullptr;
+
+    bool isStaggered = false;
+    float currentStaggerTime = 0.0f;
+
+    float damageTakenInWindow = 0.0f;
+    sf::Clock damageWindowClock;
+    sf::Clock staggerAnimationClock;
+
+    const float StaggerWindow = 5.0f;
+    const float DamageToStagger = 20.0f;
+    const float StaggerDuration = 3.0f;
+
     float staggerTime = 0.0f;
     sf::Clock staggerclock;
-	void UpdateStagger();
-    void stagger(Players&);
+
+    void AddDamage(float damage);
+    void UpdateStagger(float dt);
+    void TriggerStagger();
+    void ResetStagger();
+    void UpdateStaggerAnimation();
+
+    bool GetIsStaggered() const { return isStaggered; }
+    float GetStaggerTimeRemaining() const { return currentStaggerTime; }
+
+    Stagger();
 };
 class animations
 {

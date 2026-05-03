@@ -37,7 +37,6 @@
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
-    <ClCompile Include="Source\Attack\beam.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
@@ -54,7 +53,6 @@
     <ClCompile Include="Source\Helper Functions\HandleEvents.cpp" />
     <ClCompile Include="Source\Helper Functions\resize.cpp" />
     <ClCompile Include="Source\Helper Functions\RevertOrigin.cpp" />
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_cell_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_freeza_Textures.cpp" />
     <ClCompile Include="Source\Load Character Textures\Load_goku_Textures.cpp" />
