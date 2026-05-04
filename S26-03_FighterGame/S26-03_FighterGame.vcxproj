@@ -641,7 +641,6 @@
     <Font Include="assets\Font\GalaferaMedium-V4xze.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="assets\Sounds\Background Sound.wav" />
     <Media Include="assets\Sounds\Beam.wav" />
     <Media Include="assets\Sounds\hit.wav" />
     <Media Include="assets\Sounds\Hornet.wav" />
