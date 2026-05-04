@@ -37,10 +37,12 @@ void window::HandleEvents()
 		if (event.key.code == sf::Keyboard::E && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.isattacking == false && player1.hitTaken == false) {
 
 			player1.isbasicattacking = true;
+			player1.s->kickSound.play();
 		}
 		if (event.key.code == sf::Keyboard::K && player2.IsMoving == false && player2.isjumping == false &&  player2.isbeaming == false && player2.isattacking == false && player2.hitTaken == false) {
 
 			player2.isbasicattacking = true;
+			player2.s->kickSound.play();
 		}
 	}
 

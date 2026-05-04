@@ -15,12 +15,17 @@ bool SoundManager::loadSounds()
     {
         return false;
     }
+    if (!kickBuffer.loadFromFile("assets/Sounds/Kick.wav"))
+    {
+        return false;
+    }
 
 
 
     hitSound.setBuffer(hitBuffer);
     jumpSound.setBuffer(jumpBuffer);
     beamSound.setBuffer(beamBuffer);
+    kickSound.setBuffer(kickBuffer);
 
 
 
