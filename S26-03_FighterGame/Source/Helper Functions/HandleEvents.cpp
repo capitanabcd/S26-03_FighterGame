@@ -27,10 +27,12 @@ void window::HandleEvents()
 		if (event.key.code == sf::Keyboard::Q && player1.IsMoving == false && player1.isjumping == false && player1.isbasicattacking == false && player1.isattacking == false && player1.hitTaken == false) {
 			if (player1.BeamNumbers > 0)
 				player1.isbeaming = true;
+			player1.s->beamSound.play();
 		}
 		if (event.key.code == sf::Keyboard::L && player2.IsMoving == false && player2.isjumping == false && player2.isattacking == false && player2.isbasicattacking == false && player2.hitTaken == false) {
 			if (player2.BeamNumbers > 0)
 				player2.isbeaming = true;
+			player2.s->beamSound.play();
 		}
 		if (event.key.code == sf::Keyboard::E && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.isattacking == false && player1.hitTaken == false) {
 
