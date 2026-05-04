@@ -7,13 +7,17 @@ bool SoundManager::loadSounds()
         return false;
     }
 
-    if (!jumpBuffer.loadFromFile("assets/Sounds/jump.wav"))
+    if (!jumpBuffer.loadFromFile("assets/Sounds/Jump.wav"))
     {
         return false;
     }
-
+    if (!beamBuffer.loadFromFile("assets/Sounds/Beam.wav"))
+    {
+        return false;
+    }
     hitSound.setBuffer(hitBuffer);
     jumpSound.setBuffer(jumpBuffer);
+    beamSound.setBuffer(beamBuffer);
 
     return true;
 }

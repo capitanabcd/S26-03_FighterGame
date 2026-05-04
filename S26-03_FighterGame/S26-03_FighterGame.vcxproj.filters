@@ -137,19 +137,37 @@
     <ClCompile Include="Source\Animations\BeamAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\beam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sound Management\Sounds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player Constructor\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\BackgroundSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\JumpSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\LoadMusic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\LoadSounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\HitSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Attack\CheckBasicHit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound Management\BeamSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1534,12 +1552,6 @@
     <Image Include="assets\goku\goku beam 11.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\goku\goku beam 12.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\goku\goku beam 13.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\goku\Goku ranged_00.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1834,6 +1846,24 @@
     <Image Include="assets\freeza\freeza beam_06.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\goku\goku BasicAttack_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="dlls\sfml-audio-d-2.dll" />
@@ -1841,12 +1871,22 @@
     <None Include="dlls\sfml-network-d-2.dll" />
     <None Include="dlls\sfml-system-d-2.dll" />
     <None Include="dlls\sfml-window-d-2.dll" />
+    <None Include="dlls\openal32.dll" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Sounds\hit.wav">
       <Filter>Resource Files</Filter>
     </Media>
-    <Media Include="assets\Sounds\jump.wav">
+    <Media Include="assets\Sounds\Background Sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\Sounds\Hornet.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\Sounds\Jump.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\Sounds\Beam.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
