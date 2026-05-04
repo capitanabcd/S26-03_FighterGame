@@ -156,18 +156,26 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sound Management\LoadMusic.cpp">
+    <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sound Management\LoadSounds.cpp">
+    <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sound Management\HitSound.cpp">
+    <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp">
+    <ClCompile Include="Source\Attack\CheckBasicHit.cpp">
+    <ClCompile Include="Source\Sound Management\Sounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sound Management\BeamSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animations\PlayerStatus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

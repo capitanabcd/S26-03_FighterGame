@@ -16,6 +16,7 @@
 #include "Game.h"
 #include "Window.h"
 #include "Attack.h"	
+#include "Healthbar.h"
 
 void debug();
 void DeltaTime();
