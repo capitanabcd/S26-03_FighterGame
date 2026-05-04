@@ -134,16 +134,19 @@
     <ClCompile Include="Source\Animations\BeamAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\beam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Helper Functions\Update Health.cpp">
+    <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack\CheckRangeHit.cpp">
+    <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Attack\CheckBasicHit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animations\PlayerStatus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1483,12 +1486,6 @@
     <Image Include="assets\goku\goku beam 11.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\goku\goku beam 12.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\goku\goku beam 13.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\goku\Goku ranged_00.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1781,6 +1778,24 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\freeza\freeza beam_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goku\goku BasicAttack_05.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

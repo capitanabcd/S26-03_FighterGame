@@ -27,7 +27,7 @@ void Stagger::UpdateStagger(float dt)
             damageTakenInWindow = 0.0f;
             damageWindowClock.restart();
         }
-        if (!player->hitTaken && damageTakenInWindow >= DamageToStagger)
+        if (!player->hitTaken && damageTakenInWindow >= DamageToStagger || player->currentHealth <= 0)
         {
             if (!player->fireRanged)
                 TriggerStagger();
@@ -74,18 +74,20 @@ void Stagger::TriggerStagger()
 
 void Stagger::ResetStagger()
 {
-    isStaggered = false;
-    currentStaggerTime = 0.0f;
-    staggerTime = 0.0f;
+    if (player->currentHealth > 0) {
+        isStaggered = false;
+        currentStaggerTime = 0.0f;
+        staggerTime = 0.0f;
 
-    player->hitTaken = false;
-    player->StaggerFrames = 0;
+        player->hitTaken = false;
+        player->StaggerFrames = 0;
 
-    if (!player->IdleTextures.empty())
-    {
-        player->Sprite.setTexture(player->IdleTextures[0], true);
+        if (!player->IdleTextures.empty())
+        {
+            player->Sprite.setTexture(player->IdleTextures[0], true);
+        }
+        player->RevertOrigin();
     }
-    player->RevertOrigin();
 }
 
 void Stagger::UpdateStaggerAnimation()
@@ -104,6 +106,7 @@ void Stagger::UpdateStaggerAnimation()
             if (player->StaggerFrames >= player->StaggerTextures.size())
             {
                 player->StaggerFrames = player->StaggerTextures.size() - 1;
+                
             }
             player->RevertOrigin();
         }

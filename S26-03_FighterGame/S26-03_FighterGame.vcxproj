@@ -34,6 +34,7 @@
     <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
+    <ClCompile Include="Source\Animations\PlayerStatus.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />

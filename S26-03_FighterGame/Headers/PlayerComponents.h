@@ -81,7 +81,7 @@ public:
     int BeamFrames = 0;
     int RangedFrames = 0;
     int BasicAttackFrames = 0;
-
+    void checkStatus();
     void IdleAnimation();
     void MovementAnimation();
 	void StaggerAnimation();

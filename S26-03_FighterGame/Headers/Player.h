@@ -9,6 +9,7 @@ public:
     int PlayerNumber;
     float x;
     float y;
+    bool isalive = true;
     float maxHealth;
     float currentHealth;
     sf::Clock clock;
@@ -18,6 +19,7 @@ public:
         sf::FloatRect bounds = Sprite.getLocalBounds();
         Sprite.setOrigin(bounds.width / 2.f, bounds.height);
     }
+  
 
     Players()
     {
