@@ -46,6 +46,7 @@
     <ClCompile Include="Source\Sound Management\BeamSound.cpp" />
     <ClCompile Include="Source\Sound Management\JumpSound.cpp" />
     <ClCompile Include="Source\Sound Management\KickSound.cpp" />
+    <ClCompile Include="Source\Sound Management\KnockBack.cpp" />
     <ClCompile Include="Source\Sound Management\LoadMusic.cpp" />
     <ClCompile Include="Source\Sound Management\LoadSounds.cpp" />
     <ClCompile Include="Source\Sound Management\HitSound.cpp" />
@@ -647,6 +648,7 @@
     <Media Include="assets\Sounds\Hornet.wav" />
     <Media Include="assets\Sounds\Jump.wav" />
     <Media Include="assets\Sounds\Kick.wav" />
+    <Media Include="assets\Sounds\KnockBack.wav" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

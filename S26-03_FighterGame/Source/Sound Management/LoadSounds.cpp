@@ -19,6 +19,10 @@ bool SoundManager::loadSounds()
     {
         return false;
     }
+    if (!knockbackBuffer.loadFromFile("assets/Sounds/KnockBack.wav"))
+    {
+        return false;
+    }
 
 
 
@@ -26,6 +30,7 @@ bool SoundManager::loadSounds()
     jumpSound.setBuffer(jumpBuffer);
     beamSound.setBuffer(beamBuffer);
     kickSound.setBuffer(kickBuffer);
+    knockbackSound.setBuffer(knockbackBuffer);
 
 
 

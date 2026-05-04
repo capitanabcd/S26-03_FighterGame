@@ -2,4 +2,5 @@
 void animations::StaggerAnimation() 
 {
 	player->UpdateStaggerAnimation();
+	
 }

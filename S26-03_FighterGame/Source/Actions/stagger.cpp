@@ -93,7 +93,10 @@ void Stagger::ResetStagger()
 void Stagger::UpdateStaggerAnimation()
 {
     if (!isStaggered && !player->hitTaken) return;
-    if (player->StaggerFrames < player->StaggerTextures.size() - 1) {
+    if (player->StaggerFrames < player->StaggerTextures.size() - 1) 
+    {
+
+        player->s->knockbackSound.play();
         float moveDir = (player1.Sprite.getPosition().x < player2.Sprite.getPosition().x) ? 1.f : -1.f;
         if (player->PlayerNumber == 1) moveDir *= -1.f;
         
