@@ -23,6 +23,7 @@
     <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
     <ClInclude Include="Headers\Game.h" />
+    <ClInclude Include="Headers\Healthbar.h" />
     <ClInclude Include="Headers\SoundManager.h" />
     <ClInclude Include="Headers\Player.h" />
     <ClInclude Include="Headers\PlayerComponents.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
+    <ClCompile Include="Source\Animations\PlayerStatus.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
@@ -47,6 +49,7 @@
     <ClCompile Include="Source\Sound Management\HitSound.cpp" />
     <ClCompile Include="Source\Attack\CheckBasicHit.cpp" />
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
+    <ClCompile Include="Source\Background\Healthbar.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
     <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
@@ -630,6 +633,11 @@
     <None Include="dlls\sfml-network-d-2.dll" />
     <None Include="dlls\sfml-system-d-2.dll" />
     <None Include="dlls\sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\Font\galafera-med-font\GalaferaMedium-V4xze.ttf" />
+    <Font Include="assets\Font\galafera-med-font\GalaferaMediumItalic-JpXJK.ttf" />
+    <Font Include="assets\Font\GalaferaMedium-V4xze.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Sounds\Background Sound.wav" />

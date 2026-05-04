@@ -11,6 +11,7 @@ public:
     int PlayerNumber;
     float x;
     float y;
+    bool isalive = true;
     float maxHealth;
     float currentHealth;
     sf::Clock clock;

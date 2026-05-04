@@ -48,6 +48,7 @@ public:
 class Loadtextures : public cell, public goku, public freeza
 {
 public:
+    std::string characterName;
     std::vector<sf::Texture> IdleTextures;
     std::vector<sf::Texture> MovementTextures;
     std::vector<sf::Texture> StaggerTextures;

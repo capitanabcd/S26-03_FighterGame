@@ -20,10 +20,14 @@ void window::DrawLoop()
 	player2.RangedAttackAnimation();
 	player1.StaggerAnimation();
 	player2.StaggerAnimation();
+	player1.checkStatus();
+	player2.checkStatus();
+	ui.update(player1.currentHealth, player1.maxHealth, player2.currentHealth, player2.maxHealth);
 	gameBackground.renderBackground(MainWindow);
 	MainWindow.draw(player1.Sprite);
 	MainWindow.draw(player2.Sprite);
 	MainWindow.draw(player1.RangedAttack);
 	MainWindow.draw(player2.RangedAttack);
+	ui.render(MainWindow);
 	debug();
 }
