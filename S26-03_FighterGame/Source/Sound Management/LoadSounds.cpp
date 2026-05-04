@@ -15,6 +15,8 @@ bool SoundManager::loadSounds()
     {
         return false;
     }
+
+
     hitSound.setBuffer(hitBuffer);
     jumpSound.setBuffer(jumpBuffer);
     beamSound.setBuffer(beamBuffer);
