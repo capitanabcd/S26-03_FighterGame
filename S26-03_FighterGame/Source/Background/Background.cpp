@@ -1,7 +1,7 @@
 #include "sfml.h"
 Background::Background() {
     currentFrame = 0;
-    frameDuration = 0.1f;
+    frameDuration = 0.2f;
     direction = 1;
     animationComplete = false;
 }

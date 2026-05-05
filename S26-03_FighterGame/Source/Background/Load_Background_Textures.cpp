@@ -25,8 +25,16 @@ void Background::loadBackground(sf::RenderWindow& window) {
         backgroundSprite.setTexture(backgroundTextures[0]);
         sf::Vector2u windowSize = window.getSize();
         sf::Vector2u textureSize = backgroundTextures[0].getSize();
-        float scaleX = (float)windowSize.x / textureSize.x;
+        int cropX = 100;
+        backgroundSprite.setTextureRect(sf::IntRect(
+            cropX, 0,
+            textureSize.x - cropX * 2,
+            textureSize.y
+        ));
+
+        float scaleX = (float)windowSize.x / (textureSize.x - cropX * 2);
         float scaleY = (float)windowSize.y / textureSize.y;
         backgroundSprite.setScale(scaleX, scaleY);
     }
+
 }

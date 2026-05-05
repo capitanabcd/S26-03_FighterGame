@@ -28,8 +28,8 @@ public :
 	sf::Sprite SelectionSprite;
 	sf::Sprite Character;
 	std::vector <sf::Texture> EnterTextures;
-	std::vector <sf::Texture> ArrowTextures;
-	std::vector <sf::Texture> SelectionTextures;
+	std::vector <sf::Texture> OneTextures;
+	std::vector <sf::Texture> TwoTextures;
 	SelectionScreen();
 
 	void loadSelectionScreen();

@@ -61,10 +61,10 @@ void SelectionScreen::UpdateSelectionScreen()
     }
     if (ArrowClock.getElapsedTime().asSeconds() <= 0.2f)
     {
-        if (!ArrowTextures.empty())
+        if (!OneTextures.empty())
         {
             SelectionSprite.setTexture(
-                ArrowTextures[ArrowFrames % ArrowTextures.size()]
+                OneTextures[ArrowFrames % OneTextures.size()]
             );
 
             if (SelectionClock.getElapsedTime().asSeconds() >= 0.1f)
@@ -76,15 +76,15 @@ void SelectionScreen::UpdateSelectionScreen()
     }
     else
     {
-        if (!SelectionTextures.empty())
+        if (!TwoTextures.empty())
         {
             if (SelectionClock.getElapsedTime().asSeconds() >= 0.5f)
             {
                 SelectionFrames =
-                    (SelectionFrames + 1) % SelectionTextures.size();
+                    (SelectionFrames + 1) % TwoTextures.size();
 
                 SelectionSprite.setTexture(
-                    SelectionTextures[SelectionFrames]
+                    TwoTextures[SelectionFrames]
                 );
 
                 SelectionClock.restart();

@@ -25,5 +25,7 @@ void window::DrawLoop()
 	MainWindow.draw(player2.Sprite);
 	MainWindow.draw(player1.RangedAttack);
 	MainWindow.draw(player2.RangedAttack);
+	healthBar1.draw(MainWindow);
+	healthBar2.draw(MainWindow);
 	debug();
 }

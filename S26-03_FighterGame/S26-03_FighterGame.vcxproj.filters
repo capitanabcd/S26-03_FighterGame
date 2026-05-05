@@ -158,6 +158,9 @@
     <ClCompile Include="Source\SelectionScreen\Load_Idle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Actions\Health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\cell\cell1.png">
@@ -1882,51 +1885,6 @@
     <Image Include="assets\selection screen\SelectionScreen_0009.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 3.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 4.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 5.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\Arrow_Layer 6.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 3.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 4.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 5.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 6.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 7.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 8.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\selection screen\enter_Layer 9.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\selection screen\enter_Layer 10.jpg">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1939,13 +1897,361 @@
     <Image Include="assets\selection screen\enter_Layer 13.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\selection screen\selection_Layer 1.jpg">
+    <Image Include="assets\background\background_Layer 1.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\selection screen\selection_Layer 2.jpg">
+    <Image Include="assets\background\background_Layer 2.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\selection screen\selection_Layer 3.jpg">
+    <Image Include="assets\background\background_Layer 3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 4.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 5.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 6.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 7.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 8.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 9.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 10.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 11.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 13.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 14.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 15.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 16.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 17.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 18.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 19.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 20.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 21.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 22.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 23.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 24.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 25.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 26.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 27.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 28.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 29.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 30.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 31.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 32.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 33.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 34.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 35.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 36.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 37.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 38.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 39.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 40.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 41.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 42.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 43.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 44.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 45.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 46.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 47.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 48.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 49.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 50.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 51.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 52.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 53.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 54.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 55.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 56.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 57.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 58.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 59.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 05.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 06.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 07.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 08.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\background\background_Layer 09.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 05.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 06.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 07.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 08.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 09.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 14.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 15.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 16.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 17.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 18.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 19.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\enter_Layer 20.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 05.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 06.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 07.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 08.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 09.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 10.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 11.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 13.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 14.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 15.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 16.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player one arrows _Layer 17.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 01.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 02.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 03.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 04.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 05.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 06.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 07.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 08.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 09.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 10.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 11.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 13.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 14.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 15.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 16.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 17.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\selection screen\player two arrows _Layer 18.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
