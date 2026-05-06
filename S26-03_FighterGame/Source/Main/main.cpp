@@ -9,10 +9,11 @@ int main()
 	window GameWindow;
 	showLoadingScreen(GameWindow.MainWindow);
 	gameBackground.loadBackground(GameWindow.MainWindow);
-	gameSelectionScreen.loadSelectionScreen();
+	gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
 	gameSelectionScreen.Load_IdleTextures();
 	while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
 	{
+		DeltaTime();
 		sf::Event event;
 
 		while (GameWindow.MainWindow.pollEvent(event))
@@ -20,11 +21,13 @@ int main()
 			if (event.type == sf::Event::Closed)
 				GameWindow.MainWindow.close();
 
-			gameSelectionScreen.HandleInput(event);		}
+			gameSelectionScreen.HandleInput(event);
+		}
 
-		gameSelectionScreen.UpdateSelectionScreen();
+		gameSelectionScreen.UpdateSelectionScreen(dt, GameWindow.MainWindow);
 
 		GameWindow.MainWindow.clear();
+		showSelectionScreen(GameWindow.MainWindow);
 		gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
 		GameWindow.MainWindow.display();
 	}

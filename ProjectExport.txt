@@ -2,155 +2,1775 @@
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Actions\Health.cpp ====================
 
+#include "sfml.h"
+
+void HealthBar::init(sf::Vector2f position, sf::Color fillColor, bool isMirrored)
+{
+    mirrored = isMirrored;
+    background.setPointCount(4);
+    fill.setPointCount(4);
+
+    if (!mirrored) {
+        background.setPoint(0, sf::Vector2f(slant, 0.f));
+        background.setPoint(1, sf::Vector2f(maxWidth, 0.f));
+        background.setPoint(2, sf::Vector2f(maxWidth - slant, barHeight));
+        background.setPoint(3, sf::Vector2f(0.f, barHeight));
+
+        fill.setPoint(0, sf::Vector2f(slant, 0.f));
+        fill.setPoint(1, sf::Vector2f(maxWidth, 0.f));
+        fill.setPoint(2, sf::Vector2f(maxWidth - slant, barHeight));
+        fill.setPoint(3, sf::Vector2f(0.f, barHeight));
+    }
+    else {
+        background.setPoint(0, sf::Vector2f(0.f, 0.f));
+        background.setPoint(1, sf::Vector2f(maxWidth - slant, 0.f));
+        background.setPoint(2, sf::Vector2f(maxWidth, barHeight));
+        background.setPoint(3, sf::Vector2f(slant, barHeight));
+
+        fill.setPoint(0, sf::Vector2f(0.f, 0.f));
+        fill.setPoint(1, sf::Vector2f(maxWidth - slant, 0.f));
+        fill.setPoint(2, sf::Vector2f(maxWidth, barHeight));
+        fill.setPoint(3, sf::Vector2f(slant, barHeight));
+    }
+
+    background.setFillColor(sf::Color(50, 50, 50, 180));
+    fill.setFillColor(fillColor);
+    background.setPosition(position);
+    fill.setPosition(position);
+}
+void HealthBar::update(float currentHealth)
+{
+    float percent = currentHealth / maxHealth;
+    if (percent < 0.f) percent = 0.f;
+    if (percent > 1.f) percent = 1.f;
+
+    float currentWidth = maxWidth * percent;
+
+    if (!mirrored) {
+        fill.setPoint(0, sf::Vector2f(slant, 0.f));
+        fill.setPoint(1, sf::Vector2f(slant + currentWidth, 0.f));
+        fill.setPoint(2, sf::Vector2f(currentWidth, barHeight));
+        fill.setPoint(3, sf::Vector2f(0.f, barHeight));
+    }
+    else {
+        float left = maxWidth - currentWidth;
+        float leftB = left + slant;
+
+        if (leftB > maxWidth - slant) leftB = maxWidth - slant;
+        if (left > maxWidth)         left = maxWidth;
+
+        fill.setPoint(0, sf::Vector2f(left, 0.f));
+        fill.setPoint(1, sf::Vector2f(maxWidth - slant, 0.f));
+        fill.setPoint(2, sf::Vector2f(maxWidth, barHeight));
+        fill.setPoint(3, sf::Vector2f(leftB, barHeight));
+    }
+}
+void HealthBar::draw(sf::RenderWindow& window)
+{
+    window.draw(background);
+    window.draw(fill);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Actions\jumping.cpp ====================
 
+#include "Player.h"
+
+void jumping::jump()
+{
+	if (!isjumping && !player->isStaggered)
+	{
+		isjumping = true;
+		startY = player->Sprite.getPosition().y;
+		VelocityY = jumpStrength;
+	}
+}
+void jumping::Updatejump()
+{
+	if (isjumping)
+	{
+		VelocityY += gravity * dt;
+		player->Sprite.move(0, VelocityY * dt);
+		if (player->Sprite.getPosition().y <= startY - jumpHeight) {
+			VelocityY = 0;
+		}
+	}
+} 
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Actions\movment.cpp ====================
 
+#include "Player.h"
+void movement::Movement()
+{
+	if (player->hitTaken || player->isattacking) return;
+    player->MovingRight = false;
+    player->MovingLeft = false;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
+        player->MovingRight = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->PlayerNumber == 1 && player->isattacking == false && player->isbeaming == false)
+        player->MovingLeft = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
+        player->MovingRight = true;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && player->PlayerNumber == 2 && player->isattacking == false && player->isbeaming == false)
+        player->MovingLeft = true;
+
+    if (player->MovingRight || player->MovingLeft) { player->IsMoving = true; }
+    else player->IsMoving = false;
+
+    float direction = 0.f;
+    if (player->MovingRight) direction = 1.f;
+    if (player->MovingLeft) direction = -1.f;
+
+    if (direction != 0.f) {
+        float oldX = player->Sprite.getPosition().x;
+
+        Players& other = (player->PlayerNumber == 1) ? player2 : player1;
+
+
+        float newX = oldX + direction * VelocityX * dt;
+        player->Sprite.setPosition(newX, player->Sprite.getPosition().y);
+
+        bool movingToward = false;
+        if (direction > 0 && newX < other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+        else if (direction < 0 && newX > other.Sprite.getPosition().x) {
+            movingToward = true; 
+        }
+
+        if (movingToward && player->MoveCollision()) {
+            player->Sprite.setPosition(oldX, player->Sprite.getPosition().y);
+            if (direction > 0) {
+                player->RightCollison = true;
+            }
+            else {
+                player->LeftCollision = true;
+            }
+        }
+        else {
+            player->RightCollison = false;
+            player->LeftCollision = false;
+        }
+    }
+    ScreenBounds(screenwidth);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Actions\stagger.cpp ====================
 
+#include "sfml.h"
+
+Stagger::Stagger()
+    : isStaggered(false)
+    , currentStaggerTime(0.0f)
+    , damageTakenInWindow(0.0f)
+    , staggerTime(0.0f)
+{
+    damageWindowClock.restart();
+    staggerAnimationClock.restart();
+    staggerclock.restart();
+}
+
+void Stagger::AddDamage(float damage)
+{
+    if (isStaggered) return;
+
+    damageTakenInWindow += damage;
+}
+
+void Stagger::UpdateStagger(float dt)
+{
+    if (!isStaggered)
+    {
+        if (damageWindowClock.getElapsedTime().asSeconds() >= StaggerWindow)
+        {
+            damageTakenInWindow = 0.0f;
+            damageWindowClock.restart();
+        }
+        if (!player->hitTaken && damageTakenInWindow >= DamageToStagger)
+        {
+            if (!player->fireRanged)
+                TriggerStagger();
+        }
+    }
+    else
+    {
+        currentStaggerTime -= dt;
+        staggerTime = currentStaggerTime;
+
+        if (currentStaggerTime <= 0.0f)
+        {
+            ResetStagger();
+        }
+    }
+}
+
+void Stagger::TriggerStagger()
+{
+    isStaggered = true;
+    currentStaggerTime = StaggerDuration;
+    staggerTime = StaggerDuration;
+
+    damageTakenInWindow = 0.0f;
+    damageWindowClock.restart();
+    staggerAnimationClock.restart();
+    staggerclock.restart();
+
+    player->hitTaken = true;
+    player->StaggerFrames = 0;
+
+    player->isbasicattacking = false;
+    player->isattacking = false;
+    player->isbeaming = false;
+    player->fireRanged = false;
+    player->IsMoving = false;
+    player->isjumping = false;
+
+    player->HeavyAttackFrames = 0;
+    player->BeamFrames = 0;
+    player->RangedFrames = 0;
+    player->BasicAttackFrames = 0;
+}
+
+void Stagger::ResetStagger()
+{
+    isStaggered = false;
+    currentStaggerTime = 0.0f;
+    staggerTime = 0.0f;
+
+    player->hitTaken = false;
+    player->StaggerFrames = 0;
+
+    if (!player->IdleTextures.empty())
+    {
+        player->Sprite.setTexture(player->IdleTextures[0], true);
+    }
+    player->RevertOrigin();
+}
+
+void Stagger::UpdateStaggerAnimation()
+{
+    if (!isStaggered && !player->hitTaken) return;
+
+    if (staggerAnimationClock.getElapsedTime().asSeconds() >= 0.2f)
+    {
+        if (player->StaggerFrames < player->StaggerTextures.size())
+        {
+            player->Sprite.setTexture(player->StaggerTextures[player->StaggerFrames], true);
+            staggerAnimationClock.restart();
+            staggerclock.restart();
+            player->StaggerFrames++;
+
+            if (player->StaggerFrames >= player->StaggerTextures.size())
+            {
+                player->StaggerFrames = player->StaggerTextures.size() - 1;
+            }
+            player->RevertOrigin();
+        }
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\BasicAttackAnimation.cpp ====================
 
+#include "sfml.h"
+
+void animations::BasicAttackAnimation() {
+
+	if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+	{
+
+		if (player->isbasicattacking)
+		{
+
+
+			player->Sprite.setTexture(player->BasicAttackTexture[player->BasicAttackFrames], true);
+			player->clock.restart();
+			player->BasicAttackFrames++;
+
+			if (player->BasicAttackFrames >= player->BasicAttackTexture.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0], true);
+				player->BasicAttackFrames = 0;
+				player->isbasicattacking = false;
+			}
+			RevertOrigin();
+		}
+	}
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\BeamAnimation.cpp ====================
 
+#include "sfml.h"
+
+void animations::BeamAnimation() {
+    if (player->clock.getElapsedTime().asSeconds() >= 0.1f)
+    {
+        if (player->isbeaming)
+        {
+            if (player->BeamFrames < player->BeamTextures.size() - 1) {
+                player->Sprite.setTexture(player->BeamTextures[player->BeamFrames], true);
+                player->clock.restart();
+                player->BeamFrames++;
+            }
+            else if (player->BeamFrames == player->BeamTextures.size() - 1) {
+                if (!player->fireRanged) {
+                    player->fireRanged = true;
+                }
+                player->Sprite.setTexture(player->BeamTextures[player->BeamFrames], true);
+            }
+
+            RevertOrigin();
+        }
+    }
+}
+void animations::EndBeamAnimation() {
+    if (player->isbeaming) {
+        player->isbeaming = false;
+        player->BeamFrames = 0;
+        player->Sprite.setTexture(player->IdleTextures[0], true);
+		player->RevertOrigin();
+        player->BeamNumbers--;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\HeavyAttackAnimation.cpp ====================
 
+#include "sfml.h"
+
+void animations::HeavyAttackAnimation() {
+
+	if (player->clock.getElapsedTime().asSeconds() >= 0.15f)
+	{
+		
+		if (player->isattacking)
+		{
+			
+			
+			player->Sprite.setTexture(player->HeavyAttackTextures[player->HeavyAttackFrames], true);
+			player->clock.restart();
+			player->HeavyAttackFrames++;
+
+			if (player->HeavyAttackFrames >= player->HeavyAttackTextures.size()) {
+				player->Sprite.setTexture(player->IdleTextures[0], true);
+				player->HeavyAttackFrames = 0;
+				player->isattacking = false;
+			}
+				RevertOrigin();
+		}
+	}
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\IdleAnimation.cpp ====================
 
+#include "sfml.h"
+void animations :: IdleAnimation()
+{
+	if (!player->hitTaken && !player->isattacking)
+	{
+		if (player->clock.getElapsedTime().asSeconds() >= 0.2f)
+		{
+			if (!player->IsMoving && !player->isjumping)
+			{
+				player->Sprite.setTexture(player->IdleTextures[player->IdleFrames], true);
+				player->clock.restart();
+				player->IdleFrames++;
+				if (player->IdleFrames >= player->IdleTextures.size()) player->IdleFrames = 0;
+				RevertOrigin();
+			}
+		}
+	}
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\LoadingScreen.cpp ====================
 
+#include "sfml.h"
+
+void showLoadingScreen(sf::RenderWindow& window) {
+    sf::Texture loadingTexture;
+    sf::Sprite loadingSprite;
+
+    if (loadingTexture.loadFromFile("assets/loading.png")) {
+        loadingSprite.setTexture(loadingTexture);
+
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = loadingTexture.getSize();
+        float scaleX = (float)windowSize.x / textureSize.x;
+        float scaleY = (float)windowSize.y / textureSize.y;
+        loadingSprite.setScale(scaleX, scaleY);
+    }
+
+    window.clear();
+    window.draw(loadingSprite);
+    window.display();
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\MovementAnimation.cpp ====================
 
+#include "sfml.h"
+void animations :: MovementAnimation()
+{
+	if (!player->hitTaken && !player->isattacking)
+	{
+		if (player->clock.getElapsedTime().asSeconds() >= 0.05f)
+		{
+			if (player->IsMoving)
+			{
+				player->Sprite.setTexture(player->MovementTextures[player->MovementFrames], true);
+				player->clock.restart();
+				player->MovementFrames++;
+				if (player->MovementFrames >= player->MovementTextures.size()) player->MovementFrames = 0;
+				invert();
+				RevertOrigin();
+			}
+		}
+	}
+} 
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\RangedAttackAnimation.cpp ====================
 
+#include "sfml.h"
+void animations::RangedAttackAnimation() {
+    if (player->clock.getElapsedTime().asSeconds() >= 0.009f)
+    {
+        if (player->fireRanged)
+        {
+            sf::FloatRect playerBounds = player->Sprite.getGlobalBounds();
+            sf::Vector2f playerPos = player->Sprite.getPosition();
+
+            float spawnX = playerPos.x;
+            float spawnY = playerPos.y - (playerBounds.height * 1.1f);
+
+            float offsetDistance = 10.0f;
+
+            if (player->MovingRight) {
+                spawnX += (playerBounds.width / 2.0f) + offsetDistance;
+                player->RangedAttack.setScale(1.f, 0.6f);
+            }
+            else {
+                spawnX -= (playerBounds.width / 2.0f) + offsetDistance;
+                player->RangedAttack.setScale(-1.f, 0.6f);
+            }
+
+            player->RangedAttack.setPosition(spawnX, spawnY);
+            player->RangedAttack.setTexture(player->RangedTexture[player->RangedFrames], true);
+            player->clock.restart();
+            player->RangedFrames++;
+
+            if (player->RangedFrames >= player->RangedTexture.size()) {
+                player->RangedAttack.setTexture(player->EmptyTexture, true);
+                player->RangedFrames = 0;
+                player->fireRanged = false;
+                player->Sprite.setTexture(player->IdleTextures[0], true);
+                EndBeamAnimation();
+            }
+        }
+    }
+}
+
+
+==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\SelectionLoading.cpp ====================
+
+#include "sfml.h"
+
+void showSelectionScreen(sf::RenderWindow& window) {
+    sf::Texture sloadingTexture;
+    sf::Sprite sloadingSprite;
+
+    if (sloadingTexture.loadFromFile("assets/SelectionLoading.jpeg")) {
+        sloadingSprite.setTexture(sloadingTexture);
+
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = sloadingTexture.getSize();
+        float scaleX = (float)windowSize.x / textureSize.x;
+        float scaleY = (float)windowSize.y / textureSize.y;
+        sloadingSprite.setScale(scaleX, scaleY);
+    }
+    window.draw(sloadingSprite);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Animations\StaggerAnimation.cpp ====================
 
+#include "sfml.h"
+void animations::StaggerAnimation() 
+{
+	player->UpdateStaggerAnimation();
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Attack\attack.cpp ====================
 
+#include "sfml.h"
+
+void Attack::TakeDamage(Players& player, float damage)
+{
+    player.currentHealth -= damage;
+
+    if (player.currentHealth < 0)
+    {
+        player.currentHealth = 0;
+    }
+}
+
+void Attack::TakeDamageWithStagger(Players& player, float damage)
+{
+    player.AddDamage(damage);
+
+    player.currentHealth -= damage;
+
+    if (player.currentHealth < 0)
+    {
+        player.currentHealth = 0;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Attack\CheckAttack.cpp ====================
 
+#include "sfml.h"
+
+void Attack::CheckHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->isattacking) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->Sprite.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->HeavyAttackFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 1.7f);
+
+            if (victim.fireRanged == false)
+            {
+                victim.EndBeamAnimation();
+
+            }
+        }
+        oldFrame = player->HeavyAttackFrames;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Attack\CheckBasicHit.cpp ====================
 
+#include "sfml.h"
+
+void Attack::CheckBasicHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->isbasicattacking) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->Sprite.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->BasicAttackFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 1.0f);
+
+            if (victim.fireRanged == false)
+            {
+                victim.EndBeamAnimation();
+            }
+        }
+        oldFrame = player->BasicAttackFrames;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Attack\CheckRangeHit.cpp ====================
 
+#include "sfml.h"
+
+void Attack::CheckRangeHit() {
+    Players& victim = (player->PlayerNumber == 1) ? player2 : player1;
+
+    if (!player->fireRanged) return;
+    if (victim.GetIsStaggered()) return;
+
+    sf::FloatRect atkbound = player->RangedAttack.getGlobalBounds();
+    sf::FloatRect victimBound = victim.Sprite.getGlobalBounds();
+
+    if (atkbound.intersects(victimBound)) {
+        if (player->RangedFrames != oldFrame)
+        {
+            TakeDamageWithStagger(victim, 0.5f);
+        }
+        oldFrame = player->RangedFrames;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Background\Background.cpp ====================
 
+#include "sfml.h"
+Background::Background() {
+    currentFrame = 0;
+    frameDuration = 0.2f;
+    direction = 1;
+    animationComplete = false;
+}
+void Background::resetAnimation() {
+    currentFrame = 0;
+    direction = 1;
+    animationComplete = false;
+    if (!backgroundTextures.empty()) {
+        backgroundSprite.setTexture(backgroundTextures[0]);
+    }
+    animationClock.restart();
+}
+void Background::updateBackground() {
+    if (backgroundTextures.empty()) return;
+    if (animationComplete) resetAnimation();
+
+    if (animationClock.getElapsedTime().asSeconds() >= frameDuration) {
+        int nextFrame = currentFrame + direction;
+
+        if (nextFrame >= (int)backgroundTextures.size()) {
+            direction = -1;
+            nextFrame = backgroundTextures.size() - 2;
+        }
+        else if (nextFrame < 0) {
+            animationComplete = true;
+            return;
+        }
+
+        currentFrame = nextFrame;
+        backgroundSprite.setTexture(backgroundTextures[currentFrame]);
+        animationClock.restart();
+    }
+}
+
+void Background::renderBackground(sf::RenderWindow& window) {
+    window.draw(backgroundSprite);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Background\Load_Background_Textures.cpp ====================
 
+#include "sfml.h"
+
+void Background::loadBackground(sf::RenderWindow& window) {
+    std::string folderPath = "assets/background/";
+    std::vector<std::string> filePaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string extension = entry.path().extension().string();
+
+        if (extension == ".jpg" || extension == ".png") {
+            filePaths.push_back(path);
+        }
+    }
+    std::sort(filePaths.begin(), filePaths.end());
+
+    for (const auto& path : filePaths) {
+        sf::Texture tex;
+        if (tex.loadFromFile(path)) {
+            backgroundTextures.push_back(std::move(tex));
+        }
+    }
+
+    if (!backgroundTextures.empty()) {
+        backgroundSprite.setTexture(backgroundTextures[0]);
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = backgroundTextures[0].getSize();
+        int cropX = 100;
+        backgroundSprite.setTextureRect(sf::IntRect(
+            cropX, 0,
+            textureSize.x - cropX * 2,
+            textureSize.y
+        ));
+
+        float scaleX = (float)windowSize.x / (textureSize.x - cropX * 2);
+        float scaleY = (float)windowSize.y / textureSize.y;
+        backgroundSprite.setScale(scaleX, scaleY);
+    }
+
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Collision\MovementCollision.cpp ====================
 
+#include "sfml.h"
+bool collide::MoveCollision() {
+	setbounds();
+
+	if (Player1Bounds.intersects(Player2Bounds)) {
+		return true;
+	}
+	return false;
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Collision\SetBounds.cpp ====================
+
+#include "sfml.h"
+
+void collide::setbounds() {
+	Player1Bounds = player1.Sprite.getGlobalBounds();
+	Player2Bounds = player2.Sprite.getGlobalBounds();
+	Player1Bounds.width /= 1.5;
+	Player2Bounds.width /= 1.5;
+}
+
 
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\debugging.cpp ====================
 
+#include"sfml.h"
+
+void debug()
+{
+    std::cout << "\r";
+
+    if (player1.IsMoving)
+        std::cout << "MOVING";
+    else
+        std::cout << "      ";
+
+    std::cout << " | ";
+
+    if (player1.isjumping)
+        std::cout << "JUMPING";
+    else
+        std::cout << "       ";
+
+    std::cout << "| Health P1: " << player1.currentHealth
+        << "| Health P2: " << player2.currentHealth
+        << "        "   
+        << std::flush;
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\deltatime.cpp ====================
 
+#include "sfml.h"
+
+float dt;
+void DeltaTime()
+{
+    static sf::Clock clock;
+    dt = clock.restart().asSeconds();
+    if (dt > 0.2f)
+    {
+        dt = 0.2f;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\HandleEvents.cpp ====================
 
+#include "sfml.h"
+
+
+void window::HandleEvents()
+{
+	if (event.type == sf::Event::KeyPressed)
+	{
+		
+		if (event.key.code == sf::Keyboard::W && player1.isattacking == false && player1.isbeaming == false)
+		{
+			player1.jump();
+		}
+		if (event.key.code == sf::Keyboard::Up && player2.isattacking == false && player2.isbeaming == false)
+		{
+			player2.jump();
+		}
+		if (event.key.code == sf::Keyboard::F && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.hitTaken == false && player1.isbasicattacking == false)
+		{
+			player1.isattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::J && player2.IsMoving == false && player2.isjumping == false && player2.isbeaming == false && player2.hitTaken == false && player2.isbasicattacking == false) {
+			player2.isattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::Q && player1.IsMoving == false && player1.isjumping == false && player1.isbasicattacking == false && player1.isattacking == false && player1.hitTaken == false) {
+			if (player1.BeamNumbers > 0)
+				player1.isbeaming = true;
+		}
+		if (event.key.code == sf::Keyboard::L && player2.IsMoving == false && player2.isjumping == false && player2.isattacking == false && player2.isbasicattacking == false && player2.hitTaken == false) {
+			if (player2.BeamNumbers > 0)
+				player2.isbeaming = true;
+		}
+		if (event.key.code == sf::Keyboard::E && player1.IsMoving == false && player1.isjumping == false && player1.isbeaming == false && player1.isattacking == false && player1.hitTaken == false) {
+
+			player1.isbasicattacking = true;
+		}
+		if (event.key.code == sf::Keyboard::K && player2.IsMoving == false && player2.isjumping == false &&  player2.isbeaming == false && player2.isattacking == false && player2.hitTaken == false) {
+
+			player2.isbasicattacking = true;
+		}
+	}
+	
+	CloseWindow();
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\Invert.cpp ====================
 
+#include"sfml.h"
+void animations::invert()
+{
+	float p1Yscale = player1.Sprite.getScale().y;
+	float p1Xscale;
+	if (player2.Sprite.getPosition().x > player1.Sprite.getPosition().x) {
+		p1Xscale = 4.4f;
+		player1.MovingRight = true;
+	}
+	else {
+		p1Xscale = -4.4f;
+		player1.MovingLeft = true;
+	}
+	player1.Sprite.setScale(p1Xscale, p1Yscale);
+
+	float p2Yscale = player2.Sprite.getScale().y;
+	float p2Xscale;
+	if (player1.Sprite.getPosition().x > player2.Sprite.getPosition().x) {
+		p2Xscale = 4.4f;
+		player2.MovingRight = true;
+	}
+	else {
+		p2Xscale = -4.4f;
+		player2.MovingLeft = true;
+	}
+	player2.Sprite.setScale(p2Xscale, p2Yscale);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\resize.cpp ====================
 
+#include "sfml.h"
+void resize()
+{
+    float player1Bottom = player1.Sprite.getPosition().y;
+    float player2Bottom = player2.Sprite.getPosition().y;
+
+    if (player1Bottom >= ground)
+    {
+        player1.Sprite.setPosition(player1.Sprite.getPosition().x, ground);
+        player1.VelocityY = 0;
+        player1.isjumping = false;
+    }
+    if (player2Bottom >= ground)
+    {
+        player2.Sprite.setPosition(player2.Sprite.getPosition().x, ground);
+        player2.VelocityY = 0;
+        player2.isjumping = false;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\RevertOrigin.cpp ====================
 
+#include "sfml.h"
+void animations :: RevertOrigin()
+{
+	sf::FloatRect bounds = player->Sprite.getLocalBounds();
+	player->Sprite.setOrigin(bounds.width / 2.f, bounds.height);
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Helper Functions\Screen Bounds.cpp ====================
 
+#include "sfml.h"
+
+void movement::ScreenBounds(int screenwidth)
+{
+    sf::FloatRect bounds = player->Sprite.getGlobalBounds();
+    sf::Vector2f position = player->Sprite.getPosition();
+
+    if (bounds.left < 0)       //Left
+    {
+        position.x -= bounds.left;
+    }
+
+    if (bounds.left + bounds.width > screenwidth)     //Right
+    {
+        position.x -= (bounds.left + bounds.width - screenwidth);
+    }
+
+    player->Sprite.setPosition(position);
+
+}
+
+
+==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\LoadPlayerTexture.cpp ====================
+
+#include "sfml.h"
+void  Loadtextures:: LoadPlayerTextures(Players& player, int choice)
+{
+    if (choice == 1)
+    {
+        cell::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
+            player.MovementTextures, player.StaggerTextures,
+            player.BeamTextures, player.RangedTexture,
+            player.BasicAttackTexture);
+    }
+    else if (choice == 2)
+    {
+        goku::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
+            player.MovementTextures, player.StaggerTextures,
+            player.BeamTextures, player.RangedTexture,
+            player.BasicAttackTexture);
+    }
+    else if (choice == 3)
+    {
+        freeza::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
+            player.MovementTextures, player.StaggerTextures,
+            player.BeamTextures, player.RangedTexture,
+            player.BasicAttackTexture);
+    }
+
+    // Set initial texture
+    if (!player.IdleTextures.empty())
+    {
+        player.Sprite.setTexture(player.IdleTextures[0], true);
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\Load_cell_Textures.cpp ====================
 
+#include "sfml.h"
+void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/goku/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths, rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\Load_freeza_Textures.cpp ====================
 
+#include "sfml.h"
+void freeza::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/freeza/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths,beamPaths,rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\Load_goku_Textures.cpp ====================
 
+#include "sfml.h"
+void goku::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
+{
+    std::string folderPath = "assets/goku/";
+    std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths, rangedPaths, basicPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+            else if (filename.find("Movement") != std::string::npos)
+                movementPaths.push_back(path);
+            else if (filename.find("stagger") != std::string::npos)
+                staggerPaths.push_back(path);
+            else if (filename.find("HeavyAttack") != std::string::npos)
+                heavyPaths.push_back(path);
+            else if (filename.find("beam") != std::string::npos)
+                beamPaths.push_back(path);
+            else if (filename.find("ranged") != std::string::npos)
+                rangedPaths.push_back(path);
+            else if (filename.find("BasicAttack") != std::string::npos)
+                basicPaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    std::sort(movementPaths.begin(), movementPaths.end());
+    std::sort(staggerPaths.begin(), staggerPaths.end());
+    std::sort(heavyPaths.begin(), heavyPaths.end());
+    std::sort(beamPaths.begin(), beamPaths.end());
+    std::sort(rangedPaths.begin(), rangedPaths.end());
+    std::sort(basicPaths.begin(), basicPaths.end());
+
+    for (const auto& path : idlePaths) {
+        Idle.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : movementPaths) {
+        Movement.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : staggerPaths) {
+        Stagger.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : heavyPaths) {
+        HeavyAttack.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : beamPaths) {
+        beam.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : rangedPaths) {
+        ranged.emplace_back().loadFromFile(path);
+    }
+    for (const auto& path : basicPaths) {
+        basic.emplace_back().loadFromFile(path);
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\SetTexture.cpp ====================
 
+#include "sfml.h"
+void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
+void Loadtextures::SetCharacterTexture()
+{
+	if (player1.PlayerNumber == 1)
+	{
+		if (ChoiceOne== 1)
+		{
+			cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+		else if (ChoiceOne == 2)
+		{
+			goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+		else if (ChoiceOne == 3)
+		{
+			freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+		
+	}
+	if (player2.PlayerNumber == 2)
+	{
+		if (ChoiceTwo == 1)
+		{
+			cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+		else if (ChoiceTwo == 2)
+		{
+			goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+		else if (ChoiceTwo == 3)
+		{
+			freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		}
+
+	}
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Main\main.cpp ====================
 
+#include"sfml.h"
+Players player1;
+Players player2;
+Background gameBackground;
+SelectionScreen gameSelectionScreen;
+
+int main()
+{
+    window GameWindow;
+    showLoadingScreen(GameWindow.MainWindow);
+    gameBackground.loadBackground(GameWindow.MainWindow);
+    gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
+    gameSelectionScreen.Load_IdleTextures();
+
+    // Selection screen loop
+    while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
+    {
+        DeltaTime();
+        sf::Event event;
+
+        while (GameWindow.MainWindow.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                GameWindow.MainWindow.close();
+
+            gameSelectionScreen.HandleInput(event);
+        }
+
+        gameSelectionScreen.UpdateSelectionScreen(dt, GameWindow.MainWindow);
+
+        GameWindow.MainWindow.clear();
+        showSelectionScreen(GameWindow.MainWindow);
+        gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
+        GameWindow.MainWindow.display();
+    }
+
+    // Get choices directly from selection screen
+    int player1Choice = gameSelectionScreen.GetPlayer1Choice();
+    int player2Choice = gameSelectionScreen.GetPlayer2Choice();
+
+    // Set up players
+    player1.PlayerNumber = 1;
+    player2.PlayerNumber = 2;
+
+    // Load textures based on choices
+    Loadtextures loader;
+    loader.LoadPlayerTextures(player1, player1Choice);
+    loader.LoadPlayerTextures(player2, player2Choice);
+
+    // Initialize player positions
+    player1.Sprite.setPosition(200.f, 500.f);
+    player2.Sprite.setPosition(600.f, 500.f);
+
+    // Main game loop
+    while (GameWindow.WindowisOpen())
+    {
+        DeltaTime();
+        while (GameWindow.MainWindow.pollEvent(GameWindow.event))
+        {
+            GameWindow.HandleEvents();
+        }
+        gameBackground.updateBackground();
+        PlayerCalls();
+        GameWindow.DisplayWindow();
+    }
+    return 0;
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\SelectionScreen\Load_Idle.cpp ====================
 
+#include "sfml.h"
+void SelectionScreen::Load_IdleTextures()
+{
+    std::string folderPath = "assets/cell/";
+    std::vector<std::string> idlePaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("cell") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C1.emplace_back().loadFromFile(path);
+    }
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    folderPath = "assets/goku/";
+    idlePaths.clear();
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C2.emplace_back().loadFromFile(path);
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    folderPath = "assets/freeza/";
+    idlePaths.clear();
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".png") {
+            if (filename.find("Idle") != std::string::npos)
+                idlePaths.push_back(path);
+        }
+    }
+    std::sort(idlePaths.begin(), idlePaths.end());
+    for (const auto& path : idlePaths) {
+        C3.emplace_back().loadFromFile(path);
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\SelectionScreen\Load_SelectionScreen.cpp ====================
 
+#include "sfml.h"
+void SelectionScreen::loadSelectionScreen(sf::RenderWindow& window)
+{
+    std::string folderPath = "assets/selection screen/";
+    std::vector<std::string> OnePaths, TwoPaths, EnterPaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::string path = entry.path().string();
+        std::string filename = entry.path().filename().string();
+
+        if (entry.path().extension() == ".jpg") {
+            if (filename.find("one") != std::string::npos)
+                OnePaths.push_back(path);
+            else if (filename.find("two") != std::string::npos)
+                TwoPaths.push_back(path);
+            else if (filename.find("enter") != std::string::npos)
+                EnterPaths.push_back(path);
+        }
+    }
+    std::sort(OnePaths.begin(), OnePaths.end());
+    std::sort(EnterPaths.begin(), EnterPaths.end());
+    std::sort(TwoPaths.begin(), TwoPaths.end());
+
+    for (const auto& path : OnePaths) {
+        OneTextures.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : EnterPaths) {
+        EnterTextures.emplace_back().loadFromFile(path);
+    }
+
+    for (const auto& path : TwoPaths) {
+        TwoTextures.emplace_back().loadFromFile(path);
+    }
+
+    if (!OneTextures.empty()) {
+        SelectionSprite.setTexture(OneTextures[0]);
+
+        sf::Vector2u windowSize = window.getSize();
+        sf::Vector2u textureSize = OneTextures[0].getSize();
+        int cropX = 100;
+        SelectionSprite.setTextureRect(sf::IntRect(
+            cropX, 0,
+            textureSize.x - cropX * 2,
+            textureSize.y
+        ));
+
+        float scaleX = static_cast<float>(windowSize.x) / static_cast<float>(textureSize.x - cropX * 2);
+        float scaleY = static_cast<float>(windowSize.y) / static_cast<float>(textureSize.y);
+        SelectionSprite.setScale(scaleX, scaleY);
+
+        sf::FloatRect bounds = SelectionSprite.getLocalBounds();
+        SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+        SelectionSprite.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
+    }
+}
+
+
+==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\SelectionScreen\SelectionHandle_Input.cpp ====================
+
+#include "sfml.h"
+void SelectionScreen::HandleInput(sf::Event& event)
+{
+    if (isEnterPlaying) return;
+
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (selectingFor == 1 || true)
+        {
+            if (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::D)
+            {
+                if (event.key.code == sf::Keyboard::D)
+                    index1 = (index1 + 1) % 3;
+                else
+                    index1 = (index1 - 1 + 3) % 3;
+
+                if (index1 == 0 && !C1.empty())
+                    Character1.setTexture(C1[0], true);
+                else if (index1 == 1 && !C2.empty())
+                    Character1.setTexture(C2[0], true);
+                else if (index1 == 2 && !C3.empty())
+                    Character1.setTexture(C3[0], true);
+
+                NormalizeCharacter(Character1);
+                frames1 = 0;
+
+                isOnePlaying = true;
+                isTwoPlaying = false;
+                OneFrames = 0;
+                oneTimer = 0.f;
+            }
+            else if (event.key.code == sf::Keyboard::Enter && selectingFor == 1)
+            {
+                player1Choice = index1 + 1;
+                ChoiceOne = player1Choice;
+                player1Selected = true;
+                player2Active = true;
+                selectingFor = 2;
+
+                isOnePlaying = false;
+                isTwoPlaying = false;
+            }
+        }
+
+        if (selectingFor == 2 && player2Active)
+        {
+            if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::Right)
+            {
+                if (event.key.code == sf::Keyboard::Right)
+                    index2 = (index2 + 1) % 3;
+                else
+                    index2 = (index2 - 1 + 3) % 3;
+
+                if (index2 == 0 && !C1.empty())
+                    Character2.setTexture(C1[0], true);
+                else if (index2 == 1 && !C2.empty())
+                    Character2.setTexture(C2[0], true);
+                else if (index2 == 2 && !C3.empty())
+                    Character2.setTexture(C3[0], true);
+
+                NormalizeCharacter(Character2);
+                frames2 = 0;
+
+                isTwoPlaying = true;
+                isOnePlaying = false;
+                TwoFrames = 0;
+                twoTimer = 0.f;
+            }
+            else if (event.key.code == sf::Keyboard::RShift || event.key.code == sf::Keyboard::LShift)
+            {
+                player2Choice = index2 + 1;
+				ChoiceTwo = player2Choice;
+                player2Selected = true;
+
+                isEnterPlaying = true;
+                isOnePlaying = false;
+                isTwoPlaying = false;
+                EnterFrames = 0;
+                enterTimer = 0.f;
+            }
+        }
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\SelectionScreen\SelectionScreen.cpp ====================
 
+#include "sfml.h"
+
+SelectionScreen::SelectionScreen()
+{
+    isSelecting = true;
+    isEnterPlaying = false;
+    isOnePlaying = false;
+    isTwoPlaying = false;
+    player1Selected = false;
+    player2Selected = false;
+    player2Active = false;
+
+    EnterFrames = 0;
+    OneFrames = 0;
+    TwoFrames = 0;
+    index1 = 0;
+    index2 = 1;
+    frames1 = 0;
+    frames2 = 0;
+    selectingFor = 1;
+
+    enterTimer = 0.f;
+    oneTimer = 0.f;
+    twoTimer = 0.f;
+    idleTimer1 = 0.f;
+    idleTimer2 = 0.f;
+    if (!C1.empty()) {
+        Character1.setTexture(C1[0], true);
+        Character2.setTexture(C1[0], true);
+    }
+}
+
+void SelectionScreen::NormalizeCharacter(sf::Sprite& character)
+{
+    sf::FloatRect bounds = character.getLocalBounds();
+
+    if (bounds.height == 0)
+        return;
+
+    float targetHeight = 200.f;
+    float scale = targetHeight / bounds.height;
+
+    character.setOrigin(bounds.width / 2.f, bounds.height);
+    character.setScale(scale, scale);
+}
+
+void SelectionScreen::renderSelectionScreen(sf::RenderWindow& window)
+{
+    window.draw(SelectionSprite);
+	NormalizeCharacter(Character1);
+	NormalizeCharacter(Character2);
+    window.draw(Character1);
+    window.draw(Character2);
+}
+
+
+==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\SelectionScreen\UpdateSelectionScreen.cpp ====================
+
+#include "sfml.h"
+void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
+{
+    sf::Vector2u windowSize = window.getSize();
+    float windowWidth = static_cast<float>(windowSize.x);
+    float windowHeight = static_cast<float>(windowSize.y);
+    float centerX = windowWidth / 2.f;
+    float centerY = windowHeight / 2.f;
+
+    Character1.setPosition(windowWidth * p1CharX, windowHeight * p1CharY);  // Player 1
+    Character2.setPosition(windowWidth * p2CharX, windowHeight * p2CharY);  // Player 2
+
+    Character1.setColor(sf::Color(255, 255, 255, 255));
+    Character2.setColor(sf::Color(255, 255, 255, 255));
+    if (selectingFor == 1 && !player1Selected) {
+        Character1.setScale(Character1.getScale().x * 1.1f, Character1.getScale().y * 1.1f);
+    }
+    else if (selectingFor == 2 && !player2Selected) {
+        Character2.setScale(Character2.getScale().x * 1.1f, Character2.getScale().y * 1.1f);
+    }
+
+    if (isEnterPlaying)
+    {
+        enterTimer += dt;
+        if (enterTimer >= 0.12f)
+        {
+            enterTimer = 0.f;
+            if (EnterFrames < EnterTextures.size())
+            {
+                SelectionSprite.setTexture(EnterTextures[EnterFrames]);
+
+                sf::Vector2u textureSize = EnterTextures[EnterFrames].getSize();
+                int cropX = 100;
+                SelectionSprite.setTextureRect(sf::IntRect(
+                    cropX, 0,
+                    textureSize.x - cropX * 2,
+                    textureSize.y
+                ));
+
+                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
+                float scaleY = windowHeight / static_cast<float>(textureSize.y);
+                SelectionSprite.setScale(scaleX, scaleY);
+
+                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
+                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+                SelectionSprite.setPosition(centerX, centerY);
+
+                EnterFrames++;
+
+                if (EnterFrames >= EnterTextures.size())
+                {
+                    EnterFrames = 0;
+                    isEnterPlaying = false;
+                    isSelecting = false;
+                }
+            }
+        }
+        return;
+    }
+
+    if (isOnePlaying)
+    {
+        oneTimer += dt;
+        if (oneTimer >= 0.1f)
+        {
+            oneTimer = 0.f;
+            if (!OneTextures.empty() && OneFrames < OneTextures.size())
+            {
+                SelectionSprite.setTexture(OneTextures[OneFrames]);
+
+                sf::Vector2u textureSize = OneTextures[OneFrames].getSize();
+                int cropX = 100;
+                SelectionSprite.setTextureRect(sf::IntRect(
+                    cropX, 0,
+                    textureSize.x - cropX * 2,
+                    textureSize.y
+                ));
+
+                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
+                float scaleY = windowHeight / static_cast<float>(textureSize.y);
+                SelectionSprite.setScale(scaleX, scaleY);
+
+                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
+                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+                SelectionSprite.setPosition(centerX, centerY);
+
+                OneFrames++;
+
+                if (OneFrames >= OneTextures.size())
+                {
+                    OneFrames = 0;
+                    isOnePlaying = false;
+                }
+            }
+        }
+        return;
+    }
+
+    if (isTwoPlaying)
+    {
+        twoTimer += dt;
+        if (twoTimer >= 0.1f)
+        {
+            twoTimer = 0.f;
+            if (!TwoTextures.empty() && TwoFrames < TwoTextures.size())
+            {
+                SelectionSprite.setTexture(TwoTextures[TwoFrames]);
+
+                sf::Vector2u textureSize = TwoTextures[TwoFrames].getSize();
+                int cropX = 100;
+                SelectionSprite.setTextureRect(sf::IntRect(
+                    cropX, 0,
+                    textureSize.x - cropX * 2,
+                    textureSize.y
+                ));
+
+                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
+                float scaleY = windowHeight / static_cast<float>(textureSize.y);
+                SelectionSprite.setScale(scaleX, scaleY);
+
+                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
+                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+                SelectionSprite.setPosition(centerX, centerY);
+
+                TwoFrames++;
+
+                if (TwoFrames >= TwoTextures.size())
+                {
+                    TwoFrames = 0;
+                    isTwoPlaying = false;
+                }
+            }
+        }
+        return;
+    }
+    idleTimer1 += dt;
+    if (idleTimer1 >= 0.2f)
+    {
+        idleTimer1 = 0.f;
+        if (index1 == 0 && !C1.empty())
+            Character1.setTexture(C1[frames1 % C1.size()], true);
+        else if (index1 == 1 && !C2.empty())
+            Character1.setTexture(C2[frames1 % C2.size()], true);
+        else if (index1 == 2 && !C3.empty())
+            Character1.setTexture(C3[frames1 % C3.size()], true);
+
+        NormalizeCharacter(Character1);
+        frames1++;
+    }
+
+    idleTimer2 += dt;
+    if (idleTimer2 >= 0.2f)
+    {
+        idleTimer2 = 0.f;
+        if (index2 == 0 && !C1.empty())
+            Character2.setTexture(C1[frames2 % C1.size()], true);
+        else if (index2 == 1 && !C2.empty())
+            Character2.setTexture(C2[frames2 % C2.size()], true);
+        else if (index2 == 2 && !C3.empty())
+            Character2.setTexture(C3[frames2 % C3.size()], true);
+
+        NormalizeCharacter(Character2);
+        frames2++;
+    }
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Window\DisplayWindow.cpp ====================
 
+#include "sfml.h"
+
+void window::DisplayWindow()
+{
+	MainWindow.clear(sf::Color::Black);
+	healthBar1.update(player1.currentHealth);
+	healthBar2.update(player2.currentHealth);
+	DrawLoop();
+	MainWindow.display();
+
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Window\DrawLoop.cpp ====================
 
+#include "sfml.h"
+extern Background gameBackground;
+
+void window::DrawLoop()
+{
+	player1.invert();
+	player2.invert();
+	player1.IdleAnimation();
+	player2.IdleAnimation();
+	player1.MovementAnimation();
+	player2.MovementAnimation();
+	resize();
+	player1.BeamAnimation();
+	player2.BeamAnimation();
+	player1.HeavyAttackAnimation();
+	player2.HeavyAttackAnimation();
+	player1.BasicAttackAnimation();
+	player2.BasicAttackAnimation();
+	player1.RangedAttackAnimation();
+	player2.RangedAttackAnimation();
+	player1.StaggerAnimation();
+	player2.StaggerAnimation();
+	gameBackground.renderBackground(MainWindow);
+	MainWindow.draw(player1.Sprite);
+	MainWindow.draw(player2.Sprite);
+	MainWindow.draw(player1.RangedAttack);
+	MainWindow.draw(player2.RangedAttack);
+	healthBar1.draw(MainWindow);
+	healthBar2.draw(MainWindow);
+	debug();
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Window\PlayerCalls.cpp ====================
 
+#include "sfml.h"
+
+void PlayerCalls()
+{
+    float currentDt = dt;
+
+    player1.Updatejump();
+    player1.Movement();
+    player2.Updatejump();
+    player2.Movement();
+
+    player1.UpdateStagger(currentDt);
+    player2.UpdateStagger(currentDt);
+
+    player1.CheckHit();
+    player2.CheckHit();
+    player1.CheckBasicHit();
+    player2.CheckBasicHit();
+    player1.CheckRangeHit();
+    player2.CheckRangeHit();
+}
 
 
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Window\Window_definitions.cpp ====================
 
+#include "sfml.h"
+
+bool window::WindowisOpen() const
+{
+	if (MainWindow.isOpen())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+void window::CloseWindow()
+{
+	if (event.type == sf::Event::Closed)
+	{
+		MainWindow.close();
+	}
+}

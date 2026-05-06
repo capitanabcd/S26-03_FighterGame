@@ -35,6 +35,7 @@
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
+    <ClCompile Include="Source\Animations\SelectionLoading.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
@@ -63,7 +64,9 @@
     <ClCompile Include="Source\Main\main.cpp" />
     <ClCompile Include="Source\SelectionScreen\Load_Idle.cpp" />
     <ClCompile Include="Source\SelectionScreen\Load_SelectionScreen.cpp" />
+    <ClCompile Include="Source\SelectionScreen\SelectionHandle_Input.cpp" />
     <ClCompile Include="Source\SelectionScreen\SelectionScreen.cpp" />
+    <ClCompile Include="Source\SelectionScreen\UpdateSelectionScreen.cpp" />
     <ClCompile Include="Source\Window\DisplayWindow.cpp" />
     <ClCompile Include="Source\Window\DrawLoop.cpp" />
     <ClCompile Include="Source\Actions\Health.cpp" />
@@ -711,6 +714,7 @@
     <Image Include="assets\selection screen\SelectionScreen_0007.jpg" />
     <Image Include="assets\selection screen\SelectionScreen_0008.jpg" />
     <Image Include="assets\selection screen\SelectionScreen_0009.jpg" />
+    <Image Include="assets\SelectionLoading.jpeg" />
     <Image Include="freeza\freeza BasicAttack1.png" />
     <Image Include="freeza\freeza BasicAttack2.png" />
     <Image Include="freeza\freeza BasicAttack3.png" />

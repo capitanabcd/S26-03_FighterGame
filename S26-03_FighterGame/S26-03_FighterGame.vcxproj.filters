@@ -161,6 +161,15 @@
     <ClCompile Include="Source\Actions\Health.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Animations\SelectionLoading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SelectionScreen\SelectionHandle_Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SelectionScreen\UpdateSelectionScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\cell\cell1.png">
@@ -2252,6 +2261,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\selection screen\player two arrows _Layer 18.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\SelectionLoading.jpeg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
