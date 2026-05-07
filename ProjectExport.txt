@@ -907,41 +907,6 @@ void movement::ScreenBounds(int screenwidth)
 }
 
 
-==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\LoadPlayerTexture.cpp ====================
-
-#include "sfml.h"
-void  Loadtextures:: LoadPlayerTextures(Players& player, int choice)
-{
-    if (choice == 1)
-    {
-        cell::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
-            player.MovementTextures, player.StaggerTextures,
-            player.BeamTextures, player.RangedTexture,
-            player.BasicAttackTexture);
-    }
-    else if (choice == 2)
-    {
-        goku::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
-            player.MovementTextures, player.StaggerTextures,
-            player.BeamTextures, player.RangedTexture,
-            player.BasicAttackTexture);
-    }
-    else if (choice == 3)
-    {
-        freeza::LoadTexture(player.HeavyAttackTextures, player.IdleTextures,
-            player.MovementTextures, player.StaggerTextures,
-            player.BeamTextures, player.RangedTexture,
-            player.BasicAttackTexture);
-    }
-
-    // Set initial texture
-    if (!player.IdleTextures.empty())
-    {
-        player.Sprite.setTexture(player.IdleTextures[0], true);
-    }
-}
-
-
 ==================== FILE: C:\Users\HP\source\repos\S26-03_FighterGame\S26-03_FighterGame\Source\Load Character Textures\Load_cell_Textures.cpp ====================
 
 #include "sfml.h"
@@ -1140,38 +1105,36 @@ void goku::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Te
 void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
 void Loadtextures::SetCharacterTexture()
 {
-	if (player1.PlayerNumber == 1)
-	{
-		if (ChoiceOne== 1)
-		{
-			cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
-		else if (ChoiceOne == 2)
-		{
-			goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
-		else if (ChoiceOne == 3)
-		{
-			freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
-		
-	}
-	if (player2.PlayerNumber == 2)
-	{
-		if (ChoiceTwo == 1)
-		{
-			cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
-		else if (ChoiceTwo == 2)
-		{
-			goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
-		else if (ChoiceTwo == 3)
-		{
-			freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-		}
+	int choice1;
+	int choice2;
+	choice1 = player1.Cchoice;
+	choice2 = player2.Cchoice;
 
+	if(choice1 == 1)
+	{
+		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures, RangedTexture, BasicAttackTexture);
 	}
+	else if(choice1 == 2)
+	{
+		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	else if (choice1 == 3)
+	{
+		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	if (choice2 == 1)
+	{
+		cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	else if (choice2 == 2)
+	{
+		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+	else if (choice2 == 3)
+	{
+		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+	}
+
 }
 
 
@@ -1182,67 +1145,47 @@ Players player1;
 Players player2;
 Background gameBackground;
 SelectionScreen gameSelectionScreen;
-
+int ChoiceOne = 0;
+int ChoiceTwo = 0;
 int main()
 {
-    window GameWindow;
-    showLoadingScreen(GameWindow.MainWindow);
-    gameBackground.loadBackground(GameWindow.MainWindow);
-    gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
-    gameSelectionScreen.Load_IdleTextures();
+	window GameWindow;
+	showLoadingScreen(GameWindow.MainWindow);
+	gameBackground.loadBackground(GameWindow.MainWindow);
+	gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
+	gameSelectionScreen.Load_IdleTextures();
+	while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
+	{
+		DeltaTime();
+		sf::Event event;
 
-    // Selection screen loop
-    while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
-    {
-        DeltaTime();
-        sf::Event event;
+		while (GameWindow.MainWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				GameWindow.MainWindow.close();
 
-        while (GameWindow.MainWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                GameWindow.MainWindow.close();
+			gameSelectionScreen.HandleInput(event);
+		}
 
-            gameSelectionScreen.HandleInput(event);
-        }
+		gameSelectionScreen.UpdateSelectionScreen(dt, GameWindow.MainWindow);
 
-        gameSelectionScreen.UpdateSelectionScreen(dt, GameWindow.MainWindow);
-
-        GameWindow.MainWindow.clear();
-        showSelectionScreen(GameWindow.MainWindow);
-        gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
-        GameWindow.MainWindow.display();
-    }
-
-    // Get choices directly from selection screen
-    int player1Choice = gameSelectionScreen.GetPlayer1Choice();
-    int player2Choice = gameSelectionScreen.GetPlayer2Choice();
-
-    // Set up players
-    player1.PlayerNumber = 1;
-    player2.PlayerNumber = 2;
-
-    // Load textures based on choices
-    Loadtextures loader;
-    loader.LoadPlayerTextures(player1, player1Choice);
-    loader.LoadPlayerTextures(player2, player2Choice);
-
-    // Initialize player positions
-    player1.Sprite.setPosition(200.f, 500.f);
-    player2.Sprite.setPosition(600.f, 500.f);
-
-    // Main game loop
-    while (GameWindow.WindowisOpen())
-    {
-        DeltaTime();
-        while (GameWindow.MainWindow.pollEvent(GameWindow.event))
-        {
-            GameWindow.HandleEvents();
-        }
-        gameBackground.updateBackground();
-        PlayerCalls();
-        GameWindow.DisplayWindow();
-    }
-    return 0;
+		GameWindow.MainWindow.clear();
+		showSelectionScreen(GameWindow.MainWindow);
+		gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
+		GameWindow.MainWindow.display();
+	}
+	while (GameWindow.WindowisOpen())
+	{	
+		DeltaTime();
+		while (GameWindow.MainWindow.pollEvent(GameWindow.event))
+		{
+			GameWindow.HandleEvents();
+		}
+		gameBackground.updateBackground();
+		PlayerCalls();
+		GameWindow.DisplayWindow();
+	}
+	return 0;
 }
 
 
@@ -1399,7 +1342,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
             else if (event.key.code == sf::Keyboard::Enter && selectingFor == 1)
             {
                 player1Choice = index1 + 1;
-                ChoiceOne = player1Choice;
+				ChoiceOne = player1Choice;
                 player1Selected = true;
                 player2Active = true;
                 selectingFor = 2;
