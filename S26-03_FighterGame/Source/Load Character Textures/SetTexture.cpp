@@ -8,8 +8,8 @@ void Loadtextures::SetCharacterTexture()
 	if(choice == 1)
 	{
 
-		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures, RangedTexture, BasicAttackTexture);
-		characterName = "Cell";
+		trunks::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures, RangedTexture, BasicAttackTexture);
+		characterName = "Trunks";
 	}
 	else if(choice == 2)
 	{
@@ -20,5 +20,16 @@ void Loadtextures::SetCharacterTexture()
 	{
 		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
 		characterName = "Freeza";
+	}
+
+	else if (choice == 4)
+	{
+		trunks::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		characterName = "trunks";
+	}
+	else if (choice == 5)
+	{
+		broly::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+		characterName = "trunks";
 	}
 }
