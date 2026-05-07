@@ -1105,36 +1105,21 @@ void goku::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Te
 void Loadtextures::LoadTexture(std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&, std::vector<sf::Texture>&){}
 void Loadtextures::SetCharacterTexture()
 {
-	int choice1;
-	int choice2;
-	choice1 = player1.Cchoice;
-	choice2 = player2.Cchoice;
-
-	if(choice1 == 1)
+	int choice;
+	std::cout << "Choose your character: " << std::endl;
+	std::cin >> choice;
+	if(choice == 1)
 	{
 		cell::LoadTexture(HeavyAttackTextures,IdleTextures,MovementTextures,StaggerTextures,BeamTextures, RangedTexture, BasicAttackTexture);
 	}
-	else if(choice1 == 2)
+	else if(choice == 2)
 	{
 		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
 	}
-	else if (choice1 == 3)
+	else if (choice == 3)
 	{
 		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
 	}
-	if (choice2 == 1)
-	{
-		cell::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-	}
-	else if (choice2 == 2)
-	{
-		goku::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-	}
-	else if (choice2 == 3)
-	{
-		freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures, StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
-	}
-
 }
 
 
@@ -1145,34 +1130,34 @@ Players player1;
 Players player2;
 Background gameBackground;
 SelectionScreen gameSelectionScreen;
-int ChoiceOne = 0;
-int ChoiceTwo = 0;
+
 int main()
 {
 	window GameWindow;
+	window SelectionWindow;
 	showLoadingScreen(GameWindow.MainWindow);
+	showLoadingScreen(SelectionWindow.MainWindow);
 	gameBackground.loadBackground(GameWindow.MainWindow);
-	gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
+	gameSelectionScreen.loadSelectionScreen(SelectionWindow.MainWindow);
 	gameSelectionScreen.Load_IdleTextures();
-	while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
+	while (SelectionWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
 	{
 		DeltaTime();
-		sf::Event event;
 
-		while (GameWindow.MainWindow.pollEvent(event))
+		while (SelectionWindow.MainWindow.pollEvent(SelectionWindow.event))
 		{
-			if (event.type == sf::Event::Closed)
-				GameWindow.MainWindow.close();
+			if (gameSelectionScreen.end  = true)
+				SelectionWindow.MainWindow.close();
 
-			gameSelectionScreen.HandleInput(event);
+			gameSelectionScreen.HandleInput(SelectionWindow.event);
 		}
 
-		gameSelectionScreen.UpdateSelectionScreen(dt, GameWindow.MainWindow);
+		gameSelectionScreen.UpdateSelectionScreen(dt, SelectionWindow.MainWindow);
 
-		GameWindow.MainWindow.clear();
-		showSelectionScreen(GameWindow.MainWindow);
-		gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
-		GameWindow.MainWindow.display();
+		SelectionWindow.MainWindow.clear();
+		showSelectionScreen(SelectionWindow.MainWindow);
+		gameSelectionScreen.renderSelectionScreen(SelectionWindow.MainWindow);
+		SelectionWindow.MainWindow.display();
 	}
 	while (GameWindow.WindowisOpen())
 	{	
@@ -1337,12 +1322,11 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isOnePlaying = true;
                 isTwoPlaying = false;
                 OneFrames = 0;
-                oneTimer = 0.f;
+                oneClock.restart();
             }
             else if (event.key.code == sf::Keyboard::Enter && selectingFor == 1)
             {
                 player1Choice = index1 + 1;
-				ChoiceOne = player1Choice;
                 player1Selected = true;
                 player2Active = true;
                 selectingFor = 2;
@@ -1374,19 +1358,18 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isTwoPlaying = true;
                 isOnePlaying = false;
                 TwoFrames = 0;
-                twoTimer = 0.f;
+                twoClock.restart();
             }
             else if (event.key.code == sf::Keyboard::RShift || event.key.code == sf::Keyboard::LShift)
             {
                 player2Choice = index2 + 1;
-				ChoiceTwo = player2Choice;
                 player2Selected = true;
 
                 isEnterPlaying = true;
                 isOnePlaying = false;
                 isTwoPlaying = false;
                 EnterFrames = 0;
-                enterTimer = 0.f;
+                enterClock.restart();
             }
         }
     }
@@ -1407,6 +1390,9 @@ SelectionScreen::SelectionScreen()
     player2Selected = false;
     player2Active = false;
 
+    player1Choice = 0;
+    player2Choice = 0;
+
     EnterFrames = 0;
     OneFrames = 0;
     TwoFrames = 0;
@@ -1415,12 +1401,9 @@ SelectionScreen::SelectionScreen()
     frames1 = 0;
     frames2 = 0;
     selectingFor = 1;
+    end = false;
 
-    enterTimer = 0.f;
-    oneTimer = 0.f;
-    twoTimer = 0.f;
-    idleTimer1 = 0.f;
-    idleTimer2 = 0.f;
+
     if (!C1.empty()) {
         Character1.setTexture(C1[0], true);
         Character2.setTexture(C1[0], true);
@@ -1462,11 +1445,12 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
     float centerX = windowWidth / 2.f;
     float centerY = windowHeight / 2.f;
 
-    Character1.setPosition(windowWidth * p1CharX, windowHeight * p1CharY);  // Player 1
-    Character2.setPosition(windowWidth * p2CharX, windowHeight * p2CharY);  // Player 2
+    Character1.setPosition(windowWidth * p1CharX, windowHeight * p1CharY);
+    Character2.setPosition(windowWidth * p2CharX, windowHeight * p2CharY);
 
     Character1.setColor(sf::Color(255, 255, 255, 255));
     Character2.setColor(sf::Color(255, 255, 255, 255));
+
     if (selectingFor == 1 && !player1Selected) {
         Character1.setScale(Character1.getScale().x * 1.1f, Character1.getScale().y * 1.1f);
     }
@@ -1476,10 +1460,8 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
 
     if (isEnterPlaying)
     {
-        enterTimer += dt;
-        if (enterTimer >= 0.12f)
+        if (enterClock.getElapsedTime().asSeconds() >= 0.05f)
         {
-            enterTimer = 0.f;
             if (EnterFrames < EnterTextures.size())
             {
                 SelectionSprite.setTexture(EnterTextures[EnterFrames]);
@@ -1500,6 +1482,7 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
                 SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
                 SelectionSprite.setPosition(centerX, centerY);
 
+                enterClock.restart();
                 EnterFrames++;
 
                 if (EnterFrames >= EnterTextures.size())
@@ -1507,6 +1490,7 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
                     EnterFrames = 0;
                     isEnterPlaying = false;
                     isSelecting = false;
+                    end = true;
                 }
             }
         }
@@ -1515,10 +1499,8 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
 
     if (isOnePlaying)
     {
-        oneTimer += dt;
-        if (oneTimer >= 0.1f)
+        if (oneClock.getElapsedTime().asSeconds() >= 0.03f)
         {
-            oneTimer = 0.f;
             if (!OneTextures.empty() && OneFrames < OneTextures.size())
             {
                 SelectionSprite.setTexture(OneTextures[OneFrames]);
@@ -1539,6 +1521,7 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
                 SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
                 SelectionSprite.setPosition(centerX, centerY);
 
+                oneClock.restart();
                 OneFrames++;
 
                 if (OneFrames >= OneTextures.size())
@@ -1553,10 +1536,8 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
 
     if (isTwoPlaying)
     {
-        twoTimer += dt;
-        if (twoTimer >= 0.1f)
+        if (twoClock.getElapsedTime().asSeconds() >= 0.03f)
         {
-            twoTimer = 0.f;
             if (!TwoTextures.empty() && TwoFrames < TwoTextures.size())
             {
                 SelectionSprite.setTexture(TwoTextures[TwoFrames]);
@@ -1577,6 +1558,7 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
                 SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
                 SelectionSprite.setPosition(centerX, centerY);
 
+                twoClock.restart();
                 TwoFrames++;
 
                 if (TwoFrames >= TwoTextures.size())
@@ -1588,10 +1570,9 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
         }
         return;
     }
-    idleTimer1 += dt;
-    if (idleTimer1 >= 0.2f)
+
+    if (idleClock1.getElapsedTime().asSeconds() >= 0.2f)
     {
-        idleTimer1 = 0.f;
         if (index1 == 0 && !C1.empty())
             Character1.setTexture(C1[frames1 % C1.size()], true);
         else if (index1 == 1 && !C2.empty())
@@ -1600,13 +1581,12 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
             Character1.setTexture(C3[frames1 % C3.size()], true);
 
         NormalizeCharacter(Character1);
+        idleClock1.restart();
         frames1++;
     }
 
-    idleTimer2 += dt;
-    if (idleTimer2 >= 0.2f)
+    if (idleClock2.getElapsedTime().asSeconds() >= 0.2f)
     {
-        idleTimer2 = 0.f;
         if (index2 == 0 && !C1.empty())
             Character2.setTexture(C1[frames2 % C1.size()], true);
         else if (index2 == 1 && !C2.empty())
@@ -1615,6 +1595,7 @@ void SelectionScreen::UpdateSelectionScreen(float dt, sf::RenderWindow& window)
             Character2.setTexture(C3[frames2 % C3.size()], true);
 
         NormalizeCharacter(Character2);
+        idleClock2.restart();
         frames2++;
     }
 }

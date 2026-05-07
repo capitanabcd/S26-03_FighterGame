@@ -7,30 +7,29 @@ SelectionScreen gameSelectionScreen;
 int main()
 {
 	window GameWindow;
-	window SelectionWindow;
 	showLoadingScreen(GameWindow.MainWindow);
-	showLoadingScreen(SelectionWindow.MainWindow);
+	showLoadingScreen(GameWindow.MainWindow);
 	gameBackground.loadBackground(GameWindow.MainWindow);
-	gameSelectionScreen.loadSelectionScreen(SelectionWindow.MainWindow);
+	gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
 	gameSelectionScreen.Load_IdleTextures();
-	while (SelectionWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
+	while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
 	{
 		DeltaTime();
 
-		while (SelectionWindow.MainWindow.pollEvent(SelectionWindow.event))
+		while (GameWindow.MainWindow.pollEvent(GameWindow.event))
 		{
-			if (SelectionWindow.event.type == sf::Event::Closed)
-				SelectionWindow.MainWindow.close();
-
-			gameSelectionScreen.HandleInput(SelectionWindow.event);
+			if (GameWindow.event.type == sf::Event::Closed)
+			{
+				GameWindow.MainWindow.close();
+			}
+			gameSelectionScreen.HandleInput(GameWindow.event);
 		}
-
-		gameSelectionScreen.UpdateSelectionScreen(dt, SelectionWindow.MainWindow);
-
-		SelectionWindow.MainWindow.clear();
-		showSelectionScreen(SelectionWindow.MainWindow);
-		gameSelectionScreen.renderSelectionScreen(SelectionWindow.MainWindow);
-		SelectionWindow.MainWindow.display();
+				
+		gameSelectionScreen.UpdateSelectionScreen(GameWindow.MainWindow);
+		GameWindow.MainWindow.clear();
+		showSelectionScreen(GameWindow.MainWindow);
+		gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
+		GameWindow.MainWindow.display();
 	}
 	while (GameWindow.WindowisOpen())
 	{	
