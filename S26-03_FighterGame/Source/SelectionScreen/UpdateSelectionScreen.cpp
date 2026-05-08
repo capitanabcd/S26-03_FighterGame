@@ -13,16 +13,9 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
     Character1.setColor(sf::Color(255, 255, 255, 255));
     Character2.setColor(sf::Color(255, 255, 255, 255));
 
-    if (selectingFor == 1 && !player1Selected) {
-        Character1.setScale(Character1.getScale().x * 1.1f, Character1.getScale().y * 1.1f);
-    }
-    else if (selectingFor == 2 && !player2Selected) {
-        Character2.setScale(Character2.getScale().x * 1.1f, Character2.getScale().y * 1.1f);
-    }
-
     if (isEnterPlaying)
     {
-        if (enterClock.getElapsedTime().asSeconds() >= 0.05f)
+        if (enterClock.getElapsedTime().asSeconds() >= 0.01f)
         {
             if (EnterFrames < EnterTextures.size())
             {
@@ -60,7 +53,7 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
 
     if (isOnePlaying)
     {
-        if (oneClock.getElapsedTime().asSeconds() >= 0.03f)
+        if (oneClock.getElapsedTime().asSeconds() >= 0.001f)
         {
             if (!OneTextures.empty() && OneFrames < OneTextures.size())
             {
@@ -97,7 +90,7 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
 
     if (isTwoPlaying)
     {
-        if (twoClock.getElapsedTime().asSeconds() >= 0.03f)
+        if (twoClock.getElapsedTime().asSeconds() >= 0.001f)
         {
             if (!TwoTextures.empty() && TwoFrames < TwoTextures.size())
             {

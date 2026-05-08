@@ -28,8 +28,6 @@ int main()
         gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
         GameWindow.MainWindow.display();
     }
-
-    // NOW load textures based on selection screen choices
     player1.SetCharacterTexture(gameSelectionScreen.player1Choice);
     player2.SetCharacterTexture(gameSelectionScreen.player2Choice);
 
