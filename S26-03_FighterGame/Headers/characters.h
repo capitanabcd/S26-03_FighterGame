@@ -45,9 +45,41 @@ public:
         );
 };
 
-class Loadtextures : public cell, public goku, public freeza
+class broly
 {
 public:
+
+    virtual void LoadTexture
+    (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&
+    );
+};
+
+
+class trunks
+{
+public:
+
+    virtual void LoadTexture
+    (std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&,
+        std::vector<sf::Texture>&
+    );
+};
+
+class Loadtextures : public cell, public goku, public freeza, public trunks, public broly
+{
+public:
+    std::string characterName;
     std::vector<sf::Texture> IdleTextures;
     std::vector<sf::Texture> MovementTextures;
     std::vector<sf::Texture> StaggerTextures;

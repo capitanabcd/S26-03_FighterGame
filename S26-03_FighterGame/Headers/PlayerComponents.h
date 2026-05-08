@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-const int ground = 720;
+inline int const ground = 720;
 extern float dt;
 void DeltaTime();
 void resize();
@@ -81,7 +81,7 @@ public:
     int BeamFrames = 0;
     int RangedFrames = 0;
     int BasicAttackFrames = 0;
-
+    void checkStatus();
     void IdleAnimation();
     void MovementAnimation();
 	void StaggerAnimation();
@@ -105,4 +105,3 @@ public:
     bool MoveCollision();
     void setbounds();
 };
-
