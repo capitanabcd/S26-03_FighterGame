@@ -48,7 +48,6 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
                 }
             }
         }
-        return;
     }
 
     if (isOnePlaying)
@@ -85,7 +84,6 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
                 }
             }
         }
-        return;
     }
 
     if (isTwoPlaying)
@@ -122,7 +120,6 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
                 }
             }
         }
-        return;
     }
 
     if (idleClock1.getElapsedTime().asSeconds() >= 0.2f)
