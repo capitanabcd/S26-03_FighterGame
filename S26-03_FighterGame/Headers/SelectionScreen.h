@@ -9,6 +9,8 @@ public:
     void renderSelectionScreen(sf::RenderWindow& window);
 
     bool isSelecting;
+    int player1Choice;
+    int player2Choice;
 
 private:
     void NormalizeCharacter(sf::Sprite& character);
@@ -28,8 +30,6 @@ private:
     int index1, index2;
     int frames1, frames2;
     int selectingFor;
-    int player1Choice;
-    int player2Choice;
 
     sf::Clock enterClock;
     sf::Clock oneClock;

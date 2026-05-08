@@ -36,21 +36,20 @@ public:
         nextPlayerNumber++;
 
         clock.restart();
-
         x = 100;
-        Sprite.setTexture(IdleTextures[0]);
-        Sprite.setScale(4.f, 4.f);
-        setupOrigin();
+    }
 
-        y = ground - Sprite.getGlobalBounds().height;
-
-        if (PlayerNumber == 1)
+    void InitAfterTextureLoad()
+    {
+        if (!IdleTextures.empty())
         {
-            Sprite.setPosition(x, ground);
-        }
-        if (PlayerNumber == 2)
-        {
-            Sprite.setPosition(x + 400, ground);
+            Sprite.setTexture(IdleTextures[0]);
+            Sprite.setScale(4.f, 4.f);
+            setupOrigin();
+            if (PlayerNumber == 1)
+                Sprite.setPosition(x, ground);
+            else
+                Sprite.setPosition(x + 400, ground);
         }
     }
 };

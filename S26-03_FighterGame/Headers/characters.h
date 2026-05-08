@@ -66,10 +66,7 @@ public:
         std::vector<sf::Texture>&,
            std::vector<sf::Texture>&
            )override;
-    void SetCharacterTexture();
-    Loadtextures()
-    {
-        SetCharacterTexture();
-    }
+    void SetCharacterTexture(int choice);
+    Loadtextures() {}
     
 };
