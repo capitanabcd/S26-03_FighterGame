@@ -1,5 +1,6 @@
 #pragma once
-#include "sfml.h"
+#include <SFML/Audio.hpp>
+#include <iostream>
 
 class SoundManager
 {

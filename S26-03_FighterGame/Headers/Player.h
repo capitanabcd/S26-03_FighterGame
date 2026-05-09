@@ -24,6 +24,10 @@ public:
 
     Players()
     {
+        s = new SoundManager();
+        if (!s->loadSounds()) {
+            std::cout << "Player " << PlayerNumber << " failed to load sounds!" << std::endl;
+        }
         maxHealth = 100;
         currentHealth = maxHealth;
 
