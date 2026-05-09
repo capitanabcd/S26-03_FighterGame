@@ -20,7 +20,7 @@ private:
     sf::Sprite Character2;
 
     std::vector<sf::Texture> OneTextures, TwoTextures, EnterTextures;
-    std::vector<sf::Texture> C1, C2, C3;
+    std::vector<sf::Texture> C1, C2, C3, C4, C5;
 
     bool isEnterPlaying, isOnePlaying, isTwoPlaying;
     bool player1Selected, player2Selected;

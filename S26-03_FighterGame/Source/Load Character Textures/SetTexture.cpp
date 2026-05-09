@@ -15,4 +15,10 @@ void Loadtextures::SetCharacterTexture(int choice)
     else if (choice == 3)
         freeza::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures,
             StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+    else if (choice == 4)
+        broly::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures,
+            StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
+    else if (choice == 5)
+        trunks::LoadTexture(HeavyAttackTextures, IdleTextures, MovementTextures,
+			StaggerTextures, BeamTextures, RangedTexture, BasicAttackTexture);
 }

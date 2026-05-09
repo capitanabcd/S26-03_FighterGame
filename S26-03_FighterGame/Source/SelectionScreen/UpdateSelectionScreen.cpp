@@ -130,6 +130,10 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
             Character1.setTexture(C2[frames1 % C2.size()], true);
         else if (index1 == 2 && !C3.empty())
             Character1.setTexture(C3[frames1 % C3.size()], true);
+        else if (index1 == 3 && !C4.empty())
+            Character1.setTexture(C4[frames1 % C4.size()], true);
+        else if (index1 == 4 && !C5.empty())
+            Character1.setTexture(C5[frames1 % C5.size()], true);
 
         NormalizeCharacter(Character1);
         idleClock1.restart();
@@ -144,6 +148,10 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
             Character2.setTexture(C2[frames2 % C2.size()], true);
         else if (index2 == 2 && !C3.empty())
             Character2.setTexture(C3[frames2 % C3.size()], true);
+        else if (index2 == 3 && !C4.empty())
+            Character2.setTexture(C4[frames2 % C4.size()], true);
+        else if (index2 == 4 && !C5.empty())
+            Character2.setTexture(C5[frames2 % C5.size()], true);
 
         NormalizeCharacter(Character2);
         idleClock2.restart();
