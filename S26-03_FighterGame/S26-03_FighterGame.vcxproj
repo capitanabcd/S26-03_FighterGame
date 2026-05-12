@@ -37,7 +37,6 @@
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\PlayerStatus.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
-    <ClCompile Include="Source\Animations\SelectionLoading.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
@@ -776,6 +775,17 @@
     <Image Include="assets\selection screen\player two_Layer 21.jpg" />
     <Image Include="assets\selection screen\player two_Layer 22.jpg" />
     <Image Include="assets\selection screen\player two_Layer 23.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 01.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 02.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 03.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 04.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 05.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 06.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 07.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 08.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 09.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 10.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 11.jpg" />
     <Image Include="assets\trunks\frieza ranged_00.png" />
     <Image Include="assets\trunks\frieza ranged_01.png" />
     <Image Include="assets\trunks\frieza ranged_02.png" />

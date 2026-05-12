@@ -1,17 +1,16 @@
 #include "sfml.h"
-void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
+void SelectionScreen::UpdateSelectionScreen(sf::RenderWindow& window)
 {
     sf::Vector2u windowSize = window.getSize();
     float windowWidth = static_cast<float>(windowSize.x);
     float windowHeight = static_cast<float>(windowSize.y);
-    float centerX = windowWidth / 2.f;
-    float centerY = windowHeight / 2.f;
 
     Character1.setPosition(windowWidth * p1CharX, windowHeight * p1CharY);
     Character2.setPosition(windowWidth * p2CharX, windowHeight * p2CharY);
 
     Character1.setColor(sf::Color(255, 255, 255, 255));
     Character2.setColor(sf::Color(255, 255, 255, 255));
+
     if (isEnterPlaying)
     {
         if (!EnterTextures.empty() && EnterFrames < (int)EnterTextures.size())
@@ -26,12 +25,12 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
             }
         }
     }
-    if (isOnePlaying)
+    else if (isOnePlaying)
     {
         if (!OneTextures.empty() && OneFrames < (int)OneTextures.size())
         {
             SelectionSprite.setTexture(OneTextures[OneFrames]);
-            OneFrames += 3;
+            OneFrames += 2;
             if (OneFrames >= (int)OneTextures.size())
             {
                 OneFrames = 0;
@@ -39,16 +38,28 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
             }
         }
     }
-    if (isTwoPlaying)
+    else if (isTwoPlaying)
     {
         if (!TwoTextures.empty() && TwoFrames < (int)TwoTextures.size())
         {
             SelectionSprite.setTexture(TwoTextures[TwoFrames]);
-            TwoFrames += 3;
+            TwoFrames += 2;
             if (TwoFrames >= (int)TwoTextures.size())
             {
                 TwoFrames = 0;
                 isTwoPlaying = false;
+            }
+        }
+    }
+    else
+    {
+        if (!SelectionBackgroundTextures.empty() && selectionBackgroundFrame < (int)SelectionBackgroundTextures.size())
+        {
+            SelectionSprite.setTexture(SelectionBackgroundTextures[selectionBackgroundFrame]);
+            selectionBackgroundFrame += 1;
+            if (selectionBackgroundFrame >= (int)SelectionBackgroundTextures.size())
+            {
+                selectionBackgroundFrame = 0;
             }
         }
     }

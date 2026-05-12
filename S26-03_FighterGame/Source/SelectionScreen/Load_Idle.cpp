@@ -67,9 +67,9 @@ void SelectionScreen::Load_IdleTextures()
     for (const auto& path : idlePaths) {
         C4.emplace_back().loadFromFile(path);
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     folderPath = "assets/trunks/";
     idlePaths.clear();
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         std::string path = entry.path().string();
         std::string filename = entry.path().filename().string();

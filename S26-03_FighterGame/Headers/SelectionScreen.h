@@ -7,7 +7,6 @@ public:
     void HandleInput(sf::Event& event);
     void UpdateSelectionScreen(sf::RenderWindow& window);
     void renderSelectionScreen(sf::RenderWindow& window);
-
     bool isSelecting;
     int player1Choice;
     int player2Choice;
@@ -26,10 +25,16 @@ private:
     bool player1Selected, player2Selected;
     bool player2Active;
 
-    int EnterFrames, OneFrames, TwoFrames;
+    int EnterFrames, OneFrames, TwoFrames, selectionBackgroundFrame;
     int index1, index2;
     int frames1, frames2;
     int selectingFor;
+    std::vector<sf::Texture> SelectionBackgroundTextures;
+    sf::Sprite SelectionBackgroundSprite;
+    sf::Clock selectionBackgroundClock;
+    float selectionBackgroundFrameDuration;
+
+
 
     sf::Clock enterClock;
     sf::Clock oneClock;

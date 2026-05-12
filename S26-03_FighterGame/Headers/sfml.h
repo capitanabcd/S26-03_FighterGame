@@ -22,4 +22,3 @@ void debug();
 void DeltaTime();
 void resize();
 void showLoadingScreen(sf::RenderWindow& window);
-void showSelectionScreen(sf::RenderWindow& window);

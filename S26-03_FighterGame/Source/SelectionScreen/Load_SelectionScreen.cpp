@@ -2,7 +2,7 @@
 void SelectionScreen::loadSelectionScreen(sf::RenderWindow& window)
 {
     std::string folderPath = "assets/selection screen/";
-    std::vector<std::string> OnePaths, TwoPaths, EnterPaths;
+    std::vector<std::string> OnePaths, TwoPaths, EnterPaths , bgPaths;
 
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         std::string path = entry.path().string();
@@ -15,11 +15,14 @@ void SelectionScreen::loadSelectionScreen(sf::RenderWindow& window)
                 TwoPaths.push_back(path);
             else if (filename.find("enter") != std::string::npos)
                 EnterPaths.push_back(path);
+            else if (filename.find("selection_Layer") != std::string::npos)
+				bgPaths.push_back(path);
         }
     }
     std::sort(OnePaths.begin(), OnePaths.end());
     std::sort(EnterPaths.begin(), EnterPaths.end());
     std::sort(TwoPaths.begin(), TwoPaths.end());
+    std::sort(bgPaths.begin(), bgPaths.end());
 
     for (const auto& path : OnePaths) {
         OneTextures.emplace_back().loadFromFile(path);
@@ -32,7 +35,9 @@ void SelectionScreen::loadSelectionScreen(sf::RenderWindow& window)
     for (const auto& path : TwoPaths) {
         TwoTextures.emplace_back().loadFromFile(path);
     }
-
+    for (const auto& path : bgPaths) {
+        SelectionBackgroundTextures.emplace_back().loadFromFile(path);
+	}
     if (!OneTextures.empty()) {
         SelectionSprite.setTexture(OneTextures[0]);
 

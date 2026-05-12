@@ -22,13 +22,15 @@ SelectionScreen::SelectionScreen()
     frames2 = 0;
     selectingFor = 1;
 
+    selectionBackgroundFrame = 0;
+    selectionBackgroundFrameDuration = 0.1f;
+    selectionBackgroundClock.restart();
 
     if (!C1.empty()) {
         Character1.setTexture(C1[0], true);
         Character2.setTexture(C1[0], true);
     }
 }
-
 void SelectionScreen::NormalizeCharacter(sf::Sprite& character)
 {
     sf::FloatRect bounds = character.getLocalBounds();
@@ -46,8 +48,8 @@ void SelectionScreen::NormalizeCharacter(sf::Sprite& character)
 void SelectionScreen::renderSelectionScreen(sf::RenderWindow& window)
 {
     window.draw(SelectionSprite);
-	NormalizeCharacter(Character1);
-	NormalizeCharacter(Character2);
+    NormalizeCharacter(Character1);
+    NormalizeCharacter(Character2);
     window.draw(Character1);
     window.draw(Character2);
 }

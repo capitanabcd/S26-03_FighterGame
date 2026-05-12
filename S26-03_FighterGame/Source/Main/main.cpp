@@ -11,11 +11,9 @@ int main()
 {
     window GameWindow;
     showLoadingScreen(GameWindow.MainWindow);
-    showLoadingScreen(GameWindow.MainWindow);
     gameBackground.loadBackground(GameWindow.MainWindow);
     gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
     gameSelectionScreen.Load_IdleTextures();
-    gameBackground.loadBackground(GameWindow.MainWindow);
     if (!soundManager.loadMusic())
         return -1;
     soundManager.playBackground();
@@ -30,7 +28,6 @@ int main()
         }
         gameSelectionScreen.UpdateSelectionScreen(GameWindow.MainWindow);
         GameWindow.MainWindow.clear();
-        showSelectionScreen(GameWindow.MainWindow);
         gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
         GameWindow.MainWindow.display();
     }

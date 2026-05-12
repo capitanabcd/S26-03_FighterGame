@@ -20,7 +20,6 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isOnePlaying = true;
                 isTwoPlaying = false;
                 OneFrames = 0;
-                oneClock.restart();
             }
             else if (event.key.code == sf::Keyboard::A)
             {
@@ -35,7 +34,6 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isOnePlaying = true;
                 isTwoPlaying = false;
                 OneFrames = 0;
-                oneClock.restart();
             }
             else if (event.key.code == sf::Keyboard::Enter)
             {
@@ -59,7 +57,6 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isTwoPlaying = true;
                 isOnePlaying = false;
                 TwoFrames = 0;
-                twoClock.restart();
             }
             else if (event.key.code == sf::Keyboard::Left)
             {
@@ -74,7 +71,6 @@ void SelectionScreen::HandleInput(sf::Event& event)
                 isTwoPlaying = true;
                 isOnePlaying = false;
                 TwoFrames = 0;
-                twoClock.restart();
             }
             else if (event.key.code == sf::Keyboard::RShift || event.key.code == sf::Keyboard::LShift)
             {
@@ -89,7 +85,6 @@ void SelectionScreen::HandleInput(sf::Event& event)
             isOnePlaying = false;
             isTwoPlaying = false;
             EnterFrames = 0;
-            enterClock.restart();
         }
     }
 }
