@@ -13,6 +13,7 @@ void Attack::CheckBasicHit() {
         if (player->BasicAttackFrames != oldFrame)
         {
             TakeDamageWithStagger(victim, 1.0f);
+            StartFlash(victim);
 
             if (victim.fireRanged == false)
             {

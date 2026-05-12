@@ -21,5 +21,6 @@ public:
 	void CheckBasicHit();
 	void TakeDamage(Players& player, float damage);
 	void TakeDamageWithStagger(Players& player, float damage);
-
+	void StartFlash(Players& player);
+	void UpdateFlash(Players& player, float dt);	
 };

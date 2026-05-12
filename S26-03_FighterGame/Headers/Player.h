@@ -9,13 +9,17 @@ class Players : public movement, public jumping, public animations, public colli
 public:
     SoundManager* s;
     int PlayerNumber;
-    float x;
-    float y;
+    float x{};
+    float y{};
     bool isalive = true;
     float maxHealth;
     float currentHealth;
     sf::Clock clock;
     sf::Sprite Sprite;
+    bool isFlashing = false;
+    float flashDuration = 0.5f;
+    sf::Clock flashClock;
+    sf::Color originalColor;
     void setupOrigin()
     {
         sf::FloatRect bounds = Sprite.getLocalBounds();

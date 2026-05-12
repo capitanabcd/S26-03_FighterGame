@@ -12,6 +12,9 @@ void PlayerCalls()
     player1.UpdateStagger(currentDt);
     player2.UpdateStagger(currentDt);
 
+    player1.UpdateFlash(player1, currentDt);
+    player2.UpdateFlash(player2, currentDt);
+
     player1.CheckHit();
     player2.CheckHit();
     player1.CheckBasicHit();

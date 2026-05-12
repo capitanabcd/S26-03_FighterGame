@@ -13,6 +13,7 @@ void Attack::CheckRangeHit() {
         if (player->RangedFrames != oldFrame)
         {
             TakeDamageWithStagger(victim, 0.5f);
+            StartFlash(victim);
         }
         oldFrame = player->RangedFrames;
     }
