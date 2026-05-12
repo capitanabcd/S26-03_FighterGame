@@ -12,112 +12,43 @@ void SelectionScreen::UpdateSelectionScreen( sf::RenderWindow& window)
 
     Character1.setColor(sf::Color(255, 255, 255, 255));
     Character2.setColor(sf::Color(255, 255, 255, 255));
-
     if (isEnterPlaying)
     {
-        if (enterClock.getElapsedTime().asSeconds() >= 0.01f)
+        if (!EnterTextures.empty() && EnterFrames < (int)EnterTextures.size())
         {
-            if (EnterFrames < EnterTextures.size())
+            SelectionSprite.setTexture(EnterTextures[EnterFrames]);
+            EnterFrames += 1;
+            if (EnterFrames >= (int)EnterTextures.size())
             {
-                SelectionSprite.setTexture(EnterTextures[EnterFrames]);
-
-                sf::Vector2u textureSize = EnterTextures[EnterFrames].getSize();
-                int cropX = 100;
-                SelectionSprite.setTextureRect(sf::IntRect(
-                    cropX, 0,
-                    textureSize.x - cropX * 2,
-                    textureSize.y
-                ));
-
-                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
-                float scaleY = windowHeight / static_cast<float>(textureSize.y);
-                SelectionSprite.setScale(scaleX, scaleY);
-
-                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
-                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-                SelectionSprite.setPosition(centerX, centerY);
-
-                enterClock.restart();
-                EnterFrames++;
-
-                if (EnterFrames >= EnterTextures.size())
-                {
-                    EnterFrames = 0;
-                    isEnterPlaying = false;
-                    isSelecting = false;
-                }
+                EnterFrames = 0;
+                isEnterPlaying = false;
+                isSelecting = false;
             }
         }
     }
-
     if (isOnePlaying)
     {
-        if (oneClock.getElapsedTime().asSeconds() >= 0.001f)
+        if (!OneTextures.empty() && OneFrames < (int)OneTextures.size())
         {
-            if (!OneTextures.empty() && OneFrames < OneTextures.size())
+            SelectionSprite.setTexture(OneTextures[OneFrames]);
+            OneFrames += 3;
+            if (OneFrames >= (int)OneTextures.size())
             {
-                SelectionSprite.setTexture(OneTextures[OneFrames]);
-
-                sf::Vector2u textureSize = OneTextures[OneFrames].getSize();
-                int cropX = 100;
-                SelectionSprite.setTextureRect(sf::IntRect(
-                    cropX, 0,
-                    textureSize.x - cropX * 2,
-                    textureSize.y
-                ));
-
-                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
-                float scaleY = windowHeight / static_cast<float>(textureSize.y);
-                SelectionSprite.setScale(scaleX, scaleY);
-
-                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
-                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-                SelectionSprite.setPosition(centerX, centerY);
-
-                oneClock.restart();
-                OneFrames++;
-
-                if (OneFrames >= OneTextures.size())
-                {
-                    OneFrames = 0;
-                    isOnePlaying = false;
-                }
+                OneFrames = 0;
+                isOnePlaying = false;
             }
         }
     }
-
     if (isTwoPlaying)
     {
-        if (twoClock.getElapsedTime().asSeconds() >= 0.001f)
+        if (!TwoTextures.empty() && TwoFrames < (int)TwoTextures.size())
         {
-            if (!TwoTextures.empty() && TwoFrames < TwoTextures.size())
+            SelectionSprite.setTexture(TwoTextures[TwoFrames]);
+            TwoFrames += 3;
+            if (TwoFrames >= (int)TwoTextures.size())
             {
-                SelectionSprite.setTexture(TwoTextures[TwoFrames]);
-
-                sf::Vector2u textureSize = TwoTextures[TwoFrames].getSize();
-                int cropX = 100;
-                SelectionSprite.setTextureRect(sf::IntRect(
-                    cropX, 0,
-                    textureSize.x - cropX * 2,
-                    textureSize.y
-                ));
-
-                float scaleX = windowWidth / static_cast<float>(textureSize.x - cropX * 2);
-                float scaleY = windowHeight / static_cast<float>(textureSize.y);
-                SelectionSprite.setScale(scaleX, scaleY);
-
-                sf::FloatRect bounds = SelectionSprite.getLocalBounds();
-                SelectionSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-                SelectionSprite.setPosition(centerX, centerY);
-
-                twoClock.restart();
-                TwoFrames++;
-
-                if (TwoFrames >= TwoTextures.size())
-                {
-                    TwoFrames = 0;
-                    isTwoPlaying = false;
-                }
+                TwoFrames = 0;
+                isTwoPlaying = false;
             }
         }
     }
