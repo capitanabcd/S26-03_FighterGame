@@ -23,7 +23,14 @@ bool SoundManager::loadSounds()
     {
         return false;
     }
-
+    if (!selectBuffer.loadFromFile("assets/Sounds/Select Sound.wav"))
+    {
+        return false;
+    }
+    if (!gamestartBuffer.loadFromFile("assets/Sounds/GameStart.wav"))
+    {
+        return false;
+    }
 
 
     hitSound.setBuffer(hitBuffer);
@@ -31,6 +38,8 @@ bool SoundManager::loadSounds()
     beamSound.setBuffer(beamBuffer);
     kickSound.setBuffer(kickBuffer);
     knockbackSound.setBuffer(knockbackBuffer);
+    selectSound.setBuffer(selectBuffer);
+    gameStartSound.setBuffer(gamestartBuffer);
 
 
 

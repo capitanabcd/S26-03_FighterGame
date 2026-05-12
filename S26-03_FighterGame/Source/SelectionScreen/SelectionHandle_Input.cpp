@@ -1,6 +1,8 @@
 #include "sfml.h"
+
 void SelectionScreen::HandleInput(sf::Event& event)
 {
+  
     if (isEnterPlaying) return;
 
     if (event.type == sf::Event::KeyPressed)
@@ -9,6 +11,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
         {
             if (event.key.code == sf::Keyboard::D)
             {
+                player1.s->selectSound.play();
                 index1 = (index1 + 1) % 5;
                 if (index1 == 0 && !C1.empty()) Character1.setTexture(C1[0], true);
                 else if (index1 == 1 && !C2.empty()) Character1.setTexture(C2[0], true);
@@ -23,6 +26,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
             }
             else if (event.key.code == sf::Keyboard::A)
             {
+                player1.s->selectSound.play();
                 index1 = (index1 - 1 + 5) % 5;
                 if (index1 == 0 && !C1.empty()) Character1.setTexture(C1[0], true);
                 else if (index1 == 1 && !C2.empty()) Character1.setTexture(C2[0], true);
@@ -37,6 +41,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
             }
             else if (event.key.code == sf::Keyboard::Enter)
             {
+                player1.s->gameStartSound.play();
                 player1Choice = index1 + 1;
                 player1Selected = true;
             }
@@ -46,6 +51,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
         {
             if (event.key.code == sf::Keyboard::Right)
             {
+                player2.s->selectSound.play();
                 index2 = (index2 + 1) % 5;
                 if (index2 == 0 && !C1.empty()) Character2.setTexture(C1[0], true);
                 else if (index2 == 1 && !C2.empty()) Character2.setTexture(C2[0], true);
@@ -60,6 +66,7 @@ void SelectionScreen::HandleInput(sf::Event& event)
             }
             else if (event.key.code == sf::Keyboard::Left)
             {
+                player2.s->selectSound.play();
                 index2 = (index2 - 1 + 5) % 5;
                 if (index2 == 0 && !C1.empty()) Character2.setTexture(C1[0], true);
                 else if (index2 == 1 && !C2.empty()) Character2.setTexture(C2[0], true);
