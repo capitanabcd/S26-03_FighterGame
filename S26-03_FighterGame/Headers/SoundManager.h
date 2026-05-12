@@ -13,18 +13,24 @@ public:
     void playKick();
     void playKnockBack();
     void playBackground();
+    void playSelect();
+    void playGameStart();
 
     sf::SoundBuffer hitBuffer;
     sf::SoundBuffer jumpBuffer;
     sf::SoundBuffer beamBuffer;
     sf::SoundBuffer kickBuffer;
     sf::SoundBuffer knockbackBuffer;
+    sf::SoundBuffer selectBuffer;
+    sf::SoundBuffer gamestartBuffer;
 
     sf::Sound hitSound;
     sf::Sound jumpSound;
     sf::Sound beamSound;
     sf::Sound kickSound;
     sf::Sound knockbackSound;
+    sf::Sound selectSound;
+    sf::Sound gameStartSound;
 
     sf::Music backgroundMusic; 
 };

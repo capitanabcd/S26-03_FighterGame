@@ -46,5 +46,6 @@ void window::HandleEvents()
 		}
 	}
 
+
 	CloseWindow();
 }
