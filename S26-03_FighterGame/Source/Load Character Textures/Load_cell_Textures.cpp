@@ -1,7 +1,7 @@
 #include "sfml.h"
 void cell::LoadTexture(std::vector<sf::Texture>& HeavyAttack, std::vector<sf::Texture>& Idle, std::vector<sf::Texture>& Movement, std::vector<sf::Texture>& Stagger, std::vector<sf::Texture>& beam, std::vector<sf::Texture>& ranged, std::vector<sf::Texture>& basic)
 {
-    std::string folderPath = "assets/goku/";
+    std::string folderPath = "assets/Cell/";
     std::vector<std::string> idlePaths, movementPaths, heavyPaths, staggerPaths, beamPaths, rangedPaths, basicPaths;
 
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {

@@ -12,7 +12,7 @@ public:
 	bool hitTaken = false;
 	bool isbeaming = false;
 	bool fireRanged = false;
-	int BeamNumbers = 3;
+	int BeamNumbers = 20;
 	sf::Sprite RangedAttack;
 	sf::Clock attackClock;
 	int oldFrame = 0;
