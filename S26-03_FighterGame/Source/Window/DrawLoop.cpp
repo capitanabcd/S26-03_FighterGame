@@ -3,8 +3,6 @@ extern Background gameBackground;
 
 void window::DrawLoop()
 {
-	player1.UpdateFlash(player1, dt);
-	player2.UpdateFlash(player2, dt);
 	player1.invert();
 	player2.invert();
 	player1.IdleAnimation();

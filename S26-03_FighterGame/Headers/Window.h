@@ -37,3 +37,4 @@ public:
     bool WindowisOpen() const;
     void DrawLoop();
 };
+extern window GameWindow;

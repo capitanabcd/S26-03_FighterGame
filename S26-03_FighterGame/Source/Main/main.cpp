@@ -5,18 +5,21 @@ HealthBar ui;
 Background gameBackground;
 SelectionScreen gameSelectionScreen;
 SoundManager soundManager;
-
+EndScreen gameEndScreen;
+window GameWindow;
 
 int main()
 {
-    window GameWindow;
     showLoadingScreen(GameWindow.MainWindow);
     gameBackground.loadBackground(GameWindow.MainWindow);
     gameSelectionScreen.loadSelectionScreen(GameWindow.MainWindow);
     gameSelectionScreen.Load_IdleTextures();
+    gameEndScreen.loadEndTextures();
+
     if (!soundManager.loadMusic())
         return -1;
     soundManager.playBackground();
+
     while (GameWindow.WindowisOpen() && gameSelectionScreen.isSelecting)
     {
         DeltaTime();
@@ -31,6 +34,7 @@ int main()
         gameSelectionScreen.renderSelectionScreen(GameWindow.MainWindow);
         GameWindow.MainWindow.display();
     }
+
     player1.SetCharacterTexture(gameSelectionScreen.player1Choice);
     player2.SetCharacterTexture(gameSelectionScreen.player2Choice);
 
@@ -40,12 +44,39 @@ int main()
     while (GameWindow.WindowisOpen())
     {
         DeltaTime();
+
         while (GameWindow.MainWindow.pollEvent(GameWindow.event))
+        {
+            if (GameWindow.event.type == sf::Event::Closed)
+            GameWindow.MainWindow.close();
             GameWindow.HandleEvents();
-        gameBackground.updateBackground();
-        PlayerCalls();
+            gameEndScreen.handleInput(GameWindow.event);
+        }
+        if (!gameEndScreen.isActive && !gameEndScreen.restartRequested)
+        {
+            if (player1.currentHealth <= 0)
+            {
+                gameEndScreen.showWinner(2, GameWindow.MainWindow);
+            }
+            else if (player2.currentHealth <= 0)
+            {
+                gameEndScreen.showWinner(1, GameWindow.MainWindow);
+            }
+        }
+        if (gameEndScreen.restartRequested)
+        {
+            RestartGame();
+            gameEndScreen.restartRequested = false;
+            gameEndScreen.isActive = false;
+        }
+        if (!gameEndScreen.isActive)
+        {
+            gameBackground.updateBackground();
+            PlayerCalls();
+        }
+
         GameWindow.DisplayWindow();
     }
-    return 0;
 
+    return 0;
 }

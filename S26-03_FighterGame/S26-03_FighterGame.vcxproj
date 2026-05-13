@@ -22,6 +22,7 @@
     <ClInclude Include="Headers\Attack.h" />
     <ClInclude Include="Headers\Background.h" />
     <ClInclude Include="Headers\characters.h" />
+    <ClInclude Include="Headers\EndScreen.h" />
     <ClInclude Include="Headers\Game.h" />
     <ClInclude Include="Headers\SoundManager.h" />
     <ClInclude Include="Headers\Player.h" />
@@ -35,12 +36,14 @@
     <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
-    <ClCompile Include="Source\Animations\PlayerStatus.cpp" />
+    <ClCompile Include="Source\EndScreen\EndScreen.cpp" />
+    <ClCompile Include="Source\Helper Functions\PlayerStatus.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
     <ClCompile Include="Source\Actions\movment.cpp" />
+    <ClCompile Include="Source\EndScreen\RestartGame.cpp" />
     <ClCompile Include="Source\Sound Management\BackgroundSound.cpp" />
     <ClCompile Include="Source\Sound Management\BeamSound.cpp" />
     <ClCompile Include="Source\Sound Management\GameStartSound.cpp" />
@@ -54,7 +57,7 @@
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
-    <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
+    <ClCompile Include="Source\Helper Functions\LoadingScreen.cpp" />
     <ClCompile Include="Source\Attack\CheckAttack.cpp" />
     <ClCompile Include="Source\Background\Load_Background_Textures.cpp" />
     <ClCompile Include="Source\Helper Functions\Invert.cpp" />
@@ -729,6 +732,8 @@
     <Image Include="assets\goku\goku stagger_01.png" />
     <Image Include="assets\goku\goku stagger_02.png" />
     <Image Include="assets\goku\goku stagger_03.png" />
+    <Image Include="assets\Player1 end.png" />
+    <Image Include="assets\Player2 end.png" />
     <Image Include="assets\selection screen\player one _Layer 01.jpg" />
     <Image Include="assets\selection screen\player one _Layer 02.jpg" />
     <Image Include="assets\selection screen\player one _Layer 03.jpg" />
@@ -1034,6 +1039,7 @@
     <Font Include="assets\Font\galafera-med-font\GalaferaMedium-V4xze.ttf" />
     <Font Include="assets\Font\galafera-med-font\GalaferaMediumItalic-JpXJK.ttf" />
     <Font Include="assets\Font\GalaferaMedium-V4xze.ttf" />
+    <Font Include="assets\Roboto.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Sounds\Beam.wav" />

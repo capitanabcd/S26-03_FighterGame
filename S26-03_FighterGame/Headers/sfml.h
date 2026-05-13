@@ -17,7 +17,7 @@
 #include "Game.h"
 #include "Window.h"
 #include "Attack.h"	
-
+#include "EndScreen.h"
 void debug();
 void DeltaTime();
 void resize();

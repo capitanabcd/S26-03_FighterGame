@@ -10,7 +10,10 @@ public:
     bool isSelecting;
     int player1Choice;
     int player2Choice;
-
+    bool isEnterPlaying, isOnePlaying, isTwoPlaying;
+    bool player1Selected, player2Selected;
+    int index1, index2;
+    int frames1, frames2;
 private:
     void NormalizeCharacter(sf::Sprite& character);
 
@@ -21,13 +24,11 @@ private:
     std::vector<sf::Texture> OneTextures, TwoTextures, EnterTextures;
     std::vector<sf::Texture> C1, C2, C3, C4, C5;
 
-    bool isEnterPlaying, isOnePlaying, isTwoPlaying;
-    bool player1Selected, player2Selected;
+
     bool player2Active;
 
     int EnterFrames, OneFrames, TwoFrames, selectionBackgroundFrame;
-    int index1, index2;
-    int frames1, frames2;
+
     int selectingFor;
     std::vector<sf::Texture> SelectionBackgroundTextures;
     sf::Sprite SelectionBackgroundSprite;
@@ -47,3 +48,4 @@ private:
     float p2CharX = 0.71f;
     float p2CharY = 0.768f;
 };
+extern SelectionScreen gameSelectionScreen;
