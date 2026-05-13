@@ -420,6 +420,16 @@
     <Image Include="assets\broly\broly Movement_03.png" />
     <Image Include="assets\broly\broly Movement_04.png" />
     <Image Include="assets\broly\broly ranged_0.png" />
+    <Image Include="assets\broly\broly ranged_00.png" />
+    <Image Include="assets\broly\broly ranged_01.png" />
+    <Image Include="assets\broly\broly ranged_02.png" />
+    <Image Include="assets\broly\broly ranged_03.png" />
+    <Image Include="assets\broly\broly ranged_04.png" />
+    <Image Include="assets\broly\broly ranged_05.png" />
+    <Image Include="assets\broly\broly ranged_06.png" />
+    <Image Include="assets\broly\broly ranged_07.png" />
+    <Image Include="assets\broly\broly ranged_08.png" />
+    <Image Include="assets\broly\broly ranged_09.png" />
     <Image Include="assets\broly\broly ranged_1.png" />
     <Image Include="assets\broly\broly ranged_10.png" />
     <Image Include="assets\broly\broly ranged_11.png" />
