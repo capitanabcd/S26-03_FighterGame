@@ -27,6 +27,7 @@ public:
     sf::SoundBuffer gameendBuffer;
 
 
+
     sf::Sound hitSound;
     sf::Sound jumpSound;
     sf::Sound beamSound;
