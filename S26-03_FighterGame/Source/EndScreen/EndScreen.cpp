@@ -1,4 +1,5 @@
 #include "sfml.h"
+#include"player.h"
 
 EndScreen::EndScreen()
 {
@@ -18,10 +19,15 @@ void EndScreen::showWinner(int winnerPlayerNumber, sf::RenderWindow& window)
     restartRequested = false;
 
     if (winnerPlayerNumber == 1)
+    {
+        player1.s->playGameEnd();
         winSprite.setTexture(p1WinTex);
+    }
     else
+    {
+        player2.s->playGameEnd();
         winSprite.setTexture(p2WinTex);
-
+    }
     sf::Vector2u windowSize = window.getSize();
     sf::Vector2u textureSize = winSprite.getTexture()->getSize();
 

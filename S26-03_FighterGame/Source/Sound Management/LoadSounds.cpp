@@ -31,6 +31,10 @@ bool SoundManager::loadSounds()
     {
         return false;
     }
+    if (!gameendBuffer.loadFromFile("assets/Sounds/Game Over.wav"))
+    {
+        return false;
+    }
 
 
     hitSound.setBuffer(hitBuffer);
@@ -40,6 +44,8 @@ bool SoundManager::loadSounds()
     knockbackSound.setBuffer(knockbackBuffer);
     selectSound.setBuffer(selectBuffer);
     gameStartSound.setBuffer(gamestartBuffer);
+    gameEndSound.setBuffer(gameendBuffer);
+
 
 
 

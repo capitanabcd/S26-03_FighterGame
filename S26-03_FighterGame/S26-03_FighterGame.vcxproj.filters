@@ -5,9 +5,7 @@
     <ClCompile Include="Source\Animations\BasicAttackAnimation.cpp" />
     <ClCompile Include="Source\Animations\BeamAnimation.cpp" />
     <ClCompile Include="Source\Animations\HeavyAttackAnimation.cpp" />
-    <ClCompile Include="Source\Animations\PlayerStatus.cpp" />
     <ClCompile Include="Source\Animations\RangedAttackAnimation.cpp" />
-    <ClCompile Include="Source\Animations\SelectionLoading.cpp" />
     <ClCompile Include="Source\Animations\StaggerAnimation.cpp" />
     <ClCompile Include="Source\Attack\attack.cpp" />
     <ClCompile Include="Source\Actions\jumping.cpp" />
@@ -24,7 +22,6 @@
     <ClCompile Include="Source\Attack\CheckRangeHit.cpp" />
     <ClCompile Include="Source\Helper Functions\Screen Bounds.cpp" />
     <ClCompile Include="Source\animations\IdleAnimation.cpp" />
-    <ClCompile Include="Source\Animations\LoadingScreen.cpp" />
     <ClCompile Include="Source\Attack\CheckAttack.cpp" />
     <ClCompile Include="Source\Background\Load_Background_Textures.cpp" />
     <ClCompile Include="Source\Helper Functions\Invert.cpp" />
@@ -54,6 +51,13 @@
     <ClCompile Include="Source\Actions\Health.cpp" />
     <ClCompile Include="Source\Window\PlayerCalls.cpp" />
     <ClCompile Include="Source\Window\Window_definitions.cpp" />
+    <ClCompile Include="Source\EndScreen\EndScreen.cpp" />
+    <ClCompile Include="Source\Helper Functions\PlayerStatus.cpp" />
+    <ClCompile Include="Source\EndScreen\RestartGame.cpp" />
+    <ClCompile Include="Source\Sound Management\GameStartSound.cpp" />
+    <ClCompile Include="Source\Helper Functions\LoadingScreen.cpp" />
+    <ClCompile Include="Source\Sound Management\SelectSound.cpp" />
+    <ClCompile Include="Source\Sound Management\GameEndSound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Attack.h" />
@@ -66,6 +70,7 @@
     <ClInclude Include="Headers\SelectionScreen.h" />
     <ClInclude Include="Headers\sfml.h" />
     <ClInclude Include="Headers\Window.h" />
+    <ClInclude Include="Headers\EndScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Sounds\Beam.wav" />
@@ -74,6 +79,9 @@
     <Media Include="assets\Sounds\Jump.wav" />
     <Media Include="assets\Sounds\Kick.wav" />
     <Media Include="assets\Sounds\KnockBack.wav" />
+    <Media Include="assets\Sounds\GameStart.wav" />
+    <Media Include="assets\Sounds\Select Sound.wav" />
+    <Media Include="assets\Sounds\Game Over.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\background\back-00001.jpg" />
@@ -999,11 +1007,85 @@
     <Image Include="assets\selection screen\player one _Layer 02.jpg" />
     <Image Include="assets\selection screen\player one _Layer 03.jpg" />
     <Image Include="assets\selection screen\player one _Layer 04.jpg" />
+    <Image Include="assets\broly\broly ranged_00.png" />
+    <Image Include="assets\broly\broly ranged_01.png" />
+    <Image Include="assets\broly\broly ranged_02.png" />
+    <Image Include="assets\broly\broly ranged_03.png" />
+    <Image Include="assets\broly\broly ranged_04.png" />
+    <Image Include="assets\broly\broly ranged_05.png" />
+    <Image Include="assets\broly\broly ranged_06.png" />
+    <Image Include="assets\broly\broly ranged_07.png" />
+    <Image Include="assets\broly\broly ranged_08.png" />
+    <Image Include="assets\broly\broly ranged_09.png" />
+    <Image Include="assets\cell\Cell BasicAttack_01.png" />
+    <Image Include="assets\cell\Cell BasicAttack_02.png" />
+    <Image Include="assets\cell\Cell BasicAttack_03.png" />
+    <Image Include="assets\cell\Cell beam_30.png" />
+    <Image Include="assets\cell\Cell beam_31.png" />
+    <Image Include="assets\cell\Cell beam_32.png" />
+    <Image Include="assets\cell\Cell beam_33.png" />
+    <Image Include="assets\cell\Cell beam_35.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_07.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_08.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_10.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_11.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_12.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_14.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_15.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_16.png" />
+    <Image Include="assets\cell\Cell HeavyAttack_17.png" />
+    <Image Include="assets\cell\cell Idle1.png" />
+    <Image Include="assets\cell\cell Idle2.png" />
+    <Image Include="assets\cell\cell Idle3.png" />
+    <Image Include="assets\cell\cell Idle4.png" />
+    <Image Include="assets\cell\Cell Movement_01.png" />
+    <Image Include="assets\cell\Cell Movment_0.png" />
+    <Image Include="assets\cell\Cell ranged_00.png" />
+    <Image Include="assets\cell\Cell ranged_01.png" />
+    <Image Include="assets\cell\Cell ranged_02.png" />
+    <Image Include="assets\cell\Cell ranged_03.png" />
+    <Image Include="assets\cell\Cell ranged_04.png" />
+    <Image Include="assets\cell\Cell ranged_05.png" />
+    <Image Include="assets\cell\Cell ranged_06.png" />
+    <Image Include="assets\cell\Cell ranged_07.png" />
+    <Image Include="assets\cell\Cell ranged_08.png" />
+    <Image Include="assets\cell\Cell ranged_09.png" />
+    <Image Include="assets\cell\Cell ranged_10.png" />
+    <Image Include="assets\cell\Cell ranged_11.png" />
+    <Image Include="assets\cell\Cell ranged_12.png" />
+    <Image Include="assets\cell\Cell ranged_13.png" />
+    <Image Include="assets\cell\Cell ranged_14.png" />
+    <Image Include="assets\cell\Cell ranged_15.png" />
+    <Image Include="assets\cell\Cell ranged_16.png" />
+    <Image Include="assets\cell\Cell ranged_17.png" />
+    <Image Include="assets\cell\Cell ranged_18.png" />
+    <Image Include="assets\cell\Cell ranged_19.png" />
+    <Image Include="assets\cell\Cell ranged_20.png" />
+    <Image Include="assets\cell\Cell ranged_21.png" />
+    <Image Include="assets\cell\Cell ranged_22.png" />
+    <Image Include="assets\cell\Cell ranged_23.png" />
+    <Image Include="assets\cell\Cell ranged_24.png" />
+    <Image Include="assets\cell\Cell stagger_01.png" />
+    <Image Include="assets\cell\Cell stagger_02.png" />
+    <Image Include="assets\Player1 end.png" />
+    <Image Include="assets\Player2 end.png" />
+    <Image Include="assets\selection screen\selection_Layer 01.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 02.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 03.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 04.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 05.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 06.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 07.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 08.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 09.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 10.jpg" />
+    <Image Include="assets\selection screen\selection_Layer 11.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\Font\galafera-med-font\GalaferaMedium-V4xze.ttf" />
     <Font Include="assets\Font\galafera-med-font\GalaferaMediumItalic-JpXJK.ttf" />
     <Font Include="assets\Font\GalaferaMedium-V4xze.ttf" />
+    <Font Include="assets\Roboto.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dlls\openal32.dll" />

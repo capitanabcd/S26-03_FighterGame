@@ -46,6 +46,7 @@
     <ClCompile Include="Source\EndScreen\RestartGame.cpp" />
     <ClCompile Include="Source\Sound Management\BackgroundSound.cpp" />
     <ClCompile Include="Source\Sound Management\BeamSound.cpp" />
+    <ClCompile Include="Source\Sound Management\GameEndSound.cpp" />
     <ClCompile Include="Source\Sound Management\GameStartSound.cpp" />
     <ClCompile Include="Source\Sound Management\JumpSound.cpp" />
     <ClCompile Include="Source\Sound Management\KickSound.cpp" />
@@ -1103,6 +1104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Sounds\Beam.wav" />
+    <Media Include="assets\Sounds\Game Over.wav" />
     <Media Include="assets\Sounds\GameStart.wav" />
     <Media Include="assets\Sounds\hit.wav" />
     <Media Include="assets\Sounds\Hornet.wav" />
